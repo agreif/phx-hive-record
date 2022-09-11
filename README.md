@@ -24,6 +24,11 @@ config :hive_rec, HiveRec.Repo,
     maintenance_database: "hiverec_dev",
 ```
 
+4. create DB
+```
+$ mix ecto.create
+```
+
 3. start server
 ```
 $ mix phx.server
