@@ -2,10 +2,11 @@ import Config
 
 # Configure your database
 config :hive_rec, HiveRec.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "hiverec_dev",
+  password: "hiverec_dev",
   hostname: "localhost",
-  database: "hive_rec_dev",
+  database: "hiverec_dev",
+  maintenance_database: "hiverec_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
