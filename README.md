@@ -24,14 +24,21 @@ config :hive_rec, HiveRec.Repo,
     maintenance_database: "hiverec_dev",
 ```
 
-4. create DB
+3. create DB
 ```
 $ mix ecto.create
 ```
 
-3. start server
+4. start server
 ```
 $ mix phx.server
 ```
 
 Now it runs on port 4000
+
+5. add authentication logic
+```
+mix phx.gen.auth Accounts User users
+mix deps.get
+mix ecto.migrate
+```
