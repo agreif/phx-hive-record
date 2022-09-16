@@ -24,14 +24,14 @@
                 </div>
               </div>
               <div class="uk-margin">
-                <button class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button>
+                <%= submit "Login", class: "uk-button uk-button-primary uk-button-large uk-width-1-1" %>
               </div>
               <div>
 		<label><%= checkbox f, :remember_me, class: "uk-checkbox" %> Keep me logged in for 60 days</label>
               </div>
               <div class="uk-text-small uk-text-center uk-margin-top">
-		  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-		  <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+		<%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
+		<%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
               </div>
             </.form>
           </div>

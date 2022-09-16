@@ -1,26 +1,43 @@
-<h1>Reset password</h1>
-
-<.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)}>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="uk-section uk-flex uk-flex-middle uk-animation-fade">
+  <div class="uk-width-1-1">
+    <div class="uk-container">
+      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+        <div class="uk-width-1-1@m">
+          <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+            <h3 class="uk-card-title uk-text-center">Reset password</h3>
+            <.form let={f} for={@changeset} action={Routes.user_reset_password_path(@conn, :update, @token)}>
+              <%= if @changeset.action do %>
+                <div class="alert alert-danger">
+                  <p>Oops, something went wrong! Please check the errors below.</p>
+                </div>
+              <% end %>
+              <div class="uk-margin">
+                <div class="uk-inline uk-width-1-1">
+                  <%= label f, :password, "New password" %>
+                  <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                  <%= password_input f, :password, required: true, class: "uk-input uk-form-large" %>
+                  <%= error_tag f, :password %>
+                </div>
+              </div>
+              <div class="uk-margin">
+                <div class="uk-inline uk-width-1-1">
+                  <%= label f, :password_confirmation, "Confirm new password" %>
+                  <span class="uk-form-icon" uk-icon="icon: lock"></span>
+                  <%= password_input f, :password_confirmation, required: true, class: "uk-input uk-form-large" %>
+                  <%= error_tag f, :password_confirmation %>
+                </div>
+              </div>
+              <div class="uk-margin">
+                <%= submit "Reset password", class: "uk-button uk-button-primary uk-button-large uk-width-1-1" %>
+              </div>
+              <div class="uk-text-small uk-text-center uk-margin-top">
+                <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
+                <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
+              </div>
+            </.form>
+          </div>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <%= label f, :password, "New password" %>
-  <%= password_input f, :password, required: true %>
-  <%= error_tag f, :password %>
-
-  <%= label f, :password_confirmation, "Confirm new password" %>
-  <%= password_input f, :password_confirmation, required: true %>
-  <%= error_tag f, :password_confirmation %>
-
-  <div>
-    <%= submit "Reset password" %>
   </div>
-</.form>
-
-<p>
-  <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
-  <%= link "Log in", to: Routes.user_session_path(@conn, :new) %>
-</p>
+</div>
