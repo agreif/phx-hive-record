@@ -1,0 +1,61 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here has no
+## effect: edit them in PO (.po) files instead.
+msgid ""
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:18
+#, elixir-autogen, elixir-format
+msgid "Add Demo1"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:22
+#, elixir-autogen, elixir-format
+msgid "Attribute 1"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:23
+#, elixir-autogen, elixir-format
+msgid "Attribute 2"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:24
+#, elixir-autogen, elixir-format
+msgid "Cancel"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:26
+#, elixir-autogen, elixir-format
+msgid "Delete"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:20
+#, elixir-autogen, elixir-format
+msgid "Delete Demo1"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:17
+#, elixir-autogen, elixir-format
+msgid "Demo 1 Page"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:21
+#, elixir-autogen, elixir-format
+msgid "Do you really want to delete this Demo1?"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:19
+#, elixir-autogen, elixir-format
+msgid "Edit Demo1"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:25
+#, elixir-autogen, elixir-format
+msgid "Save"
+msgstr ""

@@ -1,0 +1,82 @@
+<body-tag>
+  <div>
+    <unauth-nav-tag context="{this}" if="{data.pages.register || data.pages.login}"></unauth-nav-tag>
+    <nav-tag context="{this}" if="{data.navbar}"></nav-tag>
+    <div class="uk-container">
+      <error-page context="{this}" if="{data.pages.error}"></error-page>
+      <demo1-list-page context="{this}" if="{data.pages.demo1_list}"></demo1-list-page>
+      <demo1-add-update-page context="{this}" if="{data.pages.demo1_add_update}"></demo1-add-update-page>
+      <register-page context="{this}" if="{data.pages.register}"></register-page>
+      <login-page context="{this}" if="{data.pages.login}"></login-page>
+    </div>
+  </div>
+
+  <script>
+    export default {
+	onBeforeMount(props) {
+            this.data = { pages: {} }
+	},
+
+	uikit() {
+            return UIkit
+	},
+
+	updateData(newData) {
+	    this.data = newData
+	    this.update()
+	},
+
+	updateHistory(newData) {
+	    if (newData.history_state
+		&& (!window.history.state
+		    || !window.history.state.data_url
+		    || (window.history.state.data_url
+			&& (window.history.state.data_url != newData.data_url)))) {
+		window.history.pushState({data_url: newData.data_url},
+					 newData.history_state.title,
+					 newData.history_state.url)
+	    }
+	},
+
+	refreshDataGet(dataUrl) {
+            fetch(dataUrl)
+		.then(res => res.json())
+      		.then(newData => {
+		    this.updateData(newData)
+		    this.updateHistory(newData)
+		})
+		.catch(err => console.error(err));
+	},
+
+	refreshDataPost(postUrl, csrfToken) {
+	    this.postRequest(postUrl, csrfToken, {})
+	},
+
+	postRequest(postUrl, csrfToken, json, callbackFun) {
+	    fetch(postUrl,
+		  { method: "POST",
+		    headers: {'Accept': 'application/json',
+			      'Content-Type': 'application/json',
+			      'x-csrf-token': csrfToken},
+		    body: JSON.stringify(json)}
+		 ).then(async rawResponse => {
+		     var newData = await rawResponse.json()
+		     if (typeof callbackFun === 'function') {
+			 callbackFun(newData)
+		     } else {
+			 this.updateData(newData)
+			 this.updateHistory(newData)
+		     }
+		 })
+	},
+
+	postForm(url, csrfToken, formSelector, callbackFun) {
+	    const formData = new FormData(this.$(formSelector))
+	    const formJson = Object.fromEntries(formData.entries())
+	    this.postRequest(url, csrfToken, formJson, callbackFun)
+	},
+
+
+    }
+  </script>
+</body-tag>

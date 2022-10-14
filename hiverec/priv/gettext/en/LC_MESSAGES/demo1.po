@@ -1,0 +1,62 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2\n"
+
+#: lib/hiverec/handler/demo1.ex:18
+#, elixir-autogen, elixir-format
+msgid "Add Demo1"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:22
+#, elixir-autogen, elixir-format
+msgid "Attribute 1"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:23
+#, elixir-autogen, elixir-format
+msgid "Attribute 2"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:24
+#, elixir-autogen, elixir-format
+msgid "Cancel"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:26
+#, elixir-autogen, elixir-format
+msgid "Delete"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:20
+#, elixir-autogen, elixir-format
+msgid "Delete Demo1"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:17
+#, elixir-autogen, elixir-format
+msgid "Demo 1 Page"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:21
+#, elixir-autogen, elixir-format
+msgid "Do you really want to delete this Demo1?"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:19
+#, elixir-autogen, elixir-format
+msgid "Edit Demo1"
+msgstr ""
+
+#: lib/hiverec/handler/demo1.ex:25
+#, elixir-autogen, elixir-format
+msgid "Save"
+msgstr ""

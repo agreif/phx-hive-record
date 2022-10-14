@@ -1,0 +1,48 @@
+<nav-tag>
+  <nav class="uk-navbar-container uk-margin" uk-navbar>
+    <div class="uk-navbar-left uk-margin-left">
+      <a class="uk-navbar-item uk-logo" href="#">HiveRec</a>
+      <ul class="uk-navbar-nav">
+	<li class="{navitem.is_active ? 'uk-active' : null}" each="{navitem in context.data.navbar.navitems}">
+	  <a href="{navitem.url}" onclick="{(e) => changeNav(e, navitem.data_url)}">{navitem.label}</a>
+	</li>
+      </ul>
+    </div>
+    <div class="uk-navbar-right uk-margin-right">
+      <ul class="uk-navbar-nav">
+	<li if="{context.data.locale == 'de'}"><a onclick="{(e) => changeLocale(e, 'en')}">EN</a></li>
+	<li if="{context.data.locale == 'en'}"><a onclick="{(e) => changeLocale(e, 'de')}">DE</a></li>
+	<li><a onclick="{logout}">Logout</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+    export default {
+	onBeforeMount(props) { this.context = props.context },
+
+	changeNav(event, dataUrl) {
+	    event.preventDefault()
+	    this.context.refreshDataGet(dataUrl)
+	},
+
+	changeLocale(event, locale) {
+	    this.context.refreshDataGet(this.context.data.data_url + "?locale=" + locale)
+	},
+
+	logout() {
+	    event.preventDefault()
+	    this.context.postRequest(
+		this.context.data.logout.post_url,
+		this.context.data.logout.csrf_token,
+		{},
+		this.redirectCallback)
+	},
+
+	redirectCallback(data) {
+	    window.location.href = '/'
+	},
+
+    }
+  </script>
+</nav-tag>

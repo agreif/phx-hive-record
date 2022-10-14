@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content={csrf_token_value()}>
+    <%= live_title_tag assigns[:page_title] || "Hiverec", suffix: " · Phoenix Framework" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <script type="module">
+      <%= for tag <- assigns[:riot_tags] |> Enum.map(&Atom.to_string/1) do %>
+        import <%= tag %>_tag from "/riot/<%= tag %>_tag.js"
+      riot.register("<%= String.replace(tag, "_", "-") %>-tag", <%= tag %>_tag)
+      <% end %>
+      <%= for page <- assigns[:riot_pages] |> Enum.map(&Atom.to_string/1) do %>
+        import <%= page %>_page from "/riot/<%= page %>_page.js"
+        riot.register("<%= String.replace(page, "_", "-") %>-page", <%= page %>_page)
+      <% end %>
+      riot.mount('body-tag')[0].refreshDataGet("<%= @data_url %>")
+    </script>
+  </head>
+  <body>
+    <%= @inner_content %>
+  </body>
+</html>

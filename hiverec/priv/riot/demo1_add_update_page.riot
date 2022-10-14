@@ -1,0 +1,48 @@
+<demo1-add-update-page>
+  <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+    <h2 class="uk-card-title">{context.data.translations[context.data.pages.demo1_add_update.title_msgid]}</h2>
+    <form id="demo1-add-update" class="uk-form-horizontal uk-margin-large">
+      <div class="uk-margin">
+	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Attribute 1']}</label>
+	<div class="uk-form-controls">
+          <input type="text" name="attr1" value="{context.data.pages.demo1_add_update.form.params.attr1}" class="uk-input">
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.demo1_add_update.form.errors.attr1}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+	</div>
+      </div>
+      <div class="uk-margin">
+	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Attribute 2']}</label>
+	<div class="uk-form-controls">
+          <input type="text" name="attr2" value="{context.data.pages.demo1_add_update.form.params.attr2}" class="uk-input">
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.demo1_add_update.form.errors.attr2}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+	</div>
+      </div>
+      <div class="uk-text-center">
+        <button onclick="{cancel}" class="uk-button uk-button-default" type="button">{context.data.translations['Cancel']}</button>
+        <button onclick="{add}" class="uk-button uk-button-primary" type="button">{context.data.translations['Save']}</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    export default {
+	onBeforeMount(props) { this.context = props.context },
+
+	add(event) {
+	    event.preventDefault()
+	    this.context.postForm(
+		this.context.data.pages.demo1_add_update.form.post_url,
+		this.context.data.pages.demo1_add_update.csrf_token,
+		'#demo1-add-update')
+	},
+
+	cancel(event) {
+	    event.preventDefault()
+	    this.context.refreshDataGet(this.context.data.pages.demo1_add_update.get_demo1_list_data_url)
+	},
+    }
+  </script>
+</demo1-add-update-page>

@@ -1,0 +1,13 @@
+<error-page>
+  <h1>Error</h1>
+  <h2>{page.message}</h2>
+
+  <script>
+    export default {
+	onBeforeMount(props) {
+	    this.context = props.context
+	    this.page = this.context.data.pages.error
+	},
+    }
+  </script>
+</error-page>

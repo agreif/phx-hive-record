@@ -1,0 +1,23 @@
+<unauth-nav-tag>
+  <nav class="uk-navbar-container uk-margin" uk-navbar>
+    <div class="uk-navbar-left uk-margin-left">
+      <a class="uk-navbar-item uk-logo" href="#">HiveRec</a>
+    </div>
+    <div class="uk-navbar-right uk-margin-right">
+      <ul class="uk-navbar-nav">
+	<li if="{context.data.locale == 'de'}"><a onclick="{(e) => changeLocale(e, 'en')}">EN</a></li>
+	<li if="{context.data.locale == 'en'}"><a onclick="{(e) => changeLocale(e, 'de')}">DE</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <script>
+    export default {
+	onBeforeMount(props) { this.context = props.context },
+
+	changeLocale(event, locale) {
+	    this.context.refreshDataGet(this.context.data.data_url + "?locale=" + locale)
+	},
+    }
+  </script>
+</unauth-nav-tag>

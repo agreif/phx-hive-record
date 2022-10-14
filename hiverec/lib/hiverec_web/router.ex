@@ -1,0 +1,109 @@
+defmodule HiverecWeb.Router do
+  @moduledoc """
+  Router.
+  """
+
+  use HiverecWeb, :router
+
+  alias HiverecWeb.Router.Helpers, as: Routes
+
+  pipeline :browser do
+    plug :accepts, ["html", "json"]
+    plug :fetch_session
+    plug :fetch_live_flash
+    plug :put_root_layout, {HiverecWeb.LayoutView, :riot_root}
+    plug :put_layout, false
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
+    plug HiverecWeb.Plugs.Locale
+  end
+
+  scope "/", HiverecWeb do
+    pipe_through [:browser, :set_riot_tags, :require_authenticated_user]
+    get  "/", PageController, :get_index
+    get  "/demo1", PageController, :get_demo1_list_page
+    get  "/demo1/data", PageController, :get_demo1_list_data
+    get  "/demo1_add/data", PageController, :get_demo1_add_data
+    post "/demo1_add/data", PageController, :post_demo1_add_data
+    get  "/demo1_update/:id/data", PageController, :get_demo1_update_data
+    post "/demo1_update/:id/data", PageController, :post_demo1_update_data
+    post "/demo1_delete/:id/data", PageController, :post_demo1_delete_data
+
+    post "/logout", PageController, :post_logout
+  end
+
+  scope "/", HiverecWeb do
+    pipe_through [:browser, :set_riot_tags, :redirect_if_user_is_authenticated]
+    get  "/user/register", PageController, :get_register_page
+    get  "/user/register/data", PageController, :get_register_data
+    post "/user/register/data", PageController, :post_register_data
+    get  "/user/login", PageController, :get_login_page
+    get  "/user/login/data", PageController, :get_login_data
+    post "/user/login/data", PageController, :post_login_data
+  end
+
+  # helpers
+
+  defp set_riot_tags(conn, _opts) do
+    if get_session(conn, :login) do
+      conn
+      |> assign(:riot_tags, [:body, :nav])
+      |> assign(:riot_pages, [:error,
+                             :demo1_list, :demo1_add_update,
+                             ])
+    else
+      conn
+      |> assign(:riot_tags, [:body, :unauth_nav])
+      |> assign(:riot_pages, [:register, :login])
+    end
+  end
+
+  defp require_authenticated_user(conn, _opts) do
+    if get_session(conn, :login) do
+      conn
+    else
+      conn
+      |> redirect(to: Routes.page_path(conn, :get_login_page))
+      |> halt()
+    end
+  end
+
+  defp redirect_if_user_is_authenticated(conn, _opts) do
+    if get_session(conn, :login) do
+      conn
+      |> redirect(to: Routes.page_path(conn, :get_index))
+      |> halt()
+    else
+      conn
+    end
+  end
+
+  # Enables LiveDashboard only for development
+  #
+  # If you want to use the LiveDashboard in production, you should put
+  # it behind authentication and allow only admins to access it.
+  # If your application does not have an admins-only section yet,
+  # you can use Plug.BasicAuth to set up some basic authentication
+  # as long as you are also using SSL (which you should anyway).
+  if Mix.env() in [:dev, :test] do
+    import Phoenix.LiveDashboard.Router
+
+    scope "/" do
+      pipe_through :browser
+
+      live_dashboard "/dashboard", metrics: HiverecWeb.Telemetry
+    end
+  end
+
+  # Enables the Swoosh mailbox preview in development.
+  #
+  # Note that preview only shows emails that were sent by the same
+  # node running the Phoenix server.
+  if Mix.env() == :dev do
+    scope "/dev" do
+      pipe_through :browser
+
+      forward "/mailbox", Plug.Swoosh.MailboxPreview
+    end
+  end
+end

@@ -2,13 +2,33 @@
 
 A small web application to manage beehive inspection recors for beekeepers.
 
-# Written in Elixir/Phoenix
+Written in Elixir/Phoenix
+
+
+# Run Phoenix Server
+```
+$ cd hiverec
+$ sh run_dev.sh
+```
+
+The 'run_dev.sh' script starts the development server mode with
+- gettext extraction
+- phoenix server start
+
+
+# Prerequisites
+Install RiotJS:
+```
+cd hiverec
+npm install @riotjs/cli
+```
+
 
 # Setup
 
 1. created new phoenix project with
 ```
-$ mix phx.new hive_rec
+$ mix phx.new hiverec
 ```
 
 2. created Postgres DB with
@@ -35,10 +55,3 @@ $ mix phx.server
 ```
 
 Now it runs on port 4000
-
-5. add authentication logic
-```
-mix phx.gen.auth Accounts User users
-mix deps.get
-mix ecto.migrate
-```
