@@ -9,6 +9,7 @@ defmodule Hiverec.Handler.Location do
   alias Phoenix.HTML.Tag
   alias Ecto.Changeset
   import HiverecWeb.Gettext
+  import Ecto.Query, only: [from: 2]
 
   @gettext_domain "location"
 
@@ -33,7 +34,10 @@ defmodule Hiverec.Handler.Location do
   ###################
 
   def gen_list_data(conn) do
-    location_items = Model.Location.all_locations()
+    user_id = Common.user_id(conn)
+    query = from l in Model.Location, where: l.user_id == ^user_id, order_by: l.name
+
+    location_items = Repo.all(query)
     |> Enum.map(fn location ->
       post_data_url = Routes.page_url(conn, :post_location_delete_data, location)
       %Data.LocationItem{entity: location,
@@ -113,14 +117,18 @@ defmodule Hiverec.Handler.Location do
   ###################
 
   def process_get_update(conn, params) do
-    location = Repo.get!(Model.Location, params["id"])
+    location = Repo.get_by!(Model.Location, [id: params["id"], user_id: Common.user_id(conn)])
     gen_update_data(conn, location)
   end
 
   def process_post_update(conn, params) do
-    location = Repo.get!(Model.Location, params["id"])
+    location = Repo.get_by!(Model.Location, [id: params["id"], user_id: Common.user_id(conn)])
     changeset = Model.Location.changeset(location, params)
-    case Repo.update(changeset) do
+    result = changeset
+    |> Changeset.put_change(:user_id, Common.user_id(conn))
+    |> Repo.update
+
+    case result do
       {:ok, _} -> Handler.Location.gen_list_data(conn)
       {:error, changeset} ->
         gen_update_data(conn,
@@ -157,7 +165,7 @@ defmodule Hiverec.Handler.Location do
   ###################
 
   def process_post_delete(conn, params) do
-    location = Repo.get!(Model.Location, params["id"])
+    location = Repo.get_by!(Model.Location, [id: params["id"], user_id: Common.user_id(conn)])
     case Repo.delete(location) do
       {:ok, _} -> Handler.Location.gen_list_data(conn)
       {:error, _changeset} -> Handler.Location.gen_list_data(conn)
