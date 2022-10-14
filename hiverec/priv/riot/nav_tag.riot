@@ -4,7 +4,8 @@
       <a class="uk-navbar-item uk-logo" href="#">HiveRec</a>
       <ul class="uk-navbar-nav">
 	<li class="{navitem.is_active ? 'uk-active' : null}" each="{navitem in context.data.navbar.navitems}">
-	  <a href="{navitem.url}" onclick="{(e) => changeNav(e, navitem.data_url)}">{navitem.label}</a>
+	  <a href="{navitem.url}" onclick="{(e) => changeNav(e, navitem.data_url)}" if="{navitem.label}">{navitem.label}</a>
+	  <a href="{navitem.url}" onclick="{(e) => changeNav(e, navitem.data_url)}" if="{navitem.label_msgid}">{context.data.translations[navitem.label_msgid]}</a>
 	</li>
       </ul>
     </div>

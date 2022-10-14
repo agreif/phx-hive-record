@@ -1,26 +1,26 @@
-defmodule Hiverec.Handler.Demo1 do
+defmodule Hiverec.Handler.Location do
   @moduledoc """
-  Demo1 business logic.
+  Location business logic.
   """
 
-  alias Hiverec.{Common, Data, Model, Handler, Repo}
+  alias Hiverec.{Data, Model, Handler, Repo}
+  alias Hiverec.Handler.Common
   alias HiverecWeb.Router.Helpers, as: Routes
   alias Phoenix.HTML.Tag
   alias Ecto.Changeset
   import HiverecWeb.Gettext
 
-  @gettext_domain "demo1"
+  @gettext_domain "location"
 
   defp texts_en() do
     Gettext.with_locale("en", fn ->
       [
-        dgettext(@gettext_domain, "Demo 1 Page"),
-        dgettext(@gettext_domain, "Add Demo1"),
-        dgettext(@gettext_domain, "Edit Demo1"),
-        dgettext(@gettext_domain, "Delete Demo1"),
-        dgettext(@gettext_domain, "Do you really want to delete this Demo1?"),
-        dgettext(@gettext_domain, "Attribute 1"),
-        dgettext(@gettext_domain, "Attribute 2"),
+        dgettext(@gettext_domain, "Locations"),
+        dgettext(@gettext_domain, "Add Location"),
+        dgettext(@gettext_domain, "Edit Location"),
+        dgettext(@gettext_domain, "Delete Location"),
+        dgettext(@gettext_domain, "Do you really want to delete this Location?"),
+        dgettext(@gettext_domain, "Name"),
         dgettext(@gettext_domain, "Cancel"),
         dgettext(@gettext_domain, "Save"),
         dgettext(@gettext_domain, "Delete"),
@@ -33,26 +33,26 @@ defmodule Hiverec.Handler.Demo1 do
   ###################
 
   def gen_list_data(conn) do
-    demo1_items = Model.Demo1.all_demo1s()
-    |> Enum.map(fn demo1 ->
-      post_data_url = Routes.page_url(conn, :post_demo1_delete_data, demo1)
-      %Data.Demo1Item{entity: demo1,
-                      get_demo1_update_data_url: Routes.page_url(conn, :get_demo1_update_data, demo1),
-                      post_demo1_delete_data_url: post_data_url,
+    location_items = Model.Location.all_locations()
+    |> Enum.map(fn location ->
+      post_data_url = Routes.page_url(conn, :post_location_delete_data, location)
+      %Data.LocationItem{entity: location,
+                      get_location_update_data_url: Routes.page_url(conn, :get_location_update_data, location),
+                      post_location_delete_data_url: post_data_url,
                       csrf_token: Tag.csrf_token_value(post_data_url),
                      } end)
     locale = Common.locale(conn)
-    %Data{data_url: Routes.page_url(conn, :get_demo1_list_data),
+    %Data{data_url: Routes.page_url(conn, :get_location_list_data),
           locale: locale,
-          navbar: Common.gen_navbar(conn, :demo1_list),
+          navbar: Common.gen_navbar(conn, :location_list),
           history_state: %Data.HistoryState{
-            title: "Demo 1",
-            url: Routes.page_url(conn, :get_demo1_list_page)},
+            title: "Locations",
+            url: Routes.page_url(conn, :get_location_list_page)},
           logout: Common.gen_logout_data(conn),
           pages: %Data.Pages{
-            demo1_list: %Data.Demo1ListPage{
-              demo1_items: demo1_items,
-              get_demo1_add_data_url: Routes.page_url(conn, :get_demo1_add_data),
+            location_list: %Data.LocationListPage{
+              location_items: location_items,
+              get_location_add_data_url: Routes.page_url(conn, :get_location_add_data),
             }
           },
           translations: Common.translations(@gettext_domain, texts_en(), locale)
@@ -64,16 +64,16 @@ defmodule Hiverec.Handler.Demo1 do
   ###################
 
   @doc """
-  Stores the new Demo1 entity.
+  Stores the new Location entity.
 
   Returns {conn, data} tuple
   """
   def process_post_add(conn, params) do
     locale = Common.locale(conn)
-    changeset = Model.Demo1.changeset(%Model.Demo1{}, params)
+    changeset = Model.Location.changeset(%Model.Location{}, params)
     if changeset.valid? do
       case Repo.insert(changeset) do
-        {:ok, _} -> Handler.Demo1.gen_list_data(conn)
+        {:ok, _} -> Handler.Location.gen_list_data(conn)
         {:error, changeset} ->
           gen_add_data(conn, changeset.params, Common.human_errors(changeset, locale))
       end
@@ -83,21 +83,21 @@ defmodule Hiverec.Handler.Demo1 do
   end
 
   def gen_add_data(conn, params \\ %{}, errors \\ %{}) do
-    form_post_data_url = Routes.page_url(conn, :post_demo1_add_data)
+    form_post_data_url = Routes.page_url(conn, :post_location_add_data)
     locale = Common.locale(conn)
-    %Data{data_url: Routes.page_url(conn, :get_demo1_add_data),
+    %Data{data_url: Routes.page_url(conn, :get_location_add_data),
           locale: locale,
-          navbar: Common.gen_navbar(conn, :demo1),
+          navbar: Common.gen_navbar(conn, :location),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
           pages: %Data.Pages{
-            demo1_add_update: %Data.Demo1AddUpdatePage{
-              title_msgid: "Add Demo1",
+            location_add_update: %Data.LocationAddUpdatePage{
+              title_msgid: "Add Location",
               form: %Data.Form{post_url: form_post_data_url,
                                params: params,
                                errors: errors},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
-              get_demo1_list_data_url: Routes.page_url(conn, :get_demo1_list_data)
+              get_location_list_data_url: Routes.page_url(conn, :get_location_list_data)
             }
           },
           translations: Common.translations(@gettext_domain, texts_en(), locale)
@@ -109,15 +109,15 @@ defmodule Hiverec.Handler.Demo1 do
   ###################
 
   def process_get_update(conn, params) do
-    demo1 = Repo.get!(Model.Demo1, params["id"])
-    gen_update_data(conn, demo1)
+    location = Repo.get!(Model.Location, params["id"])
+    gen_update_data(conn, location)
   end
 
   def process_post_update(conn, params) do
-    demo1 = Repo.get!(Model.Demo1, params["id"])
-    changeset = Model.Demo1.changeset(demo1, params)
+    location = Repo.get!(Model.Location, params["id"])
+    changeset = Model.Location.changeset(location, params)
     case Repo.update(changeset) do
-      {:ok, _} -> Handler.Demo1.gen_list_data(conn)
+      {:ok, _} -> Handler.Location.gen_list_data(conn)
       {:error, changeset} ->
         gen_update_data(conn,
           Changeset.apply_changes(changeset),
@@ -125,22 +125,22 @@ defmodule Hiverec.Handler.Demo1 do
     end
   end
 
-  defp gen_update_data(conn, demo1, errors \\ %{}) do
-    form_post_data_url = Routes.page_url(conn, :post_demo1_update_data, demo1)
+  defp gen_update_data(conn, location, errors \\ %{}) do
+    form_post_data_url = Routes.page_url(conn, :post_location_update_data, location)
     locale = Common.locale(conn)
-    %Data{data_url: Routes.page_url(conn, :get_demo1_update_data, demo1),
+    %Data{data_url: Routes.page_url(conn, :get_location_update_data, location),
           locale: locale,
-          navbar: Common.gen_navbar(conn, :demo1),
+          navbar: Common.gen_navbar(conn, :location),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
           pages: %Data.Pages{
-            demo1_add_update: %Data.Demo1AddUpdatePage{
-              title_msgid: "Edit Demo1",
+            location_add_update: %Data.LocationAddUpdatePage{
+              title_msgid: "Edit Location",
               form: %Data.Form{post_url: form_post_data_url,
-                               params: demo1,
+                               params: location,
                                errors: errors},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
-              get_demo1_list_data_url: Routes.page_url(conn, :get_demo1_list_data)
+              get_location_list_data_url: Routes.page_url(conn, :get_location_list_data)
             }
           },
           translations: Common.translations(@gettext_domain, texts_en(), locale)
@@ -153,10 +153,10 @@ defmodule Hiverec.Handler.Demo1 do
   ###################
 
   def process_post_delete(conn, params) do
-    demo1 = Repo.get!(Model.Demo1, params["id"])
-    case Repo.delete(demo1) do
-      {:ok, _} -> Handler.Demo1.gen_list_data(conn)
-      {:error, _changeset} -> Handler.Demo1.gen_list_data(conn)
+    location = Repo.get!(Model.Location, params["id"])
+    case Repo.delete(location) do
+      {:ok, _} -> Handler.Location.gen_list_data(conn)
+      {:error, _changeset} -> Handler.Location.gen_list_data(conn)
     end
   end
 

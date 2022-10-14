@@ -3,7 +3,7 @@ defmodule Hiverec.Handler.Logout do
   Logout business logic.
   """
 
-  alias Hiverec.{Common}
+  alias Hiverec.Handler.Common
 
   @doc """
   Logs the user out.

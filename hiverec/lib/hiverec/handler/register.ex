@@ -3,7 +3,8 @@ defmodule Hiverec.Handler.Register do
   Register business logic.
   """
 
-  alias Hiverec.{Common, Data, Model, Handler, Repo}
+  alias Hiverec.{Data, Model, Handler, Repo}
+  alias Hiverec.Handler.Common
   alias Phoenix.HTML.Tag
   alias Ecto.Changeset
   alias HiverecWeb.Router.Helpers, as: Routes

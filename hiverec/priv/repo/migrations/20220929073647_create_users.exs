@@ -9,5 +9,7 @@ defmodule Riotjs.Repo.Migrations.CreateUsers do
 
       timestamps()
     end
+
+    create index(:users, [:login])
   end
 end

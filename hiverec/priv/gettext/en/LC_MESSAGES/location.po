@@ -11,52 +11,47 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/demo1.ex:18
+#: lib/hiverec/handler/location.ex:19
 #, elixir-autogen, elixir-format
-msgid "Add Demo1"
+msgid "Add Location"
 msgstr ""
 
-#: lib/hiverec/handler/demo1.ex:22
-#, elixir-autogen, elixir-format
-msgid "Attribute 1"
-msgstr ""
-
-#: lib/hiverec/handler/demo1.ex:23
-#, elixir-autogen, elixir-format
-msgid "Attribute 2"
-msgstr ""
-
-#: lib/hiverec/handler/demo1.ex:24
+#: lib/hiverec/handler/location.ex:24
 #, elixir-autogen, elixir-format
 msgid "Cancel"
 msgstr ""
 
-#: lib/hiverec/handler/demo1.ex:26
+#: lib/hiverec/handler/location.ex:26
 #, elixir-autogen, elixir-format
 msgid "Delete"
 msgstr ""
 
-#: lib/hiverec/handler/demo1.ex:20
+#: lib/hiverec/handler/location.ex:21
 #, elixir-autogen, elixir-format
-msgid "Delete Demo1"
+msgid "Delete Location"
 msgstr ""
 
-#: lib/hiverec/handler/demo1.ex:17
+#: lib/hiverec/handler/location.ex:22
 #, elixir-autogen, elixir-format
-msgid "Demo 1 Page"
+msgid "Do you really want to delete this Location?"
 msgstr ""
 
-#: lib/hiverec/handler/demo1.ex:21
+#: lib/hiverec/handler/location.ex:20
 #, elixir-autogen, elixir-format
-msgid "Do you really want to delete this Demo1?"
+msgid "Edit Location"
 msgstr ""
 
-#: lib/hiverec/handler/demo1.ex:19
-#, elixir-autogen, elixir-format
-msgid "Edit Demo1"
-msgstr ""
-
-#: lib/hiverec/handler/demo1.ex:25
+#: lib/hiverec/handler/location.ex:25
 #, elixir-autogen, elixir-format
 msgid "Save"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:18
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Locations"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:23
+#, elixir-autogen, elixir-format
+msgid "Name"
 msgstr ""

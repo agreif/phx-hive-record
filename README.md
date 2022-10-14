@@ -55,3 +55,7 @@ $ mix phx.server
 ```
 
 Now it runs on port 4000
+
+
+# Helpful Stuff
+(https://hexdocs.pm/ecto_sql/Ecto.Migration.html)[https://hexdocs.pm/ecto_sql/Ecto.Migration.html]

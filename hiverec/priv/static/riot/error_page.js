@@ -6,9 +6,9 @@ var error_page = {
       this.page = this.context.data.pages.error;
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1>Error</h1><h2 expr21="expr21"> </h2>', [{
-    redundantAttribute: 'expr21',
-    selector: '[expr21]',
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1>Error</h1><h2 expr7="expr7"> </h2>', [{
+    redundantAttribute: 'expr7',
+    selector: '[expr7]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,

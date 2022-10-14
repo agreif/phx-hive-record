@@ -9,32 +9,32 @@ defmodule HiverecWeb.PageController do
   # index
 
   def get_index(conn, params) do
-    get_demo1_list_page(conn, params)
+    get_location_list_page(conn, params)
   end
 
-  # demo 1
+  # location
 
-  def get_demo1_list_page(conn, _params),
+  def get_location_list_page(conn, _params),
     do: render(conn, :page,
-          data_url: Routes.page_url(conn, :get_demo1_list_data))
+          data_url: Routes.page_url(conn, :get_location_list_data))
 
-  def get_demo1_list_data(conn, _params),
-    do: json(conn, Handler.Demo1.gen_list_data(conn))
+  def get_location_list_data(conn, _params),
+    do: json(conn, Handler.Location.gen_list_data(conn))
 
-  def get_demo1_add_data(conn, _params),
-    do: json(conn, Handler.Demo1.gen_add_data(conn))
+  def get_location_add_data(conn, _params),
+    do: json(conn, Handler.Location.gen_add_data(conn))
 
-  def post_demo1_add_data(conn, params),
-    do: json(conn, Handler.Demo1.process_post_add(conn, params))
+  def post_location_add_data(conn, params),
+    do: json(conn, Handler.Location.process_post_add(conn, params))
 
-  def get_demo1_update_data(conn, params),
-    do: json(conn, Handler.Demo1.process_get_update(conn, params))
+  def get_location_update_data(conn, params),
+    do: json(conn, Handler.Location.process_get_update(conn, params))
 
-  def post_demo1_update_data(conn, params),
-    do: json(conn, Handler.Demo1.process_post_update(conn, params))
+  def post_location_update_data(conn, params),
+    do: json(conn, Handler.Location.process_post_update(conn, params))
 
-  def post_demo1_delete_data(conn, params),
-    do: json(conn, Handler.Demo1.process_post_delete(conn, params))
+  def post_location_delete_data(conn, params),
+    do: json(conn, Handler.Location.process_post_delete(conn, params))
 
   # register
 

@@ -1,4 +1,4 @@
-defmodule Hiverec.Common do
+defmodule Hiverec.Handler.Common do
   @moduledoc """
   Common business logic.
   """
@@ -11,10 +11,11 @@ defmodule Hiverec.Common do
 
   def gen_navbar(conn, active_item) do
     navitems = [
-      %Data.Navitem{label: "Demo 1",
-               is_active: active_item == :demo1_list,
-               url: Routes.page_url(conn, :get_demo1_list_page),
-               data_url: Routes.page_url(conn, :get_demo1_list_data) },
+      %Data.Navitem{label: nil,
+                    label_msgid: "Locations",
+                    is_active: active_item == :location_list,
+                    url: Routes.page_url(conn, :get_location_list_page),
+                    data_url: Routes.page_url(conn, :get_location_list_data) },
       ]
     %Data.Navbar{navitems: navitems}
   end

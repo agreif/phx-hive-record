@@ -21,13 +21,13 @@ defmodule HiverecWeb.Router do
   scope "/", HiverecWeb do
     pipe_through [:browser, :set_riot_tags, :require_authenticated_user]
     get  "/", PageController, :get_index
-    get  "/demo1", PageController, :get_demo1_list_page
-    get  "/demo1/data", PageController, :get_demo1_list_data
-    get  "/demo1_add/data", PageController, :get_demo1_add_data
-    post "/demo1_add/data", PageController, :post_demo1_add_data
-    get  "/demo1_update/:id/data", PageController, :get_demo1_update_data
-    post "/demo1_update/:id/data", PageController, :post_demo1_update_data
-    post "/demo1_delete/:id/data", PageController, :post_demo1_delete_data
+    get  "/location_list", PageController, :get_location_list_page
+    get  "/location_list/data", PageController, :get_location_list_data
+    get  "/location_add/data", PageController, :get_location_add_data
+    post "/location_add/data", PageController, :post_location_add_data
+    get  "/location_update/:id/data", PageController, :get_location_update_data
+    post "/location_update/:id/data", PageController, :post_location_update_data
+    post "/location_delete/:id/data", PageController, :post_location_delete_data
 
     post "/logout", PageController, :post_logout
   end
@@ -49,7 +49,7 @@ defmodule HiverecWeb.Router do
       conn
       |> assign(:riot_tags, [:body, :nav])
       |> assign(:riot_pages, [:error,
-                             :demo1_list, :demo1_add_update,
+                             :location_list, :location_add_update,
                              ])
     else
       conn

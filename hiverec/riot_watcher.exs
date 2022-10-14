@@ -21,10 +21,11 @@ defmodule RiotWatcher do
   end
 
   def handle_info({:file_event, watcher_pid, {path, events}}, %{watcher_pid: watcher_pid} = state) do
-    if :closed in events do
+    filename = Path.basename(path)
+    if :closed in events and not (filename =~ ~r/^#/) do
       IO.puts(path)
       {_, result} = System.cmd(System.cwd <> "/node_modules/.bin/riot",
-        [Path.basename(path), "-o", System.cwd <> "/priv/static/riot/"],
+        [filename, "-o", System.cwd <> "/priv/static/riot/"],
         cd: System.cwd <> "/priv/riot")
       case result do
         0 -> say("ok")

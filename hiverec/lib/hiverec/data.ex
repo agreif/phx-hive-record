@@ -32,8 +32,8 @@ defmodule Hiverec.Data.Navitem do
   Navogation item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:label, :is_active, :url, :data_url]
-  defstruct [:label, :is_active, :url, :data_url]
+  @enforce_keys [:label, :label_msgid, :is_active, :url, :data_url]
+  defstruct [:label, :label_msgid, :is_active, :url, :data_url]
 end
 
 
@@ -62,7 +62,7 @@ defmodule Hiverec.Data.Pages do
   Container for all available pages.
   """
   @derive Jason.Encoder
-  defstruct [:error, :demo1_list, :demo1_add_update,
+  defstruct [:error, :location_list, :location_add_update,
              :register, :login]
 end
 
@@ -75,33 +75,33 @@ defmodule Hiverec.Data.ErrorPage do
   defstruct [:message]
 end
 
-defmodule Hiverec.Data.Demo1ListPage do
+defmodule Hiverec.Data.LocationListPage do
   @moduledoc """
-  Demo1 list page.
+  Location list page.
   """
   @derive Jason.Encoder
-  @enforce_keys [:demo1_items, :get_demo1_add_data_url]
-  defstruct [:demo1_items, :get_demo1_add_data_url]
+  @enforce_keys [:location_items, :get_location_add_data_url]
+  defstruct [:location_items, :get_location_add_data_url]
 end
 
-defmodule Hiverec.Data.Demo1Item do
+defmodule Hiverec.Data.LocationItem do
   @moduledoc """
-  demo1 item.
+  location item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:entity, :get_demo1_update_data_url, :post_demo1_delete_data_url, :csrf_token]
-  defstruct [:entity, :get_demo1_update_data_url, :post_demo1_delete_data_url, :csrf_token]
+  @enforce_keys [:entity, :get_location_update_data_url, :post_location_delete_data_url, :csrf_token]
+  defstruct [:entity, :get_location_update_data_url, :post_location_delete_data_url, :csrf_token]
 end
 
 
 
-defmodule Hiverec.Data.Demo1AddUpdatePage do
+defmodule Hiverec.Data.LocationAddUpdatePage do
   @moduledoc """
-  Page to add Demo1 item.
+  Page to add Location item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:title_msgid, :form, :csrf_token, :get_demo1_list_data_url]
-  defstruct [:title_msgid, :form, :csrf_token, :get_demo1_list_data_url]
+  @enforce_keys [:title_msgid, :form, :csrf_token, :get_location_list_data_url]
+  defstruct [:title_msgid, :form, :csrf_token, :get_location_list_data_url]
 end
 
 

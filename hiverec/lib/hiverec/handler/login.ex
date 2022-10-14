@@ -3,7 +3,8 @@ defmodule Hiverec.Handler.Login do
   Login business logic.
   """
 
-  alias Hiverec.{Common, Data}
+  alias Hiverec.Data
+  alias Hiverec.Handler.Common
   alias Hiverec.Model
   alias HiverecWeb.Router.Helpers, as: Routes
   alias Phoenix.HTML.Tag

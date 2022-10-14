@@ -22,27 +22,27 @@ var login_page = {
       this.context.refreshDataGet(this.context.data.pages.login.get_register_data_url);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-flex uk-flex-middle uk-margin-top"><div class="uk-width-1-1"><div class="uk-container"><div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid><div class="uk-width-1-1@m"><div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large"><h3 class="uk-card-title uk-text-center">Login</h3><form id="login"><div class="uk-margin"><div class="uk-inline uk-width-1-1"><span class="uk-form-icon" uk-icon="icon: user"></span><input type="text" name="login" class="uk-input uk-form-large" placeholder="Login"/></div><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr0="expr0"></li></ul></div><div class="uk-margin"><div class="uk-inline uk-width-1-1"><span class="uk-form-icon" uk-icon="icon: lock"></span><input expr2="expr2" type="password" name="password" class="uk-input uk-form-large"/></div><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr3="expr3"></li></ul></div><ul class="uk-list uk-list-collapse"><li expr5="expr5"></li></ul><div class="uk-margin"><button expr7="expr7" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button></div><div class="uk-text-small uk-text-center uk-margin-top"><a expr8="expr8"> </a>\n\t\t  |\n\t\t  <a expr9="expr9" href="#"> </a></div></form></div></div></div></div></div></div>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-flex uk-flex-middle uk-margin-top"><div class="uk-width-1-1"><div class="uk-container"><div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid><div class="uk-width-1-1@m"><div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large"><h3 class="uk-card-title uk-text-center">Login</h3><form id="login"><div class="uk-margin"><div class="uk-inline uk-width-1-1"><span class="uk-form-icon" uk-icon="icon: user"></span><input type="text" name="login" class="uk-input uk-form-large" placeholder="Login"/></div><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr27="expr27"></li></ul></div><div class="uk-margin"><div class="uk-inline uk-width-1-1"><span class="uk-form-icon" uk-icon="icon: lock"></span><input expr29="expr29" type="password" name="password" class="uk-input uk-form-large"/></div><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr30="expr30"></li></ul></div><ul class="uk-list uk-list-collapse"><li expr32="expr32"></li></ul><div class="uk-margin"><button expr34="expr34" class="uk-button uk-button-primary uk-button-large uk-width-1-1">Login</button></div><div class="uk-text-small uk-text-center uk-margin-top"><a expr35="expr35"> </a>\n\t\t  |\n\t\t  <a expr36="expr36" href="#"> </a></div></form></div></div></div></div></div></div>', [{
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<span expr1="expr1" class="uk-text-danger"> </span>', [{
-      redundantAttribute: 'expr1',
-      selector: '[expr1]',
+    template: template('<span expr28="expr28" class="uk-text-danger"> </span>', [{
+      redundantAttribute: 'expr28',
+      selector: '[expr28]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
         evaluate: _scope => _scope.msg
       }]
     }]),
-    redundantAttribute: 'expr0',
-    selector: '[expr0]',
+    redundantAttribute: 'expr27',
+    selector: '[expr27]',
     itemName: 'msg',
     indexName: null,
     evaluate: _scope => _scope.context.data.pages.login.form.errors.login
   }, {
-    redundantAttribute: 'expr2',
-    selector: '[expr2]',
+    redundantAttribute: 'expr29',
+    selector: '[expr29]',
     expressions: [{
       type: expressionTypes.ATTRIBUTE,
       name: 'placeholder',
@@ -52,17 +52,17 @@ var login_page = {
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<span expr4="expr4" class="uk-text-danger"> </span>', [{
-      redundantAttribute: 'expr4',
-      selector: '[expr4]',
+    template: template('<span expr31="expr31" class="uk-text-danger"> </span>', [{
+      redundantAttribute: 'expr31',
+      selector: '[expr31]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
         evaluate: _scope => _scope.msg
       }]
     }]),
-    redundantAttribute: 'expr3',
-    selector: '[expr3]',
+    redundantAttribute: 'expr30',
+    selector: '[expr30]',
     itemName: 'msg',
     indexName: null,
     evaluate: _scope => _scope.context.data.pages.login.form.errors.password
@@ -70,31 +70,31 @@ var login_page = {
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<span expr6="expr6" class="uk-text-danger"> </span>', [{
-      redundantAttribute: 'expr6',
-      selector: '[expr6]',
+    template: template('<span expr33="expr33" class="uk-text-danger"> </span>', [{
+      redundantAttribute: 'expr33',
+      selector: '[expr33]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
         evaluate: _scope => _scope.msg
       }]
     }]),
-    redundantAttribute: 'expr5',
-    selector: '[expr5]',
+    redundantAttribute: 'expr32',
+    selector: '[expr32]',
     itemName: 'msg',
     indexName: null,
     evaluate: _scope => _scope.context.data.pages.login.form.errors.misc
   }, {
-    redundantAttribute: 'expr7',
-    selector: '[expr7]',
+    redundantAttribute: 'expr34',
+    selector: '[expr34]',
     expressions: [{
       type: expressionTypes.EVENT,
       name: 'onclick',
       evaluate: _scope => _scope.login
     }]
   }, {
-    redundantAttribute: 'expr8',
-    selector: '[expr8]',
+    redundantAttribute: 'expr35',
+    selector: '[expr35]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
@@ -109,8 +109,8 @@ var login_page = {
       evaluate: _scope => _scope.showRegisterPage
     }]
   }, {
-    redundantAttribute: 'expr9',
-    selector: '[expr9]',
+    redundantAttribute: 'expr36',
+    selector: '[expr36]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
