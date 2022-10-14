@@ -5,6 +5,7 @@ defmodule Hiverec.Model.User do
 
   use Ecto.Schema
   import Ecto.Changeset
+  import Ecto.Query, only: [from: 2]
   alias Hiverec.Repo
   alias Hiverec.Model
 
@@ -12,6 +13,7 @@ defmodule Hiverec.Model.User do
     field :email, :string
     field :login, :string
     field :password, :string
+    has_many :locations, Model.Location
 
     timestamps()
   end
@@ -28,6 +30,11 @@ defmodule Hiverec.Model.User do
     |> unique_constraint([:login])
   end
 
+
+  def get_id_by_login(login) do
+    query = from u in Model.User, where: u.login == ^login, select: u.id
+    Repo.one(query)
+  end
 
   def get_by_login_and_password(login, password) do
     user = Repo.get_by(Model.User, login: login)

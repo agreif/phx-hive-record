@@ -19,11 +19,11 @@ var nav_tag = {
       window.location.href = '/';
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<nav class="uk-navbar-container uk-margin" uk-navbar><div class="uk-navbar-left uk-margin-left"><a class="uk-navbar-item uk-logo" href="#">HiveRec</a><ul class="uk-navbar-nav"><li expr0="expr0"></li></ul></div><div class="uk-navbar-right uk-margin-right"><ul class="uk-navbar-nav"><li expr3="expr3"></li><li expr5="expr5"></li><li><a expr7="expr7">Logout</a></li></ul></div></nav>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<nav class="uk-navbar-container uk-margin" uk-navbar><div class="uk-navbar-left uk-margin-left"><a class="uk-navbar-item uk-logo" href="#">HiveRec</a><ul class="uk-navbar-nav"><li expr37="expr37"></li></ul></div><div class="uk-navbar-right uk-margin-right"><ul class="uk-navbar-nav"><li expr40="expr40"></li><li expr42="expr42"></li><li><a expr44="expr44">Logout</a></li></ul></div></nav>', [{
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<a expr1="expr1"></a><a expr2="expr2"></a>', [{
+    template: template('<a expr38="expr38"></a><a expr39="expr39"></a>', [{
       expressions: [{
         type: expressionTypes.ATTRIBUTE,
         name: 'class',
@@ -32,8 +32,8 @@ var nav_tag = {
     }, {
       type: bindingTypes.IF,
       evaluate: _scope => _scope.navitem.label,
-      redundantAttribute: 'expr1',
-      selector: '[expr1]',
+      redundantAttribute: 'expr38',
+      selector: '[expr38]',
       template: template(' ', [{
         expressions: [{
           type: expressionTypes.TEXT,
@@ -52,8 +52,8 @@ var nav_tag = {
     }, {
       type: bindingTypes.IF,
       evaluate: _scope => _scope.navitem.label_msgid,
-      redundantAttribute: 'expr2',
-      selector: '[expr2]',
+      redundantAttribute: 'expr39',
+      selector: '[expr39]',
       template: template(' ', [{
         expressions: [{
           type: expressionTypes.TEXT,
@@ -70,19 +70,19 @@ var nav_tag = {
         }]
       }])
     }]),
-    redundantAttribute: 'expr0',
-    selector: '[expr0]',
+    redundantAttribute: 'expr37',
+    selector: '[expr37]',
     itemName: 'navitem',
     indexName: null,
     evaluate: _scope => _scope.context.data.navbar.navitems
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.context.data.locale == 'de',
-    redundantAttribute: 'expr3',
-    selector: '[expr3]',
-    template: template('<a expr4="expr4">EN</a>', [{
-      redundantAttribute: 'expr4',
-      selector: '[expr4]',
+    redundantAttribute: 'expr40',
+    selector: '[expr40]',
+    template: template('<a expr41="expr41">EN</a>', [{
+      redundantAttribute: 'expr41',
+      selector: '[expr41]',
       expressions: [{
         type: expressionTypes.EVENT,
         name: 'onclick',
@@ -92,11 +92,11 @@ var nav_tag = {
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.context.data.locale == 'en',
-    redundantAttribute: 'expr5',
-    selector: '[expr5]',
-    template: template('<a expr6="expr6">DE</a>', [{
-      redundantAttribute: 'expr6',
-      selector: '[expr6]',
+    redundantAttribute: 'expr42',
+    selector: '[expr42]',
+    template: template('<a expr43="expr43">DE</a>', [{
+      redundantAttribute: 'expr43',
+      selector: '[expr43]',
       expressions: [{
         type: expressionTypes.EVENT,
         name: 'onclick',
@@ -104,8 +104,8 @@ var nav_tag = {
       }]
     }])
   }, {
-    redundantAttribute: 'expr7',
-    selector: '[expr7]',
+    redundantAttribute: 'expr44',
+    selector: '[expr44]',
     expressions: [{
       type: expressionTypes.EVENT,
       name: 'onclick',

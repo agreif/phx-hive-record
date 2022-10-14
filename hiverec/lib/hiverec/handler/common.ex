@@ -27,6 +27,10 @@ defmodule Hiverec.Handler.Common do
       csrf_token: Tag.csrf_token_value(logout_post_url)}
   end
 
+  def user_id(conn) do
+    conn.assigns[:user_id]
+  end
+
   def locale(conn) do
     Conn.get_session(conn, "locale") || "en"
   end

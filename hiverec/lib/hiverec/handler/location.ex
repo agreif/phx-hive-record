@@ -72,7 +72,11 @@ defmodule Hiverec.Handler.Location do
     locale = Common.locale(conn)
     changeset = Model.Location.changeset(%Model.Location{}, params)
     if changeset.valid? do
-      case Repo.insert(changeset) do
+      result = changeset
+      |> Changeset.put_change(:user_id, Common.user_id(conn))
+      |> Repo.insert
+
+      case result do
         {:ok, _} -> Handler.Location.gen_list_data(conn)
         {:error, changeset} ->
           gen_add_data(conn, changeset.params, Common.human_errors(changeset, locale))

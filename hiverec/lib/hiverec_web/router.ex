@@ -6,6 +6,7 @@ defmodule HiverecWeb.Router do
   use HiverecWeb, :router
 
   alias HiverecWeb.Router.Helpers, as: Routes
+  alias Hiverec.Model.User
 
   pipeline :browser do
     plug :accepts, ["html", "json"]
@@ -19,7 +20,7 @@ defmodule HiverecWeb.Router do
   end
 
   scope "/", HiverecWeb do
-    pipe_through [:browser, :set_riot_tags, :require_authenticated_user]
+    pipe_through [:browser, :set_riot_tags, :require_authenticated_user, :fetch_user_id]
     get  "/", PageController, :get_index
     get  "/location_list", PageController, :get_location_list_page
     get  "/location_list/data", PageController, :get_location_list_data
@@ -65,6 +66,14 @@ defmodule HiverecWeb.Router do
       conn
       |> redirect(to: Routes.page_path(conn, :get_login_page))
       |> halt()
+    end
+  end
+
+  defp fetch_user_id(conn, _opts) do
+    login = get_session(conn, :login)
+    case User.get_id_by_login(login) do
+      nil -> conn |> redirect(to: Routes.page_path(conn, :get_login_page)) |> halt()
+      user_id -> conn |> assign(:user_id, user_id)
     end
   end
 
