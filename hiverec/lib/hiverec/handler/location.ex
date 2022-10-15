@@ -3,13 +3,12 @@ defmodule Hiverec.Handler.Location do
   Location business logic.
   """
 
-  alias Hiverec.{Data, Model, Handler, Repo}
+  alias Hiverec.{Data, Model, Handler}
   alias Hiverec.Handler.Common
   alias HiverecWeb.Router.Helpers, as: Routes
   alias Phoenix.HTML.Tag
   alias Ecto.Changeset
   import HiverecWeb.Gettext
-  import Ecto.Query, only: [from: 2]
 
   @gettext_domain "location"
 
@@ -35,17 +34,16 @@ defmodule Hiverec.Handler.Location do
 
   def gen_list_data(conn) do
     user_id = Common.user_id(conn)
-    query = from l in Model.Location, where: l.user_id == ^user_id, order_by: l.name
-
-    location_items = Repo.all(query)
+    locale = Common.locale(conn)
+    location_items = Model.Location.get_locations(user_id)
     |> Enum.map(fn location ->
       post_data_url = Routes.page_url(conn, :post_location_delete_data, location)
       %Data.LocationItem{entity: location,
-                      get_location_update_data_url: Routes.page_url(conn, :get_location_update_data, location),
-                      post_location_delete_data_url: post_data_url,
-                      csrf_token: Tag.csrf_token_value(post_data_url),
-                     } end)
-    locale = Common.locale(conn)
+                         get_location_update_data_url: Routes.page_url(conn, :get_location_update_data, location),
+                         post_location_delete_data_url: post_data_url,
+                         csrf_token: Tag.csrf_token_value(post_data_url),
+      }
+    end)
     %Data{data_url: Routes.page_url(conn, :get_location_list_data),
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
@@ -73,20 +71,13 @@ defmodule Hiverec.Handler.Location do
   Returns {conn, data} tuple
   """
   def process_post_add(conn, params) do
+    user_id = Common.user_id(conn)
     locale = Common.locale(conn)
-    changeset = Model.Location.changeset(%Model.Location{}, params)
-    if changeset.valid? do
-      result = changeset
-      |> Changeset.put_change(:user_id, Common.user_id(conn))
-      |> Repo.insert
-
-      case result do
-        {:ok, _} -> Handler.Location.gen_list_data(conn)
-        {:error, changeset} ->
-          gen_add_data(conn, changeset.params, Common.human_errors(changeset, locale))
-      end
-    else
-      gen_add_data(conn, changeset.params, Common.human_errors(changeset, locale))
+    result = Model.Location.create_location(params, user_id)
+    case result do
+      {:ok, _} -> Handler.Location.gen_list_data(conn)
+      {:error, changeset} ->
+        gen_add_data(conn, params, Common.human_errors(changeset, locale))
     end
   end
 
@@ -117,23 +108,21 @@ defmodule Hiverec.Handler.Location do
   ###################
 
   def process_get_update(conn, params) do
-    location = Repo.get_by!(Model.Location, [id: params["id"], user_id: Common.user_id(conn)])
+    user_id = Common.user_id(conn)
+    location = Model.Location.get_location(params, user_id)
     gen_update_data(conn, location)
   end
 
   def process_post_update(conn, params) do
-    location = Repo.get_by!(Model.Location, [id: params["id"], user_id: Common.user_id(conn)])
-    changeset = Model.Location.changeset(location, params)
-    result = changeset
-    |> Changeset.put_change(:user_id, Common.user_id(conn))
-    |> Repo.update
-
+    user_id = Common.user_id(conn)
+    locale = Common.locale(conn)
+    result = Model.Location.update_location(params, user_id)
     case result do
       {:ok, _} -> Handler.Location.gen_list_data(conn)
       {:error, changeset} ->
         gen_update_data(conn,
           Changeset.apply_changes(changeset),
-          Common.human_errors(changeset, Common.locale(conn)))
+          Common.human_errors(changeset, locale))
     end
   end
 
@@ -165,8 +154,9 @@ defmodule Hiverec.Handler.Location do
   ###################
 
   def process_post_delete(conn, params) do
-    location = Repo.get_by!(Model.Location, [id: params["id"], user_id: Common.user_id(conn)])
-    case Repo.delete(location) do
+    user_id = Common.user_id(conn)
+    result = Model.Location.delete_location(params, user_id)
+    case result do
       {:ok, _} -> Handler.Location.gen_list_data(conn)
       {:error, _changeset} -> Handler.Location.gen_list_data(conn)
     end

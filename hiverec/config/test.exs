@@ -6,8 +6,8 @@ import Config
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
 config :hiverec, Hiverec.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "hiverec_test",
+  password: "hiverec_test",
   hostname: "localhost",
   database: "hiverec_test#{System.get_env("MIX_TEST_PARTITION")}",
   maintenance_database: "hiverec_test",
