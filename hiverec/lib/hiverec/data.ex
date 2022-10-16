@@ -52,8 +52,8 @@ defmodule Hiverec.Data.Form do
   Generic HTML Form data.
   """
   @derive Jason.Encoder
-  @enforce_keys [:post_url, :params, :errors]
-  defstruct [:post_url, :params, :errors]
+  @enforce_keys [:post_data_url, :cancel_data_url, :params, :errors]
+  defstruct [:post_data_url, :cancel_data_url, :params, :errors]
 end
 
 
@@ -62,7 +62,7 @@ defmodule Hiverec.Data.Pages do
   Container for all available pages.
   """
   @derive Jason.Encoder
-  defstruct [:error, :location_list, :location_add_update,
+  defstruct [:error, :location_list, :location_add_update, :location_detail,
              :register, :login]
 end
 
@@ -89,8 +89,17 @@ defmodule Hiverec.Data.LocationItem do
   location item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:entity, :get_location_update_data_url, :post_location_delete_data_url, :csrf_token]
-  defstruct [:entity, :get_location_update_data_url, :post_location_delete_data_url, :csrf_token]
+  @enforce_keys [:entity, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
+  defstruct [:entity, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
+end
+
+defmodule Hiverec.Data.LocationDetailPage do
+  @moduledoc """
+  Location detail page.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:location, :get_location_update_data_url]
+  defstruct [:location, :get_location_update_data_url]
 end
 
 
@@ -100,8 +109,8 @@ defmodule Hiverec.Data.LocationAddUpdatePage do
   Page to add Location item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:title_msgid, :form, :csrf_token, :get_location_list_data_url]
-  defstruct [:title_msgid, :form, :csrf_token, :get_location_list_data_url]
+  @enforce_keys [:title_msgid, :form, :csrf_token]
+  defstruct [:title_msgid, :form, :csrf_token]
 end
 
 

@@ -8,6 +8,6 @@ defmodule Riotjs.Repo.Migrations.CreateLocations do
       timestamps()
     end
 
-    unique_index(:locations, [:name])
+    create unique_index(:locations, [:name])
   end
 end

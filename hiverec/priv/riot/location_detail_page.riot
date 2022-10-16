@@ -1,0 +1,36 @@
+<location-list-page>
+  <h1>{context.data.translations['Location']}: {context.data.pages.location_detail.location.name}</h1>
+
+  <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
+    <thead>
+      <tr>
+        <th class="uk-width-2-5">{context.data.translations['Name']}</th>
+        <th/>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="uk-table-link">
+	  <a onclick="{editLocation}" class="uk-link-reset">{context.data.pages.location_detail.location.name}</a>
+	</td>
+	<td class="uk-width-small">
+          <button onclick="{editLocation}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Edit Location']}" uk-tooltip >
+            <span uk-icon="icon: pencil"/>
+	  </button>
+	</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    export default {
+	onBeforeMount(props) { this.context = props.context },
+
+	editLocation() {
+	    event.preventDefault()
+	    this.context.refreshDataGet(this.context.data.pages.location_detail.get_location_update_data_url)
+	},
+
+    }
+  </script>
+</location-list-page>

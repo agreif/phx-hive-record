@@ -14,14 +14,14 @@
     <tbody>
       <tr each="{item in context.data.pages.location_list.location_items}">
         <td class="uk-table-link">
-	  <a onclick="{(e) => editLocation(e, item)}" class="uk-link-reset">{item.entity.name}</a>
+	  <a onclick="{(e) => detailLocation(e, item)}" class="uk-link-reset">{item.entity.name}</a>
 	</td>
 	<td class="uk-width-small">
 	  <button uk-toggle="target: #modal-location-really-delete-{item.entity.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Location']}" uk-tooltip >
             <span uk-icon="icon: trash"/>
 	  </button>
-          <button onclick="{(e) => editLocation(e, item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Edit Location']}" uk-tooltip >
-            <span uk-icon="icon: pencil"/>
+          <button onclick="{(e) => detailLocation(e, item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Location Detail']}" uk-tooltip >
+            <span uk-icon="icon: file-edit"/>
 	  </button>
 	</td>
       </tr>
@@ -51,9 +51,9 @@
 	    this.context.refreshDataGet(this.context.data.pages.location_list.get_location_add_data_url)
 	},
 
-	editLocation(event, item) {
+	detailLocation(event, item) {
 	    event.preventDefault()
-	    this.context.refreshDataGet(item.get_location_update_data_url)
+	    this.context.refreshDataGet(item.get_location_detail_data_url)
 	},
 
 	deleteLocation(event, item) {

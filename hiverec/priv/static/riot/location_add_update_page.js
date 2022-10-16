@@ -6,11 +6,11 @@ var location_add_update_page = {
     },
     add(event) {
       event.preventDefault();
-      this.context.postForm(this.context.data.pages.location_add_update.form.post_url, this.context.data.pages.location_add_update.csrf_token, '#location-add-update');
+      this.context.postForm(this.context.data.pages.location_add_update.form.post_data_url, this.context.data.pages.location_add_update.csrf_token, '#location-add-update');
     },
     cancel(event) {
       event.preventDefault();
-      this.context.refreshDataGet(this.context.data.pages.location_add_update.get_location_list_data_url);
+      this.context.refreshDataGet(this.context.data.pages.location_add_update.form.cancel_data_url);
     }
   },
   template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-card uk-card-default uk-card-body uk-card-hover"><h2 expr0="expr0" class="uk-card-title"> </h2><form id="location-add-update" class="uk-form-horizontal uk-margin-large"><div class="uk-margin"><label expr1="expr1" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr2="expr2" type="text" name="name" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr3="expr3"></li></ul></div></div><div class="uk-text-center"><button expr5="expr5" class="uk-button uk-button-default" type="button"> </button><button expr6="expr6" class="uk-button uk-button-primary" type="button"> </button></div></form></div>', [{

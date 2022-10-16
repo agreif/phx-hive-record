@@ -16,7 +16,9 @@ defmodule Hiverec.Handler.Location do
     Gettext.with_locale("en", fn ->
       [
         dgettext(@gettext_domain, "Locations"),
+        dgettext(@gettext_domain, "Location"),
         dgettext(@gettext_domain, "Add Location"),
+        dgettext(@gettext_domain, "Location Detail"),
         dgettext(@gettext_domain, "Edit Location"),
         dgettext(@gettext_domain, "Delete Location"),
         dgettext(@gettext_domain, "Do you really want to delete this Location?"),
@@ -39,7 +41,7 @@ defmodule Hiverec.Handler.Location do
     |> Enum.map(fn location ->
       post_data_url = Routes.page_url(conn, :post_location_delete_data, location)
       %Data.LocationItem{entity: location,
-                         get_location_update_data_url: Routes.page_url(conn, :get_location_update_data, location),
+                         get_location_detail_data_url: Routes.page_url(conn, :get_location_detail_data, location),
                          post_location_delete_data_url: post_data_url,
                          csrf_token: Tag.csrf_token_value(post_data_url),
       }
@@ -92,11 +94,36 @@ defmodule Hiverec.Handler.Location do
           pages: %Data.Pages{
             location_add_update: %Data.LocationAddUpdatePage{
               title_msgid: "Add Location",
-              form: %Data.Form{post_url: form_post_data_url,
+              form: %Data.Form{post_data_url: form_post_data_url,
+                               cancel_data_url: Routes.page_url(conn, :get_location_list_data),
                                params: params,
                                errors: errors},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
-              get_location_list_data_url: Routes.page_url(conn, :get_location_list_data)
+            }
+          },
+          translations: Common.translations(@gettext_domain, texts_en(), locale)
+    }
+  end
+
+  ###################
+  # detail
+  ###################
+
+  def gen_detail_data(conn, params) do
+    user_id = Common.user_id(conn)
+    locale = Common.locale(conn)
+    location = Model.Location.get_location(params, user_id)
+    %Data{data_url: Routes.page_url(conn, :get_location_detail_data, location),
+          locale: locale,
+          navbar: Common.gen_navbar(conn, :location_list),
+          history_state: %Data.HistoryState{
+            title: "Location",
+            url: Routes.page_url(conn, :get_location_detail_page, location)},
+          logout: Common.gen_logout_data(conn),
+          pages: %Data.Pages{
+            location_detail: %Data.LocationDetailPage{
+              location: location,
+              get_location_update_data_url: Routes.page_url(conn, :get_location_update_data, location),
             }
           },
           translations: Common.translations(@gettext_domain, texts_en(), locale)
@@ -118,7 +145,7 @@ defmodule Hiverec.Handler.Location do
     locale = Common.locale(conn)
     result = Model.Location.update_location(params, user_id)
     case result do
-      {:ok, _} -> Handler.Location.gen_list_data(conn)
+      {:ok, _} -> Handler.Location.gen_detail_data(conn, params)
       {:error, changeset} ->
         gen_update_data(conn,
           Changeset.apply_changes(changeset),
@@ -137,17 +164,16 @@ defmodule Hiverec.Handler.Location do
           pages: %Data.Pages{
             location_add_update: %Data.LocationAddUpdatePage{
               title_msgid: "Edit Location",
-              form: %Data.Form{post_url: form_post_data_url,
+              form: %Data.Form{post_data_url: form_post_data_url,
+                               cancel_data_url: Routes.page_url(conn, :get_location_detail_data, location),
                                params: location,
                                errors: errors},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
-              get_location_list_data_url: Routes.page_url(conn, :get_location_list_data)
             }
           },
           translations: Common.translations(@gettext_domain, texts_en(), locale)
     }
   end
-
 
   ###################
   # delete

@@ -27,6 +27,13 @@ defmodule HiverecWeb.PageController do
   def post_location_add_data(conn, params),
     do: json(conn, Handler.Location.process_post_add(conn, params))
 
+  def get_location_detail_page(conn, params),
+    do: render(conn, :page,
+      data_url: Routes.page_url(conn, :get_location_detail_data, params["id"]))
+
+  def get_location_detail_data(conn, params),
+    do: json(conn, Handler.Location.gen_detail_data(conn, params))
+
   def get_location_update_data(conn, params),
     do: json(conn, Handler.Location.process_get_update(conn, params))
 

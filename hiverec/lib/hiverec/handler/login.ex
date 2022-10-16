@@ -74,7 +74,8 @@ defmodule Hiverec.Handler.Login do
           logout: nil,
           pages: %Data.Pages{
             login: %Data.LoginPage{
-              form: %Data.Form{post_url: form_post_data_url,
+              form: %Data.Form{post_data_url: form_post_data_url,
+                               cancel_data_url: nil,
                                params: params,
                                errors: errors},
               csrf_token: Tag.csrf_token_value(form_post_data_url),

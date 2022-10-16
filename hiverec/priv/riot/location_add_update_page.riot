@@ -25,14 +25,14 @@
 	add(event) {
 	    event.preventDefault()
 	    this.context.postForm(
-		this.context.data.pages.location_add_update.form.post_url,
+		this.context.data.pages.location_add_update.form.post_data_url,
 		this.context.data.pages.location_add_update.csrf_token,
 		'#location-add-update')
 	},
 
 	cancel(event) {
 	    event.preventDefault()
-	    this.context.refreshDataGet(this.context.data.pages.location_add_update.get_location_list_data_url)
+	    this.context.refreshDataGet(this.context.data.pages.location_add_update.form.cancel_data_url)
 	},
     }
   </script>

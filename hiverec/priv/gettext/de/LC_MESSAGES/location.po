@@ -11,37 +11,37 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/location.ex:19
+#: lib/hiverec/handler/location.ex:20
 #, elixir-autogen, elixir-format
 msgid "Add Location"
 msgstr "Standort hinzufügen"
 
-#: lib/hiverec/handler/location.ex:24
+#: lib/hiverec/handler/location.ex:26
 #, elixir-autogen, elixir-format
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: lib/hiverec/handler/location.ex:26
+#: lib/hiverec/handler/location.ex:28
 #, elixir-autogen, elixir-format
 msgid "Delete"
 msgstr "Löschen"
 
-#: lib/hiverec/handler/location.ex:21
+#: lib/hiverec/handler/location.ex:23
 #, elixir-autogen, elixir-format
 msgid "Delete Location"
 msgstr "Standort Löschen"
 
-#: lib/hiverec/handler/location.ex:22
+#: lib/hiverec/handler/location.ex:24
 #, elixir-autogen, elixir-format
 msgid "Do you really want to delete this Location?"
 msgstr "Möchten Sie diesen Standort wirklich löschen?"
 
-#: lib/hiverec/handler/location.ex:20
+#: lib/hiverec/handler/location.ex:22
 #, elixir-autogen, elixir-format
 msgid "Edit Location"
 msgstr "Standort bearbeiten"
 
-#: lib/hiverec/handler/location.ex:25
+#: lib/hiverec/handler/location.ex:27
 #, elixir-autogen, elixir-format
 msgid "Save"
 msgstr "Speichern"
@@ -51,7 +51,17 @@ msgstr "Speichern"
 msgid "Locations"
 msgstr "Standorte"
 
-#: lib/hiverec/handler/location.ex:23
+#: lib/hiverec/handler/location.ex:25
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Name"
+
+#: lib/hiverec/handler/location.ex:19
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Location"
+msgstr "Standort"
+
+#: lib/hiverec/handler/location.ex:21
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Location Detail"
+msgstr "Standort Detail"

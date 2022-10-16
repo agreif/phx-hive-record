@@ -22,12 +22,19 @@ defmodule HiverecWeb.Router do
   scope "/", HiverecWeb do
     pipe_through [:browser, :set_riot_tags, :require_authenticated_user, :fetch_user_id]
     get  "/", PageController, :get_index
+
     get  "/location_list", PageController, :get_location_list_page
     get  "/location_list/data", PageController, :get_location_list_data
+
     get  "/location_add/data", PageController, :get_location_add_data
     post "/location_add/data", PageController, :post_location_add_data
+
+    get  "/location_detail/:id", PageController, :get_location_detail_page
+    get  "/location_detail/:id/data", PageController, :get_location_detail_data
+
     get  "/location_update/:id/data", PageController, :get_location_update_data
     post "/location_update/:id/data", PageController, :post_location_update_data
+
     post "/location_delete/:id/data", PageController, :post_location_delete_data
 
     post "/logout", PageController, :post_logout
@@ -50,7 +57,7 @@ defmodule HiverecWeb.Router do
       conn
       |> assign(:riot_tags, [:body, :nav])
       |> assign(:riot_pages, [:error,
-                             :location_list, :location_add_update,
+                             :location_list, :location_add_update, :location_detail
                              ])
     else
       conn
