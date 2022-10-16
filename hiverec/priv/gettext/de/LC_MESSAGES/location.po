@@ -14,44 +14,44 @@ msgstr ""
 #: lib/hiverec/handler/location.ex:19
 #, elixir-autogen, elixir-format
 msgid "Add Location"
-msgstr ""
+msgstr "Standort hinzufügen"
 
 #: lib/hiverec/handler/location.ex:24
 #, elixir-autogen, elixir-format
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: lib/hiverec/handler/location.ex:26
 #, elixir-autogen, elixir-format
 msgid "Delete"
-msgstr ""
+msgstr "Löschen"
 
 #: lib/hiverec/handler/location.ex:21
 #, elixir-autogen, elixir-format
 msgid "Delete Location"
-msgstr ""
+msgstr "Standort Löschen"
 
 #: lib/hiverec/handler/location.ex:22
 #, elixir-autogen, elixir-format
 msgid "Do you really want to delete this Location?"
-msgstr ""
+msgstr "Möchten Sie diesen Standort wirklich löschen?"
 
 #: lib/hiverec/handler/location.ex:20
 #, elixir-autogen, elixir-format
 msgid "Edit Location"
-msgstr ""
+msgstr "Standort bearbeiten"
 
 #: lib/hiverec/handler/location.ex:25
 #, elixir-autogen, elixir-format
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: lib/hiverec/handler/location.ex:18
 #, elixir-autogen, elixir-format
 msgid "Locations"
-msgstr ""
+msgstr "Standorte"
 
 #: lib/hiverec/handler/location.ex:23
 #, elixir-autogen, elixir-format
 msgid "Name"
-msgstr ""
+msgstr "Name"

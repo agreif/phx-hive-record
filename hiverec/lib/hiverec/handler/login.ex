@@ -20,15 +20,6 @@ defmodule Hiverec.Handler.Login do
         dgettext(@gettext_domain, "Password"),
         dgettext(@gettext_domain, "Register"),
         dgettext(@gettext_domain, "Forgot your password"),
-        dgettext(@gettext_domain, "This is a proof-of-concept application with the"),
-        dgettext(@gettext_domain, "web framework"),
-        dgettext(@gettext_domain, "component framework and"),
-        dgettext(@gettext_domain, "front-end framework"),
-        dgettext(@gettext_domain, "Use login"),
-        dgettext(@gettext_domain, "and password"),
-        dgettext(@gettext_domain, "or create another"),
-        dgettext(@gettext_domain, "dummy user"),
-        dgettext(@gettext_domain, "on the register page"),
       ]
     end)
   end
