@@ -1,0 +1,72 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+"Plural-Forms: nplurals=2\n"
+
+#: lib/hiverec/handler/login.ex:22
+#, elixir-autogen, elixir-format
+msgid "Forgot your password"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:20
+#, elixir-autogen, elixir-format
+msgid "Password"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:21
+#, elixir-autogen, elixir-format
+msgid "Register"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:23
+#, elixir-autogen, elixir-format
+msgid "This is a proof-of-concept application with the"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:27
+#, elixir-autogen, elixir-format
+msgid "Use login"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:28
+#, elixir-autogen, elixir-format
+msgid "and password"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:25
+#, elixir-autogen, elixir-format
+msgid "component framework and"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:30
+#, elixir-autogen, elixir-format
+msgid "dummy user"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:26
+#, elixir-autogen, elixir-format
+msgid "front-end framework"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:31
+#, elixir-autogen, elixir-format
+msgid "on the register page"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:29
+#, elixir-autogen, elixir-format
+msgid "or create another"
+msgstr ""
+
+#: lib/hiverec/handler/login.ex:24
+#, elixir-autogen, elixir-format
+msgid "web framework"
+msgstr ""

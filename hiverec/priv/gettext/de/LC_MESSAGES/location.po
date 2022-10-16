@@ -1,0 +1,57 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+"Plural-Forms: nplurals=2\n"
+
+#: lib/hiverec/handler/location.ex:19
+#, elixir-autogen, elixir-format
+msgid "Add Location"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:24
+#, elixir-autogen, elixir-format
+msgid "Cancel"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:26
+#, elixir-autogen, elixir-format
+msgid "Delete"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:21
+#, elixir-autogen, elixir-format
+msgid "Delete Location"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:22
+#, elixir-autogen, elixir-format
+msgid "Do you really want to delete this Location?"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:20
+#, elixir-autogen, elixir-format
+msgid "Edit Location"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:25
+#, elixir-autogen, elixir-format
+msgid "Save"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:18
+#, elixir-autogen, elixir-format
+msgid "Locations"
+msgstr ""
+
+#: lib/hiverec/handler/location.ex:23
+#, elixir-autogen, elixir-format
+msgid "Name"
+msgstr ""
