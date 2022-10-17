@@ -109,10 +109,10 @@ defmodule Hiverec.Handler.Location do
   # detail
   ###################
 
-  def gen_detail_data(conn, params) do
+  def gen_detail_data(conn, %{"id" => location_id}) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
-    location = Model.Location.get_location(params, user_id)
+    location = Model.Location.get_location(location_id, user_id)
     %Data{data_url: Routes.page_url(conn, :get_location_detail_data, location),
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
@@ -134,16 +134,16 @@ defmodule Hiverec.Handler.Location do
   # update
   ###################
 
-  def process_get_update(conn, params) do
+  def process_get_update(conn, %{"id" => location_id}) do
     user_id = Common.user_id(conn)
-    location = Model.Location.get_location(params, user_id)
+    location = Model.Location.get_location(location_id, user_id)
     gen_update_data(conn, location)
   end
 
-  def process_post_update(conn, params) do
+  def process_post_update(conn, %{"id" => location_id} = params) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
-    result = Model.Location.update_location(params, user_id)
+    result = Model.Location.update_location(location_id, params, user_id)
     case result do
       {:ok, _} -> Handler.Location.gen_detail_data(conn, params)
       {:error, changeset} ->
@@ -179,9 +179,9 @@ defmodule Hiverec.Handler.Location do
   # delete
   ###################
 
-  def process_post_delete(conn, params) do
+  def process_post_delete(conn, %{"id" => location_id}) do
     user_id = Common.user_id(conn)
-    result = Model.Location.delete_location(params, user_id)
+    result = Model.Location.delete_location(location_id, user_id)
     case result do
       {:ok, _} -> Handler.Location.gen_list_data(conn)
       {:error, _changeset} -> Handler.Location.gen_list_data(conn)

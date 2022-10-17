@@ -33,9 +33,9 @@ defmodule Hiverec.Model.Location do
     )
   end
 
-  def get_location(attrs, user_id) do
+  def get_location(location_id, user_id) do
     Model.Location
-    |> Repo.get_by!([id: attrs["id"], user_id: user_id])
+    |> Repo.get_by!([id: location_id, user_id: user_id])
   end
 
   def create_location(attrs, user_id) do
@@ -44,8 +44,8 @@ defmodule Hiverec.Model.Location do
     |> Repo.insert
   end
 
-  def update_location(attrs, user_id) do
-    location = get_location(attrs, user_id)
+  def update_location(location_id, attrs, user_id) do
+    location = get_location(location_id, user_id)
     changeset = Model.Location.changeset(location, attrs)
     if changeset.valid? do
       Repo.update(changeset)
@@ -54,8 +54,8 @@ defmodule Hiverec.Model.Location do
     end
   end
 
-  def delete_location(attrs, user_id) do
-    get_location(attrs, user_id)
+  def delete_location(location_id, user_id) do
+    get_location(location_id, user_id)
     |> Repo.delete
   end
 
