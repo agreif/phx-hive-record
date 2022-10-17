@@ -8,10 +8,10 @@ defmodule Hiverec.Model.Location do
   alias Hiverec.{Model, Repo}
   import Ecto.Query, only: [from: 2]
 
-  @derive {Jason.Encoder, only: [:id, :name]}
   schema "locations" do
     field :name, :string
     belongs_to :user, Model.User
+    has_many :hives, Model.Hive
 
     timestamps()
   end
@@ -36,6 +36,22 @@ defmodule Hiverec.Model.Location do
   def get_location(location_id, user_id) do
     Model.Location
     |> Repo.get_by!([id: location_id, user_id: user_id])
+  end
+
+  def get_location_with_hives(location_id, user_id) do
+    Repo.one(
+      from(l in Model.Location,
+        where: l.id == ^location_id and l.user_id == ^user_id,
+        preload: :hives
+      )
+    )
+
+    # query = from l in Model.Location,
+    #   left_join: h in Model.Hive,
+    #   on: l.id == h.location_id,
+    #   where: l.id == ^location_id and l.user_id == ^user_id,
+    #   select: {l, h}
+    # result = Repo.all(query)
   end
 
   def create_location(attrs, user_id) do

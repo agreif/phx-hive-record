@@ -9,6 +9,7 @@ defmodule Hiverec.Handler.Location do
   alias Phoenix.HTML.Tag
   alias Ecto.Changeset
   import HiverecWeb.Gettext
+  import Hiverec.Datable
 
   @gettext_domain "location"
 
@@ -37,13 +38,15 @@ defmodule Hiverec.Handler.Location do
   def gen_list_data(conn) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
-    location_items = Model.Location.get_locations(user_id)
-    |> Enum.map(fn location ->
+    location_list_items =
+      Model.Location.get_locations(user_id)
+      |> Enum.map(fn location ->
       post_data_url = Routes.page_url(conn, :post_location_delete_data, location)
-      %Data.LocationItem{entity: location,
-                         get_location_detail_data_url: Routes.page_url(conn, :get_location_detail_data, location),
-                         post_location_delete_data_url: post_data_url,
-                         csrf_token: Tag.csrf_token_value(post_data_url),
+      %Data.LocationListItem{
+        location: to_data(location),
+        get_location_detail_data_url: Routes.page_url(conn, :get_location_detail_data, location),
+        post_location_delete_data_url: post_data_url,
+        csrf_token: Tag.csrf_token_value(post_data_url),
       }
     end)
     %Data{data_url: Routes.page_url(conn, :get_location_list_data),
@@ -55,7 +58,7 @@ defmodule Hiverec.Handler.Location do
           logout: Common.gen_logout_data(conn),
           pages: %Data.Pages{
             location_list: %Data.LocationListPage{
-              location_items: location_items,
+              location_list_items: location_list_items,
               get_location_add_data_url: Routes.page_url(conn, :get_location_add_data),
             }
           },
@@ -112,7 +115,9 @@ defmodule Hiverec.Handler.Location do
   def gen_detail_data(conn, %{"id" => location_id}) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
-    location = Model.Location.get_location(location_id, user_id)
+    location = Model.Location.get_location_with_hives(location_id, user_id)
+    IO.inspect(to_data(location))
+    #    location = Model.Location.get_location(location_id, user_id)
     %Data{data_url: Routes.page_url(conn, :get_location_detail_data, location),
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
@@ -122,7 +127,7 @@ defmodule Hiverec.Handler.Location do
           logout: Common.gen_logout_data(conn),
           pages: %Data.Pages{
             location_detail: %Data.LocationDetailPage{
-              location: location,
+              location: to_data(location),
               get_location_update_data_url: Routes.page_url(conn, :get_location_update_data, location),
             }
           },
@@ -166,7 +171,7 @@ defmodule Hiverec.Handler.Location do
               title_msgid: "Edit Location",
               form: %Data.Form{post_data_url: form_post_data_url,
                                cancel_data_url: Routes.page_url(conn, :get_location_detail_data, location),
-                               params: location,
+                               params: to_data(location),
                                errors: errors},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }

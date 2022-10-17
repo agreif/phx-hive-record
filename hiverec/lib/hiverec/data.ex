@@ -7,7 +7,6 @@ defmodule Hiverec.Data do
   defstruct [:data_url, :locale, :navbar, :history_state, :logout, :pages, :translations]
 end
 
-
 defmodule Hiverec.Data.HistoryState do
   @moduledoc """
   Browser history state.
@@ -80,17 +79,34 @@ defmodule Hiverec.Data.LocationListPage do
   Location list page.
   """
   @derive Jason.Encoder
-  @enforce_keys [:location_items, :get_location_add_data_url]
-  defstruct [:location_items, :get_location_add_data_url]
+  @enforce_keys [:location_list_items, :get_location_add_data_url]
+  defstruct [:location_list_items, :get_location_add_data_url]
 end
 
-defmodule Hiverec.Data.LocationItem do
+
+defmodule Hiverec.Data.Location do
   @moduledoc """
   location item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:entity, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
-  defstruct [:entity, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
+  defstruct [:id, :name, :hives]
+end
+
+defmodule Hiverec.Data.Hive do
+  @moduledoc """
+  Hive item.
+  """
+  @derive Jason.Encoder
+  defstruct [:id, :name]
+end
+
+defmodule Hiverec.Data.LocationListItem do
+  @moduledoc """
+  location item.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:location, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
+  defstruct [:location, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
 end
 
 defmodule Hiverec.Data.LocationDetailPage do

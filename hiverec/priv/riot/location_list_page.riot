@@ -12,12 +12,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr each="{item in context.data.pages.location_list.location_items}">
+      <tr each="{item in context.data.pages.location_list.location_list_items}">
         <td class="uk-table-link">
-	  <a onclick="{(e) => detailLocation(e, item)}" class="uk-link-reset">{item.entity.name}</a>
+	  <a onclick="{(e) => detailLocation(e, item)}" class="uk-link-reset">{item.location.name}</a>
 	</td>
 	<td class="uk-width-small">
-	  <button uk-toggle="target: #modal-location-really-delete-{item.entity.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Location']}" uk-tooltip >
+	  <button uk-toggle="target: #modal-location-really-delete-{item.location.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Location']}" uk-tooltip >
             <span uk-icon="icon: trash"/>
 	  </button>
           <button onclick="{(e) => detailLocation(e, item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Location Detail']}" uk-tooltip >
@@ -28,7 +28,7 @@
     </tbody>
   </table>
 
-  <div id="modal-location-really-delete-{item.entity.id}" uk-modal each="{item in context.data.pages.location_list.location_items}">
+  <div id="modal-location-really-delete-{item.location.id}" uk-modal each="{item in context.data.pages.location_list.location_items}">
     <div class="uk-modal-dialog uk-modal-body">
       <h2 class="uk-modal-title">{context.data.translations['Delete Location']}</h2>
       <p>{context.data.translations['Do you really want to delete this Location?']}</p>
