@@ -10,57 +10,57 @@
 msgid ""
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:20
+#: lib/hiverec/handler/location.ex:21
 #, elixir-autogen, elixir-format
 msgid "Add Location"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:26
+#: lib/hiverec/handler/location.ex:27
 #, elixir-autogen, elixir-format
 msgid "Cancel"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:28
+#: lib/hiverec/handler/location.ex:29
 #, elixir-autogen, elixir-format
 msgid "Delete"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:23
+#: lib/hiverec/handler/location.ex:24
 #, elixir-autogen, elixir-format
 msgid "Delete Location"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:24
+#: lib/hiverec/handler/location.ex:25
 #, elixir-autogen, elixir-format
 msgid "Do you really want to delete this Location?"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:22
+#: lib/hiverec/handler/location.ex:23
 #, elixir-autogen, elixir-format
 msgid "Edit Location"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:27
+#: lib/hiverec/handler/location.ex:28
 #, elixir-autogen, elixir-format
 msgid "Save"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:18
+#: lib/hiverec/handler/location.ex:19
 #, elixir-autogen, elixir-format
 msgid "Locations"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:25
+#: lib/hiverec/handler/location.ex:26
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:19
+#: lib/hiverec/handler/location.ex:20
 #, elixir-autogen, elixir-format
 msgid "Location"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:21
+#: lib/hiverec/handler/location.ex:22
 #, elixir-autogen, elixir-format
 msgid "Location Detail"
 msgstr ""

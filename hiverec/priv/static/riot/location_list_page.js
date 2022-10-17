@@ -53,7 +53,7 @@ var location_list_page = {
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
-        evaluate: _scope => _scope.item.entity.name
+        evaluate: _scope => _scope.item.location.name
       }, {
         type: expressionTypes.EVENT,
         name: 'onclick',
@@ -65,7 +65,7 @@ var location_list_page = {
       expressions: [{
         type: expressionTypes.ATTRIBUTE,
         name: 'uk-toggle',
-        evaluate: _scope => ['target: #modal-location-really-delete-', _scope.item.entity.id].join('')
+        evaluate: _scope => ['target: #modal-location-really-delete-', _scope.item.location.id].join('')
       }, {
         type: expressionTypes.ATTRIBUTE,
         name: 'title',
@@ -88,7 +88,7 @@ var location_list_page = {
     selector: '[expr23]',
     itemName: 'item',
     indexName: null,
-    evaluate: _scope => _scope.context.data.pages.location_list.location_items
+    evaluate: _scope => _scope.context.data.pages.location_list.location_list_items
   }, {
     type: bindingTypes.EACH,
     getKey: null,
@@ -97,7 +97,7 @@ var location_list_page = {
       expressions: [{
         type: expressionTypes.ATTRIBUTE,
         name: 'id',
-        evaluate: _scope => ['modal-location-really-delete-', _scope.item.entity.id].join('')
+        evaluate: _scope => ['modal-location-really-delete-', _scope.item.location.id].join('')
       }]
     }, {
       redundantAttribute: 'expr28',
