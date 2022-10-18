@@ -37,7 +37,7 @@ defmodule Hiverec.Handler.Hive do
     locale = Common.locale(conn)
     result = Model.Hive.create_hive(params, location_id, user_id)
     case result do
-      {:ok, _} -> Handler.Location.gen_detail_data(conn, params)
+      {:ok, _} -> Handler.Location.gen_detail_data(conn, location_id)
       {:error, changeset} ->
         gen_add_data(conn, params, Common.human_errors(changeset, locale))
     end
@@ -63,6 +63,19 @@ defmodule Hiverec.Handler.Hive do
           },
           translations: Common.translations(@gettext_domain, texts_en(), locale)
     }
+  end
+
+  ###################
+  # delete
+  ###################
+
+  def process_post_delete(conn, %{"hive_id" => hive_id}) do
+    user_id = Common.user_id(conn)
+    {result, location} = Model.Hive.delete_hive(hive_id, user_id)
+    case result do
+      {:ok, _} -> Handler.Location.gen_detail_data(conn, location.id)
+      {:error, _changeset} -> Handler.Location.gen_detail_data(conn, location.id)
+    end
   end
 
 end

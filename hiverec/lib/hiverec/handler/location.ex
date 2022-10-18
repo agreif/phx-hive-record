@@ -117,19 +117,19 @@ defmodule Hiverec.Handler.Location do
   # detail
   ###################
 
-  def gen_detail_data(conn, %{"location_id" => location_id}) do
+  def gen_detail_data(conn, location_id) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     {location, hives} = Model.Location.get_location_with_hives(location_id, user_id)
     hive_list_items =
       hives
       |> Enum.map(fn hive ->
-      #post_data_url = Routes.page_url(conn, :post_hive_delete_data, hive)
+      post_data_url = Routes.page_url(conn, :post_hive_delete_data, hive)
       %Data.LocationDetailPage.HiveListItem{
         hive: to_data(hive),
         get_hive_detail_data_url: nil, #Routes.page_url(conn, :get_hive_detail_data, hive),
-        post_hive_delete_data_url: nil, #post_data_url,
-        csrf_token: nil #Tag.csrf_token_value(post_data_url),
+        post_hive_delete_data_url: post_data_url,
+        csrf_token: Tag.csrf_token_value(post_data_url),
       }
     end)
     %Data{data_url: Routes.page_url(conn, :get_location_detail_data, location),
@@ -166,7 +166,7 @@ defmodule Hiverec.Handler.Location do
     locale = Common.locale(conn)
     result = Model.Location.update_location(location_id, params, user_id)
     case result do
-      {:ok, _} -> Handler.Location.gen_detail_data(conn, params)
+      {:ok, _} -> Handler.Location.gen_detail_data(conn, location_id)
       {:error, changeset} ->
         gen_update_data(conn,
           Changeset.apply_changes(changeset),

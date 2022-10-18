@@ -22,25 +22,22 @@ defmodule HiverecWeb.Router do
   scope "/", HiverecWeb do
     pipe_through [:browser, :set_riot_tags, :require_authenticated_user, :fetch_user_id]
     get  "/", PageController, :get_index
+    post "/logout", PageController, :post_logout
 
     get  "/location_list", PageController, :get_location_list_page
     get  "/location_list/data", PageController, :get_location_list_data
-
     get  "/location_add/data", PageController, :get_location_add_data
     post "/location_add/data", PageController, :post_location_add_data
-
     get  "/location_detail/:location_id", PageController, :get_location_detail_page
     get  "/location_detail/:location_id/data", PageController, :get_location_detail_data
-
     get  "/location_update/:location_id/data", PageController, :get_location_update_data
     post "/location_update/:location_id/data", PageController, :post_location_update_data
-
     post "/location_delete/:location_id/data", PageController, :post_location_delete_data
 
     get  "/hive_add/:location_id/data", PageController, :get_hive_add_data
     post "/hive_add/:location_id/data", PageController, :post_hive_add_data
+    post "/hive_delete/:hive_id/data", PageController, :post_hive_delete_data
 
-    post "/logout", PageController, :post_logout
   end
 
   scope "/", HiverecWeb do

@@ -9,8 +9,7 @@ defmodule Hiverec.Model.Hive do
   use Ecto.Schema
   import Ecto.Changeset
   alias Hiverec.{Model, Repo}
-  # alias Hiverec.{Model, Repo}
-  # import Ecto.Query, only: [from: 2]
+  import Ecto.Query, only: [from: 2]
 
   schema "hives" do
     field :name, :string
@@ -28,6 +27,15 @@ defmodule Hiverec.Model.Hive do
     |> assoc_constraint(:location)
   end
 
+  def get_hive_with_location(hive_id, user_id) do
+    query = from l in Model.Location,
+      join: h in Model.Hive,
+      on: l.id == h.location_id,
+      where: h.id == ^hive_id and l.user_id == ^user_id,
+      select: {h, l}
+    Repo.all(query) |> List.first
+  end
+
   def create_hive(attrs, location_id, user_id) do
     location = Model.Location.get_location(location_id, user_id)
     Model.Hive.changeset(%Model.Hive{}, attrs)
@@ -35,4 +43,9 @@ defmodule Hiverec.Model.Hive do
     |> Repo.insert
   end
 
+  def delete_hive(hive_id, user_id) do
+    {hive, location} = get_hive_with_location(hive_id, user_id)
+    result = Repo.delete(hive)
+    {result, location}
+  end
 end

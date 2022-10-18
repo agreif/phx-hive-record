@@ -31,8 +31,8 @@ defmodule HiverecWeb.PageController do
     do: render(conn, :page,
       data_url: Routes.page_url(conn, :get_location_detail_data, params["location_id"]))
 
-  def get_location_detail_data(conn, params),
-    do: json(conn, Handler.Location.gen_detail_data(conn, params))
+  def get_location_detail_data(conn, %{"location_id" => location_id}),
+    do: json(conn, Handler.Location.gen_detail_data(conn, location_id))
 
   def get_location_update_data(conn, params),
     do: json(conn, Handler.Location.process_get_update(conn, params))
@@ -50,6 +50,9 @@ defmodule HiverecWeb.PageController do
 
   def post_hive_add_data(conn, params),
     do: json(conn, Handler.Hive.process_post_add(conn, params))
+
+  def post_hive_delete_data(conn, params),
+    do: json(conn, Handler.Hive.process_post_delete(conn, params))
 
   # register
 
