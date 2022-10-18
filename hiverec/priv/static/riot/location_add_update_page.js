@@ -13,25 +13,25 @@ var location_add_update_page = {
       this.context.refreshDataGet(this.context.data.pages.location_add_update.form.cancel_data_url);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-card uk-card-default uk-card-body uk-card-hover"><h2 expr9="expr9" class="uk-card-title"> </h2><form id="location-add-update" class="uk-form-horizontal uk-margin-large"><div class="uk-margin"><label expr10="expr10" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr11="expr11" type="text" name="name" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr12="expr12"></li></ul></div></div><div class="uk-text-center"><button expr14="expr14" class="uk-button uk-button-default" type="button"> </button><button expr15="expr15" class="uk-button uk-button-primary" type="button"> </button></div></form></div>', [{
-    redundantAttribute: 'expr9',
-    selector: '[expr9]',
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-card uk-card-default uk-card-body uk-card-hover"><h2 expr17="expr17" class="uk-card-title"> </h2><form id="location-add-update" class="uk-form-horizontal uk-margin-large"><div class="uk-margin"><label expr18="expr18" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr19="expr19" type="text" name="name" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr20="expr20"></li></ul></div></div><div class="uk-text-center"><button expr22="expr22" class="uk-button uk-button-default" type="button"> </button><button expr23="expr23" class="uk-button uk-button-primary" type="button"> </button></div></form></div>', [{
+    redundantAttribute: 'expr17',
+    selector: '[expr17]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
       evaluate: _scope => _scope.context.data.translations[_scope.context.data.pages.location_add_update.title_msgid]
     }]
   }, {
-    redundantAttribute: 'expr10',
-    selector: '[expr10]',
+    redundantAttribute: 'expr18',
+    selector: '[expr18]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
       evaluate: _scope => _scope.context.data.translations['Name']
     }]
   }, {
-    redundantAttribute: 'expr11',
-    selector: '[expr11]',
+    redundantAttribute: 'expr19',
+    selector: '[expr19]',
     expressions: [{
       type: expressionTypes.VALUE,
       evaluate: _scope => _scope.context.data.pages.location_add_update.form.params.name
@@ -40,23 +40,23 @@ var location_add_update_page = {
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<span expr13="expr13" class="uk-text-danger"> </span>', [{
-      redundantAttribute: 'expr13',
-      selector: '[expr13]',
+    template: template('<span expr21="expr21" class="uk-text-danger"> </span>', [{
+      redundantAttribute: 'expr21',
+      selector: '[expr21]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
         evaluate: _scope => _scope.msg
       }]
     }]),
-    redundantAttribute: 'expr12',
-    selector: '[expr12]',
+    redundantAttribute: 'expr20',
+    selector: '[expr20]',
     itemName: 'msg',
     indexName: null,
     evaluate: _scope => _scope.context.data.pages.location_add_update.form.errors.name
   }, {
-    redundantAttribute: 'expr14',
-    selector: '[expr14]',
+    redundantAttribute: 'expr22',
+    selector: '[expr22]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
@@ -67,8 +67,8 @@ var location_add_update_page = {
       evaluate: _scope => _scope.cancel
     }]
   }, {
-    redundantAttribute: 'expr15',
-    selector: '[expr15]',
+    redundantAttribute: 'expr23',
+    selector: '[expr23]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
