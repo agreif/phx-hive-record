@@ -127,7 +127,7 @@ defmodule Hiverec.Handler.Location do
       post_data_url = Routes.page_url(conn, :post_hive_delete_data, hive)
       %Data.LocationDetailPage.HiveListItem{
         hive: to_data(hive),
-        get_hive_detail_data_url: nil, #Routes.page_url(conn, :get_hive_detail_data, hive),
+        get_hive_detail_data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
         post_hive_delete_data_url: post_data_url,
         csrf_token: Tag.csrf_token_value(post_data_url),
       }

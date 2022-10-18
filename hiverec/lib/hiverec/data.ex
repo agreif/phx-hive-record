@@ -62,8 +62,26 @@ defmodule Hiverec.Data.Pages do
   """
   @derive Jason.Encoder
   defstruct [:error, :location_list, :location_add_update, :location_detail,
-             :hive_add_update,
+             :hive_add_update, :hive_detail,
              :register, :login]
+end
+
+defmodule Hiverec.Data.RegisterPage do
+  @moduledoc """
+  Register page.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:form, :csrf_token, :get_login_url, :get_login_data_url]
+  defstruct [:form, :csrf_token, :get_login_url, :get_login_data_url]
+end
+
+defmodule Hiverec.Data.LoginPage do
+  @moduledoc """
+  Login page.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:form, :csrf_token, :get_register_url, :get_register_data_url]
+  defstruct [:form, :csrf_token, :get_register_url, :get_register_data_url]
 end
 
 defmodule Hiverec.Data.ErrorPage do
@@ -87,7 +105,7 @@ end
 
 defmodule Hiverec.Data.LocationListPage.LocationListItem do
   @moduledoc """
-  location item.
+  location list item.
   """
   @derive Jason.Encoder
   @enforce_keys [:location, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
@@ -96,7 +114,7 @@ end
 
 defmodule Hiverec.Data.Location do
   @moduledoc """
-  location item.
+  location.
   """
   @derive Jason.Encoder
   defstruct [:id, :name]
@@ -104,7 +122,7 @@ end
 
 defmodule Hiverec.Data.Hive do
   @moduledoc """
-  Hive item.
+  Hive.
   """
   @derive Jason.Encoder
   defstruct [:id, :name]
@@ -122,7 +140,7 @@ end
 
 defmodule Hiverec.Data.LocationDetailPage.HiveListItem do
   @moduledoc """
-  location item.
+  hive list item.
   """
   @derive Jason.Encoder
   @enforce_keys [:hive, :get_hive_detail_data_url, :post_hive_delete_data_url, :csrf_token]
@@ -153,25 +171,17 @@ defmodule Hiverec.Data.HiveAddUpdatePage do
 end
 
 
-
-
-
-
-defmodule Hiverec.Data.RegisterPage do
+defmodule Hiverec.Data.HiveDetailPage do
   @moduledoc """
-  Register page.
+  Hive detail page.
   """
   @derive Jason.Encoder
-  @enforce_keys [:form, :csrf_token, :get_login_url, :get_login_data_url]
-  defstruct [:form, :csrf_token, :get_login_url, :get_login_data_url]
+  @enforce_keys [:hive, :get_hive_update_data_url]
+  defstruct [:hive, :get_hive_update_data_url]
 end
 
-defmodule Hiverec.Data.LoginPage do
-  @moduledoc """
-  Login page.
-  """
-  @derive Jason.Encoder
-  @enforce_keys [:form, :csrf_token, :get_register_url, :get_register_data_url]
-  defstruct [:form, :csrf_token, :get_register_url, :get_register_data_url]
-end
+
+
+
+
 

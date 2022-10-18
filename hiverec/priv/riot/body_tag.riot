@@ -3,13 +3,14 @@
     <unauth-nav-tag context="{this}" if="{data.pages.register || data.pages.login}"></unauth-nav-tag>
     <nav-tag context="{this}" if="{data.navbar}"></nav-tag>
     <div class="uk-container">
+      <register-page context="{this}" if="{data.pages.register}"></register-page>
+      <login-page context="{this}" if="{data.pages.login}"></login-page>
       <error-page context="{this}" if="{data.pages.error}"></error-page>
       <location-list-page context="{this}" if="{data.pages.location_list}"></location-list-page>
       <location-add-update-page context="{this}" if="{data.pages.location_add_update}"></location-add-update-page>
       <location-detail-page context="{this}" if="{data.pages.location_detail}"></location-detail-page>
       <hive-add-update-page context="{this}" if="{data.pages.hive_add_update}"></hive-add-update-page>
-      <register-page context="{this}" if="{data.pages.register}"></register-page>
-      <login-page context="{this}" if="{data.pages.login}"></login-page>
+      <hive-detail-page context="{this}" if="{data.pages.hive_detail}"></hive-detail-page>
     </div>
   </div>
 

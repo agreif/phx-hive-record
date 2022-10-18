@@ -11,22 +11,37 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/hive.ex:19
+#: lib/hiverec/handler/hive.ex:20
 #, elixir-autogen, elixir-format
 msgid "Cancel"
 msgstr ""
 
-#: lib/hiverec/handler/hive.ex:21
+#: lib/hiverec/handler/hive.ex:22
 #, elixir-autogen, elixir-format
 msgid "Add Hive"
 msgstr ""
 
-#: lib/hiverec/handler/hive.ex:18
+#: lib/hiverec/handler/hive.ex:19
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
 
-#: lib/hiverec/handler/hive.ex:20
+#: lib/hiverec/handler/hive.ex:21
 #, elixir-autogen, elixir-format
 msgid "Save"
+msgstr ""
+
+#: lib/hiverec/handler/hive.ex:23
+#, elixir-autogen, elixir-format
+msgid "Edit Hive"
+msgstr ""
+
+#: lib/hiverec/handler/hive.ex:24
+#, elixir-autogen, elixir-format
+msgid "Hive"
+msgstr ""
+
+#: lib/hiverec/handler/hive.ex:25
+#, elixir-autogen, elixir-format
+msgid "Locations"
 msgstr ""

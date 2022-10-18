@@ -71,15 +71,10 @@ msgstr "Standort Detail"
 msgid "Add Hive"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:34
+#: lib/hiverec/handler/location.ex:33
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Delete Hive"
 msgstr "Löschen"
-
-#: lib/hiverec/handler/location.ex:33
-#, elixir-autogen, elixir-format
-msgid "Edit Hive"
-msgstr ""
 
 #: lib/hiverec/handler/location.ex:32
 #, elixir-autogen, elixir-format
@@ -91,7 +86,7 @@ msgstr ""
 msgid "Hives"
 msgstr ""
 
-#: lib/hiverec/handler/location.ex:35
+#: lib/hiverec/handler/location.ex:34
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Do you really want to delete this Hive?"
 msgstr "Möchten Sie diesen Standort wirklich löschen?"

@@ -36,6 +36,10 @@ defmodule HiverecWeb.Router do
 
     get  "/hive_add/:location_id/data", PageController, :get_hive_add_data
     post "/hive_add/:location_id/data", PageController, :post_hive_add_data
+    get  "/hive_detail/:hive_id", PageController, :get_hive_detail_page
+    get  "/hive_detail/:hive_id/data", PageController, :get_hive_detail_data
+    get  "/hive_update/:hive_id/data", PageController, :get_hive_update_data
+    post "/hive_update/:hive_id/data", PageController, :post_hive_update_data
     post "/hive_delete/:hive_id/data", PageController, :post_hive_delete_data
 
   end
@@ -58,7 +62,7 @@ defmodule HiverecWeb.Router do
       |> assign(:riot_tags, [:body, :nav])
       |> assign(:riot_pages, [:error,
                              :location_list, :location_add_update, :location_detail,
-                             :hive_add_update
+                             :hive_add_update, :hive_detail
                              ])
     else
       conn
