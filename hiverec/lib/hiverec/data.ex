@@ -62,6 +62,7 @@ defmodule Hiverec.Data.Pages do
   """
   @derive Jason.Encoder
   defstruct [:error, :location_list, :location_add_update, :location_detail,
+             :hive_add_update,
              :register, :login]
 end
 
@@ -84,12 +85,21 @@ defmodule Hiverec.Data.LocationListPage do
 end
 
 
+defmodule Hiverec.Data.LocationListPage.LocationListItem do
+  @moduledoc """
+  location item.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:location, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
+  defstruct [:location, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
+end
+
 defmodule Hiverec.Data.Location do
   @moduledoc """
   location item.
   """
   @derive Jason.Encoder
-  defstruct [:id, :name, :hives]
+  defstruct [:id, :name]
 end
 
 defmodule Hiverec.Data.Hive do
@@ -100,29 +110,42 @@ defmodule Hiverec.Data.Hive do
   defstruct [:id, :name]
 end
 
-defmodule Hiverec.Data.LocationListItem do
-  @moduledoc """
-  location item.
-  """
-  @derive Jason.Encoder
-  @enforce_keys [:location, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
-  defstruct [:location, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
-end
-
 defmodule Hiverec.Data.LocationDetailPage do
   @moduledoc """
   Location detail page.
   """
   @derive Jason.Encoder
-  @enforce_keys [:location, :get_location_update_data_url]
-  defstruct [:location, :get_location_update_data_url]
+  @enforce_keys [:location, :get_location_update_data_url, :hive_list_items, :get_hive_add_data_url]
+  defstruct [:location, :get_location_update_data_url, :hive_list_items, :get_hive_add_data_url]
 end
+
+
+defmodule Hiverec.Data.LocationDetailPage.HiveListItem do
+  @moduledoc """
+  location item.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:hive, :get_hive_detail_data_url, :post_hive_delete_data_url, :csrf_token]
+  defstruct [:hive, :get_hive_detail_data_url, :post_hive_delete_data_url, :csrf_token]
+end
+
+
 
 
 
 defmodule Hiverec.Data.LocationAddUpdatePage do
   @moduledoc """
   Page to add Location item.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:title_msgid, :form, :csrf_token]
+  defstruct [:title_msgid, :form, :csrf_token]
+end
+
+
+defmodule Hiverec.Data.HiveAddUpdatePage do
+  @moduledoc """
+  Page to add Hive item.
   """
   @derive Jason.Encoder
   @enforce_keys [:title_msgid, :form, :csrf_token]

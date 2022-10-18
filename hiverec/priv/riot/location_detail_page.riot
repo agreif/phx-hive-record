@@ -1,6 +1,5 @@
-<location-list-page>
+<location-detail-page>
   <h1>{context.data.translations['Location']}: {context.data.pages.location_detail.location.name}</h1>
-
   <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
     <thead>
       <tr>
@@ -22,6 +21,50 @@
     </tbody>
   </table>
 
+  <h2>{context.data.translations['Hives']}</h2>
+  <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
+    <thead>
+      <tr>
+        <th class="uk-width-2-5">{context.data.translations['Name']}</th>
+        <th class="uk-align-right">
+          <button onclick="{addHive}" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" title="{context.data.translations['Add Hive']}" uk-tooltip>
+            <span uk-icon="icon: plus"/>
+	  </button>
+	</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr each="{item in context.data.pages.location_detail.hive_list_items}">
+        <td class="uk-table-link">
+	  <a onclick="{(e) => detailHive(e, item)}" class="uk-link-reset">{item.hive.name}</a>
+	</td>
+	<td class="uk-width-small">
+	  <button uk-toggle="target: #modal-hive-really-delete-{item.hive.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Hive']}" uk-tooltip >
+            <span uk-icon="icon: trash"/>
+	  </button>
+          <button onclick="{(e) => detailHive(e, item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Hive Detail']}" uk-tooltip >
+            <span uk-icon="icon: file-edit"/>
+	  </button>
+	</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="modal-hive-really-delete-{item.hive.id}" uk-modal each="{item in context.data.pages.location_detail.hive_list_items}">
+    <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">{context.data.translations['Delete Hive']}</h2>
+      <p>{context.data.translations['Do you really want to delete this Hive?']}</p>
+      <p class="uk-text-center">
+	<button class="uk-button uk-button-default uk-modal-close">
+	  {context.data.translations['Cancel']}
+	</button>
+        <button onclick="{(e) => deleteHive(e, item)}" class="uk-button uk-button-primary uk-modal-close">
+	  {context.data.translations['Delete']}
+	</button>
+      </p>
+    </div>
+  </div>
+
   <script>
     export default {
 	onBeforeMount(props) { this.context = props.context },
@@ -31,6 +74,18 @@
 	    this.context.refreshDataGet(this.context.data.pages.location_detail.get_location_update_data_url)
 	},
 
+	addHive() {
+	    this.context.refreshDataGet(this.context.data.pages.location_detail.get_hive_add_data_url)
+	},
+
+	detailHive(event, item) {
+	    event.preventDefault()
+	    this.context.refreshDataGet(item.get_hive_detail_data_url)
+	},
+
+	deleteHive(event, item) {
+	    this.context.refreshDataPost(item.post_hive_delete_data_url, item.csrf_token)
+	},
     }
   </script>
-</location-list-page>
+</location-detail-page>

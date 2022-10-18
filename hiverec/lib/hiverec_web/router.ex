@@ -29,13 +29,16 @@ defmodule HiverecWeb.Router do
     get  "/location_add/data", PageController, :get_location_add_data
     post "/location_add/data", PageController, :post_location_add_data
 
-    get  "/location_detail/:id", PageController, :get_location_detail_page
-    get  "/location_detail/:id/data", PageController, :get_location_detail_data
+    get  "/location_detail/:location_id", PageController, :get_location_detail_page
+    get  "/location_detail/:location_id/data", PageController, :get_location_detail_data
 
-    get  "/location_update/:id/data", PageController, :get_location_update_data
-    post "/location_update/:id/data", PageController, :post_location_update_data
+    get  "/location_update/:location_id/data", PageController, :get_location_update_data
+    post "/location_update/:location_id/data", PageController, :post_location_update_data
 
-    post "/location_delete/:id/data", PageController, :post_location_delete_data
+    post "/location_delete/:location_id/data", PageController, :post_location_delete_data
+
+    get  "/hive_add/:location_id/data", PageController, :get_hive_add_data
+    post "/hive_add/:location_id/data", PageController, :post_hive_add_data
 
     post "/logout", PageController, :post_logout
   end
@@ -57,7 +60,8 @@ defmodule HiverecWeb.Router do
       conn
       |> assign(:riot_tags, [:body, :nav])
       |> assign(:riot_pages, [:error,
-                             :location_list, :location_add_update, :location_detail
+                             :location_list, :location_add_update, :location_detail,
+                             :hive_add_update
                              ])
     else
       conn

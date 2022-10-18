@@ -1,0 +1,39 @@
+<hive-add-update-page>
+  <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+    <h2 class="uk-card-title">{context.data.translations[context.data.pages.hive_add_update.title_msgid]}</h2>
+    <form id="hive-add-update" class="uk-form-horizontal uk-margin-large">
+      <div class="uk-margin">
+	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Name']}</label>
+	<div class="uk-form-controls">
+          <input type="text" name="name" value="{context.data.pages.hive_add_update.form.params.name}" class="uk-input">
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.hive_add_update.form.errors.name}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+	</div>
+      </div>
+      <div class="uk-text-center">
+        <button onclick="{cancel}" class="uk-button uk-button-default" type="button">{context.data.translations['Cancel']}</button>
+        <button onclick="{add}" class="uk-button uk-button-primary" type="button">{context.data.translations['Save']}</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    export default {
+	onBeforeMount(props) { this.context = props.context },
+
+	add(event) {
+	    event.preventDefault()
+	    this.context.postForm(
+		this.context.data.pages.hive_add_update.form.post_data_url,
+		this.context.data.pages.hive_add_update.csrf_token,
+		'#hive-add-update')
+	},
+
+	cancel(event) {
+	    event.preventDefault()
+	    this.context.refreshDataGet(this.context.data.pages.hive_add_update.form.cancel_data_url)
+	},
+    }
+  </script>
+</hive-add-update-page>

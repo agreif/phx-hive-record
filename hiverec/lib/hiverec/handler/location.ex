@@ -27,6 +27,11 @@ defmodule Hiverec.Handler.Location do
         dgettext(@gettext_domain, "Cancel"),
         dgettext(@gettext_domain, "Save"),
         dgettext(@gettext_domain, "Delete"),
+        dgettext(@gettext_domain, "Hives"),
+        dgettext(@gettext_domain, "Add Hive"),
+        dgettext(@gettext_domain, "Hive Detail"),
+        dgettext(@gettext_domain, "Delete Hive"),
+        dgettext(@gettext_domain, "Do you really want to delete this Hive?"),
       ]
     end)
   end
@@ -42,7 +47,7 @@ defmodule Hiverec.Handler.Location do
       Model.Location.get_locations(user_id)
       |> Enum.map(fn location ->
       post_data_url = Routes.page_url(conn, :post_location_delete_data, location)
-      %Data.LocationListItem{
+      %Data.LocationListPage.LocationListItem{
         location: to_data(location),
         get_location_detail_data_url: Routes.page_url(conn, :get_location_detail_data, location),
         post_location_delete_data_url: post_data_url,
@@ -112,12 +117,21 @@ defmodule Hiverec.Handler.Location do
   # detail
   ###################
 
-  def gen_detail_data(conn, %{"id" => location_id}) do
+  def gen_detail_data(conn, %{"location_id" => location_id}) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
-    location = Model.Location.get_location_with_hives(location_id, user_id)
-    IO.inspect(to_data(location))
-    #    location = Model.Location.get_location(location_id, user_id)
+    {location, hives} = Model.Location.get_location_with_hives(location_id, user_id)
+    hive_list_items =
+      hives
+      |> Enum.map(fn hive ->
+      #post_data_url = Routes.page_url(conn, :post_hive_delete_data, hive)
+      %Data.LocationDetailPage.HiveListItem{
+        hive: to_data(hive),
+        get_hive_detail_data_url: nil, #Routes.page_url(conn, :get_hive_detail_data, hive),
+        post_hive_delete_data_url: nil, #post_data_url,
+        csrf_token: nil #Tag.csrf_token_value(post_data_url),
+      }
+    end)
     %Data{data_url: Routes.page_url(conn, :get_location_detail_data, location),
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
@@ -129,6 +143,8 @@ defmodule Hiverec.Handler.Location do
             location_detail: %Data.LocationDetailPage{
               location: to_data(location),
               get_location_update_data_url: Routes.page_url(conn, :get_location_update_data, location),
+              hive_list_items: hive_list_items,
+              get_hive_add_data_url: Routes.page_url(conn, :get_hive_add_data, location)
             }
           },
           translations: Common.translations(@gettext_domain, texts_en(), locale)
@@ -139,13 +155,13 @@ defmodule Hiverec.Handler.Location do
   # update
   ###################
 
-  def process_get_update(conn, %{"id" => location_id}) do
+  def process_get_update(conn, %{"location_id" => location_id}) do
     user_id = Common.user_id(conn)
     location = Model.Location.get_location(location_id, user_id)
     gen_update_data(conn, location)
   end
 
-  def process_post_update(conn, %{"id" => location_id} = params) do
+  def process_post_update(conn, %{"location_id" => location_id} = params) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     result = Model.Location.update_location(location_id, params, user_id)
@@ -184,7 +200,7 @@ defmodule Hiverec.Handler.Location do
   # delete
   ###################
 
-  def process_post_delete(conn, %{"id" => location_id}) do
+  def process_post_delete(conn, %{"location_id" => location_id}) do
     user_id = Common.user_id(conn)
     result = Model.Location.delete_location(location_id, user_id)
     case result do

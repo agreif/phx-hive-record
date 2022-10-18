@@ -39,19 +39,22 @@ defmodule Hiverec.Model.Location do
   end
 
   def get_location_with_hives(location_id, user_id) do
-    Repo.one(
-      from(l in Model.Location,
-        where: l.id == ^location_id and l.user_id == ^user_id,
-        preload: :hives
-      )
-    )
+    # Repo.one(
+    #   from(l in Model.Location,
+    #     where: l.id == ^location_id and l.user_id == ^user_id,
+    #     preload: :hives
+    #   )
+    # )
 
-    # query = from l in Model.Location,
-    #   left_join: h in Model.Hive,
-    #   on: l.id == h.location_id,
-    #   where: l.id == ^location_id and l.user_id == ^user_id,
-    #   select: {l, h}
-    # result = Repo.all(query)
+    query = from l in Model.Location,
+      left_join: h in Model.Hive,
+      on: l.id == h.location_id,
+      where: l.id == ^location_id and l.user_id == ^user_id,
+      select: [l, h]
+    rows = Repo.all(query)
+    {rows |> List.first |> List.first,
+     Enum.map(rows, &List.last/1) |> Enum.filter(& &1)
+    }
   end
 
   def create_location(attrs, user_id) do

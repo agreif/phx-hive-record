@@ -8,7 +8,7 @@ defmodule Hiverec.Model.Hive do
 
   use Ecto.Schema
   import Ecto.Changeset
-  alias Hiverec.{Model}
+  alias Hiverec.{Model, Repo}
   # alias Hiverec.{Model, Repo}
   # import Ecto.Query, only: [from: 2]
 
@@ -23,9 +23,16 @@ defmodule Hiverec.Model.Hive do
   def changeset(hive, attrs) do
     hive
     |> cast(attrs, [:name], empty_values: [])
-    |> Model.Common.validate_required_with_change([:name])
+    |> Model.Common.validate_required_with_change(:name)
     |> unique_constraint(:name)
     |> assoc_constraint(:location)
+  end
+
+  def create_hive(attrs, location_id, user_id) do
+    location = Model.Location.get_location(location_id, user_id)
+    Model.Hive.changeset(%Model.Hive{}, attrs)
+    |> put_change(:location_id, location.id)
+    |> Repo.insert
   end
 
 end
