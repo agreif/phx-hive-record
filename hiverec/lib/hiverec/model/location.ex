@@ -21,6 +21,7 @@ defmodule Hiverec.Model.Location do
     location
     |> cast(attrs, [:name], empty_values: [])
     |> Model.Common.validate_required_with_change(:name)
+    |> unique_constraint([:name])
     |> assoc_constraint(:user)
   end
 

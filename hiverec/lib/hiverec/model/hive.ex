@@ -23,7 +23,7 @@ defmodule Hiverec.Model.Hive do
     hive
     |> cast(attrs, [:name], empty_values: [])
     |> Model.Common.validate_required_with_change(:name)
-    |> unique_constraint(:name)
+    |> unique_constraint([:location_id, :name])
     |> assoc_constraint(:location)
   end
 
