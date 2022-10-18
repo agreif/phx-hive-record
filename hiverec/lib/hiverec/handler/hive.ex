@@ -32,18 +32,18 @@ defmodule Hiverec.Handler.Hive do
 
   Returns {conn, data} tuple
   """
-  def process_post_add(conn, %{"location_id" => location_id} = params) do
+  def process_post_add(conn, location_id, params) when is_integer(location_id) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     result = Model.Hive.create_hive(params, location_id, user_id)
     case result do
       {:ok, _} -> Handler.Location.gen_detail_data(conn, location_id)
       {:error, changeset} ->
-        gen_add_data(conn, params, Common.human_errors(changeset, locale))
+        gen_add_data(conn, location_id, params, Common.human_errors(changeset, locale))
     end
   end
 
-  def gen_add_data(conn, %{"location_id" => location_id} = params, errors \\ %{}) do
+  def gen_add_data(conn, location_id, params, errors \\ %{}) when is_integer(location_id) do
     form_post_data_url = Routes.page_url(conn, :post_hive_add_data, location_id)
     locale = Common.locale(conn)
     %Data{data_url: Routes.page_url(conn, :get_hive_add_data, location_id),
@@ -69,7 +69,7 @@ defmodule Hiverec.Handler.Hive do
   # delete
   ###################
 
-  def process_post_delete(conn, %{"hive_id" => hive_id}) do
+  def process_post_delete(conn, hive_id) when is_integer(hive_id) do
     user_id = Common.user_id(conn)
     {result, location} = Model.Hive.delete_hive(hive_id, user_id)
     case result do

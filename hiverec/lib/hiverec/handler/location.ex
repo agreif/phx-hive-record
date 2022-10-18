@@ -117,7 +117,7 @@ defmodule Hiverec.Handler.Location do
   # detail
   ###################
 
-  def gen_detail_data(conn, location_id) do
+  def gen_detail_data(conn, location_id) when is_integer(location_id) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     {location, hives} = Model.Location.get_location_with_hives(location_id, user_id)
@@ -155,13 +155,13 @@ defmodule Hiverec.Handler.Location do
   # update
   ###################
 
-  def process_get_update(conn, %{"location_id" => location_id}) do
+  def process_get_update(conn, location_id) when is_integer(location_id) do
     user_id = Common.user_id(conn)
     location = Model.Location.get_location(location_id, user_id)
     gen_update_data(conn, location)
   end
 
-  def process_post_update(conn, %{"location_id" => location_id} = params) do
+  def process_post_update(conn, location_id, params) when is_integer(location_id) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     result = Model.Location.update_location(location_id, params, user_id)
@@ -200,7 +200,7 @@ defmodule Hiverec.Handler.Location do
   # delete
   ###################
 
-  def process_post_delete(conn, %{"location_id" => location_id}) do
+  def process_post_delete(conn, location_id) when is_integer(location_id) do
     user_id = Common.user_id(conn)
     result = Model.Location.delete_location(location_id, user_id)
     case result do
