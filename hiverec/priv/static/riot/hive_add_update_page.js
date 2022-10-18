@@ -13,7 +13,7 @@ var hive_add_update_page = {
       this.context.refreshDataGet(this.context.data.pages.hive_add_update.form.cancel_data_url);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-card uk-card-default uk-card-body uk-card-hover"><h2 expr11="expr11" class="uk-card-title"> </h2><form id="hive-add-update" class="uk-form-horizontal uk-margin-large"><div class="uk-margin"><label expr12="expr12" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr13="expr13" type="text" name="name" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr14="expr14"></li></ul></div></div><div class="uk-text-center"><button expr16="expr16" class="uk-button uk-button-default" type="button"> </button><button expr17="expr17" class="uk-button uk-button-primary" type="button"> </button></div></form></div>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-card uk-card-default uk-card-body uk-card-hover"><h2 expr11="expr11" class="uk-card-title"> </h2><form id="hive-add-update" class="uk-form-horizontal uk-margin-large"><div class="uk-margin"><label expr12="expr12" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr13="expr13" type="text" name="name" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr14="expr14"></li></ul><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr16="expr16"></li></ul></div></div><div class="uk-text-center"><button expr18="expr18" class="uk-button uk-button-default" type="button"> </button><button expr19="expr19" class="uk-button uk-button-primary" type="button"> </button></div></form></div>', [{
     redundantAttribute: 'expr11',
     selector: '[expr11]',
     expressions: [{
@@ -55,8 +55,26 @@ var hive_add_update_page = {
     indexName: null,
     evaluate: _scope => _scope.context.data.pages.hive_add_update.form.errors.name
   }, {
+    type: bindingTypes.EACH,
+    getKey: null,
+    condition: null,
+    template: template('<span expr17="expr17" class="uk-text-danger"> </span>', [{
+      redundantAttribute: 'expr17',
+      selector: '[expr17]',
+      expressions: [{
+        type: expressionTypes.TEXT,
+        childNodeIndex: 0,
+        evaluate: _scope => _scope.msg
+      }]
+    }]),
     redundantAttribute: 'expr16',
     selector: '[expr16]',
+    itemName: 'msg',
+    indexName: null,
+    evaluate: _scope => _scope.context.data.pages.hive_add_update.form.errors.location_id
+  }, {
+    redundantAttribute: 'expr18',
+    selector: '[expr18]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
@@ -67,8 +85,8 @@ var hive_add_update_page = {
       evaluate: _scope => _scope.cancel
     }]
   }, {
-    redundantAttribute: 'expr17',
-    selector: '[expr17]',
+    redundantAttribute: 'expr19',
+    selector: '[expr19]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
