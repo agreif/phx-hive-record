@@ -59,7 +59,7 @@ defmodule HiverecWeb.Router do
   defp set_riot_tags(conn, _opts) do
     if get_session(conn, :login) do
       conn
-      |> assign(:riot_tags, [:body, :nav])
+      |> assign(:riot_tags, [:body, :nav, :breadcrumb])
       |> assign(:riot_pages, [:error,
                              :location_list, :location_add_update, :location_detail,
                              :hive_add_update, :hive_detail

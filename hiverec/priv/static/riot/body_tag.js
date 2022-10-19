@@ -54,7 +54,7 @@ var body_tag = {
       this.postRequest(dataUrl, csrfToken, formJson, callbackFun);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div><unauth-nav-tag expr0="expr0"></unauth-nav-tag><nav-tag expr1="expr1"></nav-tag><div class="uk-container"><ul class="uk-breadcrumb uk-align-right"><li><a href="#">Bread</a></li><li><a href="#">Crumb</a></li><li class="uk-disabled"><a>Comming</a></li><li><span>soon</span></li></ul><register-page expr2="expr2"></register-page><login-page expr3="expr3"></login-page><error-page expr4="expr4"></error-page><location-list-page expr5="expr5"></location-list-page><location-add-update-page expr6="expr6"></location-add-update-page><location-detail-page expr7="expr7"></location-detail-page><hive-add-update-page expr8="expr8"></hive-add-update-page><hive-detail-page expr9="expr9"></hive-detail-page></div></div>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div><unauth-nav-tag expr0="expr0"></unauth-nav-tag><nav-tag expr1="expr1"></nav-tag><div class="uk-container"><breadcrumb-tag expr2="expr2"></breadcrumb-tag><register-page expr3="expr3"></register-page><login-page expr4="expr4"></login-page><error-page expr5="expr5"></error-page><location-list-page expr6="expr6"></location-list-page><location-add-update-page expr7="expr7"></location-add-update-page><location-detail-page expr8="expr8"></location-detail-page><hive-add-update-page expr9="expr9"></hive-add-update-page><hive-detail-page expr10="expr10"></hive-detail-page></div></div>', [{
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.register || _scope.data.pages.login,
     redundantAttribute: 'expr0',
@@ -88,9 +88,25 @@ var body_tag = {
     }])
   }, {
     type: bindingTypes.IF,
-    evaluate: _scope => _scope.data.pages.register,
+    evaluate: _scope => _scope.data.breadcrumb,
     redundantAttribute: 'expr2',
     selector: '[expr2]',
+    template: template(null, [{
+      type: bindingTypes.TAG,
+      getComponent: getComponent,
+      evaluate: _scope => 'breadcrumb-tag',
+      slots: [],
+      attributes: [{
+        type: expressionTypes.ATTRIBUTE,
+        name: 'context',
+        evaluate: _scope => _scope
+      }]
+    }])
+  }, {
+    type: bindingTypes.IF,
+    evaluate: _scope => _scope.data.pages.register,
+    redundantAttribute: 'expr3',
+    selector: '[expr3]',
     template: template(null, [{
       type: bindingTypes.TAG,
       getComponent: getComponent,
@@ -105,8 +121,8 @@ var body_tag = {
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.login,
-    redundantAttribute: 'expr3',
-    selector: '[expr3]',
+    redundantAttribute: 'expr4',
+    selector: '[expr4]',
     template: template(null, [{
       type: bindingTypes.TAG,
       getComponent: getComponent,
@@ -121,8 +137,8 @@ var body_tag = {
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.error,
-    redundantAttribute: 'expr4',
-    selector: '[expr4]',
+    redundantAttribute: 'expr5',
+    selector: '[expr5]',
     template: template(null, [{
       type: bindingTypes.TAG,
       getComponent: getComponent,
@@ -137,8 +153,8 @@ var body_tag = {
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.location_list,
-    redundantAttribute: 'expr5',
-    selector: '[expr5]',
+    redundantAttribute: 'expr6',
+    selector: '[expr6]',
     template: template(null, [{
       type: bindingTypes.TAG,
       getComponent: getComponent,
@@ -153,8 +169,8 @@ var body_tag = {
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.location_add_update,
-    redundantAttribute: 'expr6',
-    selector: '[expr6]',
+    redundantAttribute: 'expr7',
+    selector: '[expr7]',
     template: template(null, [{
       type: bindingTypes.TAG,
       getComponent: getComponent,
@@ -169,8 +185,8 @@ var body_tag = {
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.location_detail,
-    redundantAttribute: 'expr7',
-    selector: '[expr7]',
+    redundantAttribute: 'expr8',
+    selector: '[expr8]',
     template: template(null, [{
       type: bindingTypes.TAG,
       getComponent: getComponent,
@@ -185,8 +201,8 @@ var body_tag = {
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.hive_add_update,
-    redundantAttribute: 'expr8',
-    selector: '[expr8]',
+    redundantAttribute: 'expr9',
+    selector: '[expr9]',
     template: template(null, [{
       type: bindingTypes.TAG,
       getComponent: getComponent,
@@ -201,8 +217,8 @@ var body_tag = {
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.hive_detail,
-    redundantAttribute: 'expr9',
-    selector: '[expr9]',
+    redundantAttribute: 'expr10',
+    selector: '[expr10]',
     template: template(null, [{
       type: bindingTypes.TAG,
       getComponent: getComponent,
