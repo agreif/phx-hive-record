@@ -1,11 +1,11 @@
 # Hive-Record Web-App
 
-A small web application to manage beehive inspection recors for beekeepers.
+A small web application to manage beehive inspection records for beekeepers.
 
 Written in Elixir/Phoenix with RiotJS for DOM manipulation and UIkit as the frontend.
 
 # Live-Demo
-This project is currently under a very active development, but you can see a Live-demo here:
+This project is currently under a very active development, but you can see a live-demo here:
 
 [See Live-Demo Here](https://phx-hiverec.greif-it.de/)
 
