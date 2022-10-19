@@ -2,7 +2,19 @@
 
 A small web application to manage beehive inspection recors for beekeepers.
 
-Written in Elixir/Phoenix
+Written in Elixir/Phoenix with RiotJS for DOM manipulation and UIkit as the frontend.
+
+# Live-Demo
+This project is currently under a very active development, but you can see a Live-demo here:
+
+[See Live-Demo Here](https://phx-hiverec.greif-it.de/)
+
+either you use an existing account:
+```
+login:    testuser
+password: test12345678
+```
+or you create a new dummy account on the register page.
 
 
 # Run Phoenix Server
