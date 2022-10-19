@@ -11,82 +11,42 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/location.ex:21
+#: lib/hiverec/handler/translation.ex:64
 #, elixir-autogen, elixir-format
 msgid "Add Location"
 msgstr "Standort hinzufügen"
 
-#: lib/hiverec/handler/location.ex:27
-#, elixir-autogen, elixir-format
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: lib/hiverec/handler/location.ex:29
-#, elixir-autogen, elixir-format
-msgid "Delete"
-msgstr "Löschen"
-
-#: lib/hiverec/handler/location.ex:24
+#: lib/hiverec/handler/translation.ex:67
 #, elixir-autogen, elixir-format
 msgid "Delete Location"
 msgstr "Standort Löschen"
 
-#: lib/hiverec/handler/location.ex:25
+#: lib/hiverec/handler/translation.ex:68
 #, elixir-autogen, elixir-format
 msgid "Do you really want to delete this Location?"
 msgstr "Möchten Sie diesen Standort wirklich löschen?"
 
-#: lib/hiverec/handler/location.ex:23
+#: lib/hiverec/handler/translation.ex:66
 #, elixir-autogen, elixir-format
 msgid "Edit Location"
 msgstr "Standort bearbeiten"
 
-#: lib/hiverec/handler/location.ex:28
-#, elixir-autogen, elixir-format
-msgid "Save"
-msgstr "Speichern"
-
-#: lib/hiverec/handler/location.ex:19
+#: lib/hiverec/handler/translation.ex:62
 #, elixir-autogen, elixir-format
 msgid "Locations"
 msgstr "Standorte"
 
-#: lib/hiverec/handler/location.ex:26
+#: lib/hiverec/handler/translation.ex:69
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Name"
 
-#: lib/hiverec/handler/location.ex:20
+#: lib/hiverec/handler/translation.ex:63
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Location"
 msgstr "Standort"
 
-#: lib/hiverec/handler/location.ex:22
+#: lib/hiverec/handler/translation.ex:65
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Location Detail"
 msgstr "Standort Detail"
-
-#: lib/hiverec/handler/location.ex:31
-#, elixir-autogen, elixir-format
-msgid "Add Hive"
-msgstr "Bienenstock hinzufügen"
-
-#: lib/hiverec/handler/location.ex:33
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Delete Hive"
-msgstr "Bienenstock Löschen"
-
-#: lib/hiverec/handler/location.ex:32
-#, elixir-autogen, elixir-format
-msgid "Hive Detail"
-msgstr "Bienenstock Detail"
-
-#: lib/hiverec/handler/location.ex:30
-#, elixir-autogen, elixir-format
-msgid "Hives"
-msgstr "Bienenstöcke"
-
-#: lib/hiverec/handler/location.ex:34
-#, elixir-autogen, elixir-format, fuzzy
-msgid "Do you really want to delete this Hive?"
-msgstr "Möchten Sie diesen Standort wirklich löschen?"

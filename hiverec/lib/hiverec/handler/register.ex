@@ -8,19 +8,7 @@ defmodule Hiverec.Handler.Register do
   alias Phoenix.HTML.Tag
   alias Ecto.Changeset
   alias HiverecWeb.Router.Helpers, as: Routes
-  import HiverecWeb.Gettext
-
-  @gettext_domain "register"
-
-  defp texts_en() do
-    Gettext.with_locale("en", fn ->
-      [
-        dgettext(@gettext_domain, "Register"),
-        dgettext(@gettext_domain, "Password"),
-        dgettext(@gettext_domain, "Forgot your password"),
-      ]
-    end)
-  end
+  import Hiverec.Handler.Translation
 
   @doc """
   Registers the user.
@@ -65,7 +53,7 @@ defmodule Hiverec.Handler.Register do
               get_login_data_url: Routes.page_url(conn, :get_login_data)
             }
           },
-          translations: Common.translations(@gettext_domain, texts_en(), locale)
+          translations: translate_domains(["login"], locale)
     }
   end
 

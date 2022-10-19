@@ -8,20 +8,20 @@
 ## to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: en\n"
+"Language: de\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/register.ex:20
+#: lib/hiverec/handler/translation.ex:51
 #, elixir-autogen, elixir-format
-msgid "Forgot your password"
-msgstr ""
+msgid "Cancel"
+msgstr "Abbrechen"
 
-#: lib/hiverec/handler/register.ex:19
+#: lib/hiverec/handler/translation.ex:53
 #, elixir-autogen, elixir-format
-msgid "Password"
-msgstr ""
+msgid "Delete"
+msgstr "Löschen"
 
-#: lib/hiverec/handler/register.ex:18
+#: lib/hiverec/handler/translation.ex:52
 #, elixir-autogen, elixir-format
-msgid "Register"
-msgstr ""
+msgid "Save"
+msgstr "Speichern"

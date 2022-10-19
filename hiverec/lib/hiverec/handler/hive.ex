@@ -8,24 +8,8 @@ defmodule Hiverec.Handler.Hive do
   alias HiverecWeb.Router.Helpers, as: Routes
   alias Phoenix.HTML.Tag
   alias Ecto.Changeset
-  import HiverecWeb.Gettext
+  import Hiverec.Handler.Translation
   import Hiverec.Datable
-
-  @gettext_domain "hive"
-
-  defp texts_en() do
-    Gettext.with_locale("en", fn ->
-      [
-        dgettext(@gettext_domain, "Name"),
-        dgettext(@gettext_domain, "Cancel"),
-        dgettext(@gettext_domain, "Save"),
-        dgettext(@gettext_domain, "Add Hive"),
-        dgettext(@gettext_domain, "Edit Hive"),
-        dgettext(@gettext_domain, "Hive"),
-        dgettext(@gettext_domain, "Locations"),
-      ]
-    end)
-  end
 
   ###################
   # add
@@ -52,7 +36,7 @@ defmodule Hiverec.Handler.Hive do
     locale = Common.locale(conn)
     %Data{data_url: Routes.page_url(conn, :get_hive_add_data, location_id),
           locale: locale,
-          navbar: Common.gen_navbar(conn, :location),
+          navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
           pages: %Data.Pages{
@@ -65,7 +49,7 @@ defmodule Hiverec.Handler.Hive do
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
-          translations: Common.translations(@gettext_domain, texts_en(), locale)
+          translations: translate_domains(["menu", "hive", "form"], locale)
     }
   end
 
@@ -80,7 +64,7 @@ defmodule Hiverec.Handler.Hive do
 
     %Data{data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
           locale: locale,
-          navbar: Common.gen_navbar(conn, :hive_list),
+          navbar: Common.gen_navbar(conn, :location_list),
           history_state: %Data.HistoryState{
             title: "Hive",
             url: Routes.page_url(conn, :get_hive_detail_page, hive)},
@@ -91,7 +75,7 @@ defmodule Hiverec.Handler.Hive do
               get_hive_update_data_url: Routes.page_url(conn, :get_hive_update_data, hive),
             }
           },
-          translations: Common.translations(@gettext_domain, texts_en(), locale)
+          translations: translate_domains(["menu", "hive", "form"], locale)
     }
   end
 
@@ -123,7 +107,7 @@ defmodule Hiverec.Handler.Hive do
     locale = Common.locale(conn)
     %Data{data_url: Routes.page_url(conn, :get_hive_update_data, hive),
           locale: locale,
-          navbar: Common.gen_navbar(conn, :location),
+          navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
           pages: %Data.Pages{
@@ -136,7 +120,7 @@ defmodule Hiverec.Handler.Hive do
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
-          translations: Common.translations(@gettext_domain, texts_en(), locale)
+          translations: translate_domains(["menu", "hive", "form"], locale)
     }
   end
 

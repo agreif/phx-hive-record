@@ -11,17 +11,17 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:42
+#: lib/hiverec/handler/translation.ex:51
 #, elixir-autogen, elixir-format
-msgid "Forgot your password"
+msgid "Cancel"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:40
+#: lib/hiverec/handler/translation.ex:53
 #, elixir-autogen, elixir-format
-msgid "Password"
+msgid "Delete"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:41
+#: lib/hiverec/handler/translation.ex:52
 #, elixir-autogen, elixir-format
-msgid "Register"
+msgid "Save"
 msgstr ""

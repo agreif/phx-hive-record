@@ -10,37 +10,42 @@
 msgid ""
 msgstr ""
 
-#: lib/hiverec/handler/hive.ex:20
-#, elixir-autogen, elixir-format
-msgid "Cancel"
-msgstr ""
-
-#: lib/hiverec/handler/hive.ex:22
+#: lib/hiverec/handler/translation.ex:80
 #, elixir-autogen, elixir-format
 msgid "Add Hive"
 msgstr ""
 
-#: lib/hiverec/handler/hive.ex:19
+#: lib/hiverec/handler/translation.ex:85
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
 
-#: lib/hiverec/handler/hive.ex:21
-#, elixir-autogen, elixir-format
-msgid "Save"
-msgstr ""
-
-#: lib/hiverec/handler/hive.ex:23
-#, elixir-autogen, elixir-format
-msgid "Edit Hive"
-msgstr ""
-
-#: lib/hiverec/handler/hive.ex:24
+#: lib/hiverec/handler/translation.ex:79
 #, elixir-autogen, elixir-format
 msgid "Hive"
 msgstr ""
 
-#: lib/hiverec/handler/hive.ex:25
+#: lib/hiverec/handler/translation.ex:83
 #, elixir-autogen, elixir-format
-msgid "Locations"
+msgid "Delete Hive"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:84
+#, elixir-autogen, elixir-format
+msgid "Do you really want to delete this Hive?"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:81
+#, elixir-autogen, elixir-format
+msgid "Hive Detail"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:78
+#, elixir-autogen, elixir-format
+msgid "Hives"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:82
+#, elixir-autogen, elixir-format
+msgid "Edit Hive"
 msgstr ""
