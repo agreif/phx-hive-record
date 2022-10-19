@@ -14,4 +14,4 @@ msgstr ""
 #: lib/hiverec/handler/translation.ex:31
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Locations"
-msgstr "Standort"
+msgstr "Standorte"
