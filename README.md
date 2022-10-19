@@ -4,7 +4,8 @@ A small web application to manage beehive inspection records for beekeepers.
 
 Written in Elixir/Phoenix with RiotJS for DOM manipulation and UIkit as the frontend.
 
-# Live-Demo
+
+## Live-Demo
 This project is currently under a very active development, but you can see a live-demo here:
 
 [See Live-Demo Here](https://phx-hiverec.greif-it.de/)
@@ -17,7 +18,29 @@ password: test12345678
 or you create a new dummy account on the register page.
 
 
-# Run Phoenix Server
+## TODOs
+
+- [ ] refactor redundant gettext msgids
+- [ ] breadcrumbs
+- [ ] custom inspection properties
+- [ ] extend hive detail with 'queen_year' etc
+- [ ] add inspections to hive
+- [ ] hives menu item
+- [x] hive creation/update/delete
+- [x] hive list on location detal page
+- [x] location detail page
+- [x] location creation/update/delete
+
+
+## Run RiotJS background compile watcher
+
+```
+$ cd hiverec
+$ mix run riot_watcher.exs
+```
+
+
+## Run Phoenix Server
 ```
 $ cd hiverec
 $ sh run_dev.sh
@@ -28,7 +51,7 @@ The 'run_dev.sh' script starts the development server mode with
 - phoenix server start
 
 
-# Prerequisites
+## Prerequisites
 Install RiotJS:
 ```
 cd hiverec
@@ -36,7 +59,7 @@ npm install @riotjs/cli
 ```
 
 
-# Setup
+## Setup
 
 1. created new phoenix project with
 ```
@@ -67,7 +90,3 @@ $ mix phx.server
 ```
 
 Now it runs on port 4000
-
-
-# Helpful Stuff
-(https://hexdocs.pm/ecto_sql/Ecto.Migration.html)[https://hexdocs.pm/ecto_sql/Ecto.Migration.html]
