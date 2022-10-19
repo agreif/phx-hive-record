@@ -54,7 +54,7 @@ var body_tag = {
       this.postRequest(dataUrl, csrfToken, formJson, callbackFun);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div><unauth-nav-tag expr0="expr0"></unauth-nav-tag><nav-tag expr1="expr1"></nav-tag><div class="uk-container"><register-page expr2="expr2"></register-page><login-page expr3="expr3"></login-page><error-page expr4="expr4"></error-page><location-list-page expr5="expr5"></location-list-page><location-add-update-page expr6="expr6"></location-add-update-page><location-detail-page expr7="expr7"></location-detail-page><hive-add-update-page expr8="expr8"></hive-add-update-page><hive-detail-page expr9="expr9"></hive-detail-page></div></div>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div><unauth-nav-tag expr0="expr0"></unauth-nav-tag><nav-tag expr1="expr1"></nav-tag><div class="uk-container"><ul class="uk-breadcrumb uk-align-right"><li><a href="#">Bread</a></li><li><a href="#">Crumb</a></li><li class="uk-disabled"><a>Comming</a></li><li><span>soon</span></li></ul><register-page expr2="expr2"></register-page><login-page expr3="expr3"></login-page><error-page expr4="expr4"></error-page><location-list-page expr5="expr5"></location-list-page><location-add-update-page expr6="expr6"></location-add-update-page><location-detail-page expr7="expr7"></location-detail-page><hive-add-update-page expr8="expr8"></hive-add-update-page><hive-detail-page expr9="expr9"></hive-detail-page></div></div>', [{
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.register || _scope.data.pages.login,
     redundantAttribute: 'expr0',
