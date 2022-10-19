@@ -37,10 +37,12 @@ defmodule Hiverec.Handler.Common do
 
   def translations(domain, texts_en, locale) do
     texts_en
-    |> Map.new(fn k -> {k,
-                       Gettext.with_locale(locale,
-                         fn -> Gettext.dgettext(HiverecWeb.Gettext, domain, k) end)
-                       } end)
+    |> Map.new(fn k ->
+      {k,
+       Gettext.with_locale(locale,
+         fn -> Gettext.dgettext(HiverecWeb.Gettext, domain, k) end)
+      }
+    end)
   end
 
   def renew_session(conn) do
