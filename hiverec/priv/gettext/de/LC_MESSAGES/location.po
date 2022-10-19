@@ -69,22 +69,22 @@ msgstr "Standort Detail"
 #: lib/hiverec/handler/location.ex:31
 #, elixir-autogen, elixir-format
 msgid "Add Hive"
-msgstr ""
+msgstr "Bienenstock hinzufügen"
 
 #: lib/hiverec/handler/location.ex:33
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Delete Hive"
-msgstr "Löschen"
+msgstr "Bienenstock Löschen"
 
 #: lib/hiverec/handler/location.ex:32
 #, elixir-autogen, elixir-format
 msgid "Hive Detail"
-msgstr ""
+msgstr "Bienenstock Detail"
 
 #: lib/hiverec/handler/location.ex:30
 #, elixir-autogen, elixir-format
 msgid "Hives"
-msgstr ""
+msgstr "Bienenstöcke"
 
 #: lib/hiverec/handler/location.ex:34
 #, elixir-autogen, elixir-format, fuzzy

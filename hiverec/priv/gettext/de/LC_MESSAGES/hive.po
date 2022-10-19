@@ -14,27 +14,27 @@ msgstr ""
 #: lib/hiverec/handler/hive.ex:20
 #, elixir-autogen, elixir-format
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: lib/hiverec/handler/hive.ex:22
 #, elixir-autogen, elixir-format
 msgid "Add Hive"
-msgstr ""
+msgstr "Bienenstock hinzufügen"
 
 #: lib/hiverec/handler/hive.ex:19
 #, elixir-autogen, elixir-format
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: lib/hiverec/handler/hive.ex:21
 #, elixir-autogen, elixir-format
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: lib/hiverec/handler/hive.ex:23
 #, elixir-autogen, elixir-format
 msgid "Edit Hive"
-msgstr ""
+msgstr "Bienenstock bearbeiten"
 
 #: lib/hiverec/handler/hive.ex:24
 #, elixir-autogen, elixir-format
@@ -44,4 +44,4 @@ msgstr ""
 #: lib/hiverec/handler/hive.ex:25
 #, elixir-autogen, elixir-format
 msgid "Locations"
-msgstr ""
+msgstr "Standorte"
