@@ -8,14 +8,14 @@ var unauth_nav_tag = {
       this.context.refreshDataGet(this.context.data.data_url + "?locale=" + locale);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<nav class="uk-navbar-container uk-margin" uk-navbar><div class="uk-navbar-left uk-margin-left"><a class="uk-navbar-item uk-logo" href="#">HiveRec</a></div><div class="uk-navbar-right uk-margin-right"><ul class="uk-navbar-nav"><li expr89="expr89"></li><li expr91="expr91"></li></ul></div></nav>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<nav class="uk-navbar-container uk-margin" uk-navbar><div class="uk-navbar-left uk-margin-left"><a class="uk-navbar-item uk-logo" href="#">HiveRec</a></div><div class="uk-navbar-right uk-margin-right"><ul class="uk-navbar-nav"><li expr0="expr0"></li><li expr2="expr2"></li></ul></div></nav>', [{
     type: bindingTypes.IF,
     evaluate: _scope => _scope.context.data.locale == 'de',
-    redundantAttribute: 'expr89',
-    selector: '[expr89]',
-    template: template('<a expr90="expr90">EN</a>', [{
-      redundantAttribute: 'expr90',
-      selector: '[expr90]',
+    redundantAttribute: 'expr0',
+    selector: '[expr0]',
+    template: template('<a expr1="expr1">EN</a>', [{
+      redundantAttribute: 'expr1',
+      selector: '[expr1]',
       expressions: [{
         type: expressionTypes.EVENT,
         name: 'onclick',
@@ -25,11 +25,11 @@ var unauth_nav_tag = {
   }, {
     type: bindingTypes.IF,
     evaluate: _scope => _scope.context.data.locale == 'en',
-    redundantAttribute: 'expr91',
-    selector: '[expr91]',
-    template: template('<a expr92="expr92">DE</a>', [{
-      redundantAttribute: 'expr92',
-      selector: '[expr92]',
+    redundantAttribute: 'expr2',
+    selector: '[expr2]',
+    template: template('<a expr3="expr3">DE</a>', [{
+      redundantAttribute: 'expr3',
+      selector: '[expr3]',
       expressions: [{
         type: expressionTypes.EVENT,
         name: 'onclick',

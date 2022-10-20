@@ -15,25 +15,25 @@ var location_list_page = {
       this.context.refreshDataPost(item.post_location_delete_data_url, item.csrf_token);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1 expr47="expr47"> </h1><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr48="expr48" class="uk-width-2-5"> </th><th class="uk-align-right"><button expr49="expr49" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" uk-tooltip><span uk-icon="icon: plus"></span></button></th></tr></thead><tbody><tr expr50="expr50"></tr></tbody></table><div expr54="expr54" uk-modal></div>', [{
-    redundantAttribute: 'expr47',
-    selector: '[expr47]',
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1 expr0="expr0"> </h1><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr1="expr1" class="uk-width-2-5"> </th><th class="uk-align-right"><button expr2="expr2" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" uk-tooltip><span uk-icon="icon: plus"></span></button></th></tr></thead><tbody><tr expr3="expr3"></tr></tbody></table><div expr7="expr7" uk-modal></div>', [{
+    redundantAttribute: 'expr0',
+    selector: '[expr0]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
       evaluate: _scope => _scope.context.data.translations['Locations']
     }]
   }, {
-    redundantAttribute: 'expr48',
-    selector: '[expr48]',
+    redundantAttribute: 'expr1',
+    selector: '[expr1]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
       evaluate: _scope => _scope.context.data.translations['Name']
     }]
   }, {
-    redundantAttribute: 'expr49',
-    selector: '[expr49]',
+    redundantAttribute: 'expr2',
+    selector: '[expr2]',
     expressions: [{
       type: expressionTypes.EVENT,
       name: 'onclick',
@@ -47,9 +47,9 @@ var location_list_page = {
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<td class="uk-table-link"><a expr51="expr51" class="uk-link-reset"> </a></td><td class="uk-width-small"><button expr52="expr52" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: trash"></span></button><button expr53="expr53" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: file-edit"></span></button></td>', [{
-      redundantAttribute: 'expr51',
-      selector: '[expr51]',
+    template: template('<td class="uk-table-link"><a expr4="expr4" class="uk-link-reset"> </a></td><td class="uk-width-small"><button expr5="expr5" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: trash"></span></button><button expr6="expr6" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: file-edit"></span></button></td>', [{
+      redundantAttribute: 'expr4',
+      selector: '[expr4]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
@@ -60,8 +60,8 @@ var location_list_page = {
         evaluate: _scope => e => _scope.detailLocation(e, _scope.item)
       }]
     }, {
-      redundantAttribute: 'expr52',
-      selector: '[expr52]',
+      redundantAttribute: 'expr5',
+      selector: '[expr5]',
       expressions: [{
         type: expressionTypes.ATTRIBUTE,
         name: 'uk-toggle',
@@ -72,8 +72,8 @@ var location_list_page = {
         evaluate: _scope => _scope.context.data.translations['Delete Location']
       }]
     }, {
-      redundantAttribute: 'expr53',
-      selector: '[expr53]',
+      redundantAttribute: 'expr6',
+      selector: '[expr6]',
       expressions: [{
         type: expressionTypes.EVENT,
         name: 'onclick',
@@ -84,8 +84,8 @@ var location_list_page = {
         evaluate: _scope => _scope.context.data.translations['Location Detail']
       }]
     }]),
-    redundantAttribute: 'expr50',
-    selector: '[expr50]',
+    redundantAttribute: 'expr3',
+    selector: '[expr3]',
     itemName: 'item',
     indexName: null,
     evaluate: _scope => _scope.context.data.pages.location_list.location_list_items
@@ -93,39 +93,39 @@ var location_list_page = {
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<div class="uk-modal-dialog uk-modal-body"><h2 expr55="expr55" class="uk-modal-title"> </h2><p expr56="expr56"> </p><p class="uk-text-center"><button expr57="expr57" class="uk-button uk-button-default uk-modal-close"> </button><button expr58="expr58" class="uk-button uk-button-primary uk-modal-close"> </button></p></div>', [{
+    template: template('<div class="uk-modal-dialog uk-modal-body"><h2 expr8="expr8" class="uk-modal-title"> </h2><p expr9="expr9"> </p><p class="uk-text-center"><button expr10="expr10" class="uk-button uk-button-default uk-modal-close"> </button><button expr11="expr11" class="uk-button uk-button-primary uk-modal-close"> </button></p></div>', [{
       expressions: [{
         type: expressionTypes.ATTRIBUTE,
         name: 'id',
         evaluate: _scope => ['modal-location-really-delete-', _scope.item.location.id].join('')
       }]
     }, {
-      redundantAttribute: 'expr55',
-      selector: '[expr55]',
+      redundantAttribute: 'expr8',
+      selector: '[expr8]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
         evaluate: _scope => _scope.context.data.translations['Delete Location']
       }]
     }, {
-      redundantAttribute: 'expr56',
-      selector: '[expr56]',
+      redundantAttribute: 'expr9',
+      selector: '[expr9]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
         evaluate: _scope => _scope.context.data.translations['Do you really want to delete this Location?']
       }]
     }, {
-      redundantAttribute: 'expr57',
-      selector: '[expr57]',
+      redundantAttribute: 'expr10',
+      selector: '[expr10]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
         evaluate: _scope => [_scope.context.data.translations['Cancel']].join('')
       }]
     }, {
-      redundantAttribute: 'expr58',
-      selector: '[expr58]',
+      redundantAttribute: 'expr11',
+      selector: '[expr11]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
@@ -136,8 +136,8 @@ var location_list_page = {
         evaluate: _scope => e => _scope.deleteLocation(e, _scope.item)
       }]
     }]),
-    redundantAttribute: 'expr54',
-    selector: '[expr54]',
+    redundantAttribute: 'expr7',
+    selector: '[expr7]',
     itemName: 'item',
     indexName: null,
     evaluate: _scope => _scope.context.data.pages.location_list.location_list_items
