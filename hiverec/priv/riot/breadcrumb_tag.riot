@@ -1,14 +1,14 @@
 <breadcrumb-tag>
-  <ul class="uk-breadcrumb uk-align-right">
-    <li each="{(item, index) in context.data.breadcrumb.breadcrumb_items}">
-      <a href="{item.url}" onclick="{(e) => refreshData(e, item.data_url)}" if="{item.label && index != context.data.breadcrumb.breadcrumb_items.length - 1}">{item.label}</a>
-      <a href="{item.url}" onclick="{(e) => refreshData(e, item.data_url)}" if="{item.label_msgid && index != context.data.breadcrumb.breadcrumb_items.length - 1}">{context.data.translations[item.label_msgid]}</a>
-
-      <span if="{item.label && index == context.data.breadcrumb.breadcrumb_items.length - 1}">{item.label}</span>
-      <span if="{item.label_msgid && index == context.data.breadcrumb.breadcrumb_items.length - 1}">{context.data.translations[item.label_msgid]}</span>
-
-    </li>
-  </ul>
+  <div class="uk-container uk-margin-bottom">
+    <ul class="uk-breadcrumb uk-align-right">
+      <li each="{(item, index) in context.data.breadcrumb.breadcrumb_items}">
+        <a href="{item.url}" onclick="{(e) => refreshData(e, item.data_url)}" if="{item.label && index != context.data.breadcrumb.breadcrumb_items.length - 1}">{item.label}</a>
+        <a href="{item.url}" onclick="{(e) => refreshData(e, item.data_url)}" if="{item.label_msgid && index != context.data.breadcrumb.breadcrumb_items.length - 1}">{context.data.translations[item.label_msgid]}</a>
+        <span if="{item.label && index == context.data.breadcrumb.breadcrumb_items.length - 1}">{item.label}</span>
+        <span if="{item.label_msgid && index == context.data.breadcrumb.breadcrumb_items.length - 1}">{context.data.translations[item.label_msgid]}</span>
+      </li>
+    </ul>
+  </div>
 
   <script>
     export default {

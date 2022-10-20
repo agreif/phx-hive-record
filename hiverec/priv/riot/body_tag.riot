@@ -2,8 +2,8 @@
   <div>
     <unauth-nav-tag context="{this}" if="{data.pages.register || data.pages.login}"></unauth-nav-tag>
     <nav-tag context="{this}" if="{data.navbar}"></nav-tag>
+    <breadcrumb-tag context="{this}" if="{data.breadcrumb}"></breadcrumb-tag>
     <div class="uk-container">
-      <breadcrumb-tag context="{this}" if="{data.breadcrumb}"></breadcrumb-tag>
       <register-page context="{this}" if="{data.pages.register}"></register-page>
       <login-page context="{this}" if="{data.pages.login}"></login-page>
       <error-page context="{this}" if="{data.pages.error}"></error-page>

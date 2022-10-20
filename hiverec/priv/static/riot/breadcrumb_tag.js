@@ -9,7 +9,7 @@ var breadcrumb_tag = {
       this.context.refreshDataGet(dataUrl);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<ul class="uk-breadcrumb uk-align-right"><li expr0="expr0"></li></ul>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-container uk-margin-bottom"><ul class="uk-breadcrumb uk-align-right"><li expr0="expr0"></li></ul></div>', [{
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,

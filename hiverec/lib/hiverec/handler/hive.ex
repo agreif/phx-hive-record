@@ -4,7 +4,7 @@ defmodule Hiverec.Handler.Hive do
   """
 
   alias Hiverec.{Data, Model, Handler}
-  alias Hiverec.Handler.Common
+  alias Hiverec.Handler.{Common, HistoryState, Breadcrumb}
   alias HiverecWeb.Router.Helpers, as: Routes
   alias Phoenix.HTML.Tag
   alias Ecto.Changeset
@@ -33,13 +33,15 @@ defmodule Hiverec.Handler.Hive do
 
   def gen_add_data(conn, location_id, params, errors \\ %{}) when is_integer(location_id) do
     form_post_data_url = Routes.page_url(conn, :post_hive_add_data, location_id)
+    user_id = Common.user_id(conn)
     locale = Common.locale(conn)
+    location = Model.Location.get_location(location_id, user_id)
     %Data{data_url: Routes.page_url(conn, :get_hive_add_data, location_id),
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
-          breadcrumb: nil,
+          breadcrumb: Breadcrumb.hive_add(conn, location),
           pages: %Data.Pages{
             hive_add_update: %Data.HiveAddUpdatePage{
               title_msgid: "Add Hive",
@@ -61,16 +63,14 @@ defmodule Hiverec.Handler.Hive do
   def gen_detail_data(conn, hive_id) when is_integer(hive_id) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
-    hive = Model.Hive.get_hive(hive_id, user_id)
+    {hive, location} = Model.Hive.get_hive_with_location(hive_id, user_id)
 
     %Data{data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
-          history_state: %Data.HistoryState{
-            title: "Hive",
-            url: Routes.page_url(conn, :get_hive_detail_page, hive)},
+          history_state: HistoryState.hive(conn, hive),
           logout: Common.gen_logout_data(conn),
-          breadcrumb: nil,
+          breadcrumb: Breadcrumb.hive(conn, location, hive),
           pages: %Data.Pages{
             hive_detail: %Data.HiveDetailPage{
               hive: to_data(hive),
@@ -87,8 +87,8 @@ defmodule Hiverec.Handler.Hive do
 
   def process_get_update(conn, hive_id) when is_integer(hive_id) do
     user_id = Common.user_id(conn)
-    hive = Model.Hive.get_hive(hive_id, user_id)
-    gen_update_data(conn, hive)
+    {hive, location} = Model.Hive.get_hive_with_location(hive_id, user_id)
+    gen_update_data(conn, location, hive)
   end
 
   def process_post_update(conn, hive_id, params) when is_integer(hive_id) do
@@ -98,13 +98,15 @@ defmodule Hiverec.Handler.Hive do
     case result do
       {:ok, _} -> Handler.Hive.gen_detail_data(conn, hive_id)
       {:error, changeset} ->
+        {_hive, location} = Model.Hive.get_hive_with_location(hive_id, user_id)
         gen_update_data(conn,
+          location,
           Changeset.apply_changes(changeset),
           Common.human_errors(changeset, locale))
     end
   end
 
-  defp gen_update_data(conn, hive, errors \\ %{}) do
+  defp gen_update_data(conn, location, hive, errors \\ %{}) do
     form_post_data_url = Routes.page_url(conn, :post_hive_update_data, hive)
     locale = Common.locale(conn)
     %Data{data_url: Routes.page_url(conn, :get_hive_update_data, hive),
@@ -112,7 +114,7 @@ defmodule Hiverec.Handler.Hive do
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
-          breadcrumb: nil,
+          breadcrumb: Breadcrumb.hive_update(conn, location, hive),
           pages: %Data.Pages{
             hive_add_update: %Data.HiveAddUpdatePage{
               title_msgid: "Edit Hive",
