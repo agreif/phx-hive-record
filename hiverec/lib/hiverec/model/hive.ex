@@ -13,6 +13,7 @@ defmodule Hiverec.Model.Hive do
 
   schema "hives" do
     field :name, :string
+    field :queen_year, :integer
     belongs_to :location, Model.Location
 
     timestamps()
@@ -23,6 +24,8 @@ defmodule Hiverec.Model.Hive do
     hive
     |> cast(attrs, [:name], empty_values: [])
     |> Model.Common.validate_required_with_change(:name)
+    |> cast(attrs, [:queen_year], empty_values: [""])
+    |> validate_number(:queen_year, greater_than: 2000, less_than: 2100)
     |> unique_constraint([:location_id, :name])
     |> assoc_constraint(:location)
   end

@@ -26,6 +26,7 @@
     <thead>
       <tr>
         <th class="uk-width-2-5">{context.data.translations['Name']}</th>
+        <th class="uk-width-2-5">{context.data.translations['Queen Year']}</th>
         <th class="uk-align-right">
           <button onclick="{addHive}" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" title="{context.data.translations['Add Hive']}" uk-tooltip>
             <span uk-icon="icon: plus"/>
@@ -37,6 +38,9 @@
       <tr each="{item in context.data.pages.location_detail.hive_list_items}">
         <td class="uk-table-link">
 	  <a onclick="{(e) => detailHive(e, item)}" class="uk-link-reset">{item.hive.name}</a>
+	</td>
+        <td class="uk-table-link">
+	  <a onclick="{(e) => detailHive(e, item)}" class="uk-link-reset">{item.hive.queen_year}</a>
 	</td>
 	<td class="uk-width-small">
 	  <button uk-toggle="target: #modal-hive-really-delete-{item.hive.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Hive']}" uk-tooltip >

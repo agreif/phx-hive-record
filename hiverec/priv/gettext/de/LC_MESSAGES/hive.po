@@ -50,3 +50,8 @@ msgstr "Bienenstöcke"
 #, elixir-autogen, elixir-format
 msgid "Edit Hive"
 msgstr "Bienenstock bearbeiten"
+
+#: lib/hiverec/handler/translation.ex:87
+#, elixir-autogen, elixir-format
+msgid "Queen Year"
+msgstr "Königin Jahr"

@@ -19,7 +19,7 @@ var hive_detail_page = {
       this.context.refreshDataPost(item.post_hive_delete_data_url, item.csrf_token);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1 expr0="expr0"> </h1><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr1="expr1" class="uk-width-2-5"> </th><th></th></tr></thead><tbody><tr><td class="uk-table-link"><a expr2="expr2" class="uk-link-reset"> </a></td><td class="uk-width-small"><button expr3="expr3" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: pencil"></span></button></td></tr></tbody></table>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1 expr0="expr0"> </h1><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr1="expr1" class="uk-width-2-5"> </th><th expr2="expr2" class="uk-width-2-5"> </th><th></th></tr></thead><tbody><tr><td class="uk-table-link"><a expr3="expr3" class="uk-link-reset"> </a></td><td class="uk-table-link"><a expr4="expr4" class="uk-link-reset"> </a></td><td class="uk-width-small"><button expr5="expr5" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: pencil"></span></button></td></tr></tbody></table>', [{
     redundantAttribute: 'expr0',
     selector: '[expr0]',
     expressions: [{
@@ -41,6 +41,14 @@ var hive_detail_page = {
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
+      evaluate: _scope => _scope.context.data.translations['Queen Year']
+    }]
+  }, {
+    redundantAttribute: 'expr3',
+    selector: '[expr3]',
+    expressions: [{
+      type: expressionTypes.TEXT,
+      childNodeIndex: 0,
       evaluate: _scope => _scope.context.data.pages.hive_detail.hive.name
     }, {
       type: expressionTypes.EVENT,
@@ -48,8 +56,20 @@ var hive_detail_page = {
       evaluate: _scope => _scope.editHive
     }]
   }, {
-    redundantAttribute: 'expr3',
-    selector: '[expr3]',
+    redundantAttribute: 'expr4',
+    selector: '[expr4]',
+    expressions: [{
+      type: expressionTypes.TEXT,
+      childNodeIndex: 0,
+      evaluate: _scope => _scope.context.data.pages.hive_detail.hive.queen_year
+    }, {
+      type: expressionTypes.EVENT,
+      name: 'onclick',
+      evaluate: _scope => _scope.editHive
+    }]
+  }, {
+    redundantAttribute: 'expr5',
+    selector: '[expr5]',
     expressions: [{
       type: expressionTypes.EVENT,
       name: 'onclick',

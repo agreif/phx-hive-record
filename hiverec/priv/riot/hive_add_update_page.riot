@@ -12,6 +12,13 @@
 	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
 	    <li each="{msg in context.data.pages.hive_add_update.form.errors.location_id}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>
+        </div>
+	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Queen Year']}</label>
+	<div class="uk-form-controls">
+          <input type="text" name="queen_year" value="{context.data.pages.hive_add_update.form.params.queen_year}" class="uk-input">
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.hive_add_update.form.errors.queen_year}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
 	</div>
       </div>
       <div class="uk-text-center">

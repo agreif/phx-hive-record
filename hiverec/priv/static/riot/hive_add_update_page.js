@@ -13,7 +13,7 @@ var hive_add_update_page = {
       this.context.refreshDataGet(this.context.data.pages.hive_add_update.form.cancel_data_url);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-card uk-card-default uk-card-body uk-card-hover"><h2 expr0="expr0" class="uk-card-title"> </h2><form id="hive-add-update" class="uk-form-horizontal uk-margin-large"><div class="uk-margin"><label expr1="expr1" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr2="expr2" type="text" name="name" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr3="expr3"></li></ul><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr5="expr5"></li></ul></div></div><div class="uk-text-center"><button expr7="expr7" class="uk-button uk-button-default" type="button"> </button><button expr8="expr8" class="uk-button uk-button-primary" type="button"> </button></div></form></div>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-card uk-card-default uk-card-body uk-card-hover"><h2 expr0="expr0" class="uk-card-title"> </h2><form id="hive-add-update" class="uk-form-horizontal uk-margin-large"><div class="uk-margin"><label expr1="expr1" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr2="expr2" type="text" name="name" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr3="expr3"></li></ul><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr5="expr5"></li></ul></div><label expr7="expr7" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr8="expr8" type="text" name="queen_year" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr9="expr9"></li></ul></div></div><div class="uk-text-center"><button expr11="expr11" class="uk-button uk-button-default" type="button"> </button><button expr12="expr12" class="uk-button uk-button-primary" type="button"> </button></div></form></div>', [{
     redundantAttribute: 'expr0',
     selector: '[expr0]',
     expressions: [{
@@ -78,6 +78,39 @@ var hive_add_update_page = {
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
+      evaluate: _scope => _scope.context.data.translations['Queen Year']
+    }]
+  }, {
+    redundantAttribute: 'expr8',
+    selector: '[expr8]',
+    expressions: [{
+      type: expressionTypes.VALUE,
+      evaluate: _scope => _scope.context.data.pages.hive_add_update.form.params.queen_year
+    }]
+  }, {
+    type: bindingTypes.EACH,
+    getKey: null,
+    condition: null,
+    template: template('<span expr10="expr10" class="uk-text-danger"> </span>', [{
+      redundantAttribute: 'expr10',
+      selector: '[expr10]',
+      expressions: [{
+        type: expressionTypes.TEXT,
+        childNodeIndex: 0,
+        evaluate: _scope => _scope.msg
+      }]
+    }]),
+    redundantAttribute: 'expr9',
+    selector: '[expr9]',
+    itemName: 'msg',
+    indexName: null,
+    evaluate: _scope => _scope.context.data.pages.hive_add_update.form.errors.queen_year
+  }, {
+    redundantAttribute: 'expr11',
+    selector: '[expr11]',
+    expressions: [{
+      type: expressionTypes.TEXT,
+      childNodeIndex: 0,
       evaluate: _scope => _scope.context.data.translations['Cancel']
     }, {
       type: expressionTypes.EVENT,
@@ -85,8 +118,8 @@ var hive_add_update_page = {
       evaluate: _scope => _scope.cancel
     }]
   }, {
-    redundantAttribute: 'expr8',
-    selector: '[expr8]',
+    redundantAttribute: 'expr12',
+    selector: '[expr12]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
