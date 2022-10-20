@@ -20,11 +20,11 @@ or you create a new dummy account on the register page.
 
 ## TODOs
 
-- [ ] breadcrumbs
 - [ ] custom inspection properties
 - [ ] extend hive detail with 'queen_year' etc
 - [ ] add inspections to hive
 - [ ] hives menu item
+- [x] breadcrumbs
 - [x] refactor redundant gettext msgids
 - [x] hive creation/update/delete
 - [x] hive list on location detal page
