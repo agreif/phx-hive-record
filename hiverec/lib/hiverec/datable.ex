@@ -1,4 +1,9 @@
 defprotocol Hiverec.Datable do
+  @moduledoc """
+  Protocol controling how data structures, also recursive,
+  are converted to simple data that can be converted to JSON.
+  """
+
   @fallback_to_any true
   def to_data(struct)
 end
