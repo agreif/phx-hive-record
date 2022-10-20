@@ -39,6 +39,7 @@ defmodule Hiverec.Handler.Hive do
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
+          breadcrumb: nil,
           pages: %Data.Pages{
             hive_add_update: %Data.HiveAddUpdatePage{
               title_msgid: "Add Hive",
@@ -69,6 +70,7 @@ defmodule Hiverec.Handler.Hive do
             title: "Hive",
             url: Routes.page_url(conn, :get_hive_detail_page, hive)},
           logout: Common.gen_logout_data(conn),
+          breadcrumb: nil,
           pages: %Data.Pages{
             hive_detail: %Data.HiveDetailPage{
               hive: to_data(hive),
@@ -110,6 +112,7 @@ defmodule Hiverec.Handler.Hive do
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
+          breadcrumb: nil,
           pages: %Data.Pages{
             hive_add_update: %Data.HiveAddUpdatePage{
               title_msgid: "Edit Hive",

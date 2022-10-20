@@ -42,6 +42,7 @@ defmodule Hiverec.Handler.Register do
             title: "Register",
             url: Routes.page_url(conn, :get_register_page)},
           logout: nil,
+          breadcrumb: nil,
           pages: %Data.Pages{
             register: %Data.RegisterPage{
               form: %Data.Form{post_data_url: form_post_data_url,

@@ -60,6 +60,7 @@ defmodule Hiverec.Handler.Login do
             title: "Login",
             url: Routes.page_url(conn, :get_login_page)},
           logout: nil,
+          breadcrumb: nil,
           pages: %Data.Pages{
             login: %Data.LoginPage{
               form: %Data.Form{post_data_url: form_post_data_url,

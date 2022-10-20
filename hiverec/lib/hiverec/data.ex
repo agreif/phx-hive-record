@@ -3,8 +3,8 @@ defmodule Hiverec.Data do
   Top of the Data hierarchy that is sent to the client as JSON.
   """
   @derive Jason.Encoder
-  @enforce_keys [:data_url, :locale, :navbar, :history_state, :logout, :pages, :translations]
-  defstruct [:data_url, :locale, :navbar, :history_state, :logout, :pages, :translations]
+  @enforce_keys [:data_url, :locale, :navbar, :history_state, :logout, :breadcrumb, :pages, :translations]
+  defstruct [:data_url, :locale, :navbar, :history_state, :logout, :breadcrumb, :pages, :translations]
 end
 
 defmodule Hiverec.Data.HistoryState do
@@ -33,6 +33,25 @@ defmodule Hiverec.Data.Navitem do
   @derive Jason.Encoder
   @enforce_keys [:label, :label_msgid, :is_active, :url, :data_url]
   defstruct [:label, :label_msgid, :is_active, :url, :data_url]
+end
+
+
+defmodule Hiverec.Data.Breadcrumb do
+  @moduledoc """
+  Breadcrumb.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:breadcrumb_items]
+  defstruct [:breadcrumb_items]
+end
+
+defmodule Hiverec.Data.BreadcrumbItem do
+  @moduledoc """
+  Breadcrumb item.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:label, :label_msgid, :url, :data_url]
+  defstruct [:label, :label_msgid, :url, :data_url]
 end
 
 
@@ -179,9 +198,3 @@ defmodule Hiverec.Data.HiveDetailPage do
   @enforce_keys [:hive, :get_hive_update_data_url]
   defstruct [:hive, :get_hive_update_data_url]
 end
-
-
-
-
-
-

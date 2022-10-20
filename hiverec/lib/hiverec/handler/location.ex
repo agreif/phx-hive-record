@@ -36,6 +36,15 @@ defmodule Hiverec.Handler.Location do
             title: "Locations",
             url: Routes.page_url(conn, :get_location_list_page)},
           logout: Common.gen_logout_data(conn),
+          breadcrumb: %Data.Breadcrumb{
+            breadcrumb_items: [
+              %Data.BreadcrumbItem{
+                label: nil,
+                label_msgid: "Locations",
+                url: Routes.page_url(conn, :get_location_list_page),
+                data_url: Routes.page_url(conn, :get_location_list_data)}
+            ]
+          },
           pages: %Data.Pages{
             location_list: %Data.LocationListPage{
               location_list_items: location_list_items,
@@ -74,6 +83,7 @@ defmodule Hiverec.Handler.Location do
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
+          breadcrumb: nil,
           pages: %Data.Pages{
             location_add_update: %Data.LocationAddUpdatePage{
               title_msgid: "Add Location",
@@ -114,6 +124,7 @@ defmodule Hiverec.Handler.Location do
             title: "Location",
             url: Routes.page_url(conn, :get_location_detail_page, location)},
           logout: Common.gen_logout_data(conn),
+          breadcrumb: nil,
           pages: %Data.Pages{
             location_detail: %Data.LocationDetailPage{
               location: to_data(location),
@@ -157,6 +168,7 @@ defmodule Hiverec.Handler.Location do
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
           logout: Common.gen_logout_data(conn),
+          breadcrumb: nil,
           pages: %Data.Pages{
             location_add_update: %Data.LocationAddUpdatePage{
               title_msgid: "Edit Location",
