@@ -3,7 +3,7 @@
     <div class="uk-navbar-left uk-margin-left">
       <a class="uk-navbar-item uk-logo" href="#">HiveRec</a>
       <ul class="uk-navbar-nav">
-	<li class="{navitem.is_active ? 'uk-active' : null}" each="{navitem in context.data.navbar.navitems}">
+    <li class="{navitem.is_active ? 'uk-active' : null}" each="{(navitem, index) in context.data.navbar.navitems}">
 	  <a href="{navitem.url}" onclick="{(e) => changeNav(e, navitem.data_url)}" if="{navitem.label && !navitem.dropdown_items}">{navitem.label}</a>
 	  <a href="{navitem.url}" onclick="{(e) => changeNav(e, navitem.data_url)}" if="{navitem.label_msgid && !navitem.dropdown_items}">{context.data.translations[navitem.label_msgid]}</a>
 
@@ -11,7 +11,7 @@
 	  <a href="#" if="{navitem.label_msgid && navitem.dropdown_items}">{context.data.translations[navitem.label_msgid]}</a>
           <div class="uk-navbar-dropdown uk-navbar-dropdown-width-2" if="{navitem.dropdown_items}">
             <ul class="uk-nav uk-navbar-dropdown-nav">
-              <li class="{dropitem.is_header ? 'uk-nav-header' : null}" each="{dropitem in navitem.dropdown_items}">
+              <li class="{dropitem.is_header ? 'uk-nav-header' : null}" uk-toggle="{'target: .uk-navbar-dropdown'}" each="{dropitem in navitem.dropdown_items}">
                 {dropitem.is_header ? dropitem.label : ''}
 	        <a href="{dropitem.url}" onclick="{(e) => changeNav(e, dropitem.data_url)}" if="{dropitem.label && !dropitem.is_header}">{dropitem.label}</a>
 	        <a href="{dropitem.url}" onclick="{(e) => changeNav(e, dropitem.data_url)}" if="{dropitem.label_msgid && !dropitem.is_header}">{context.data.translations[dropitem.label_msgid]}</a>

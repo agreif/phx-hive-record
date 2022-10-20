@@ -111,6 +111,10 @@ var nav_tag = {
             type: expressionTypes.ATTRIBUTE,
             name: 'class',
             evaluate: _scope => _scope.dropitem.is_header ? 'uk-nav-header' : null
+          }, {
+            type: expressionTypes.ATTRIBUTE,
+            name: 'uk-toggle',
+            evaluate: _scope => 'target: .uk-navbar-dropdown'
           }]
         }, {
           type: bindingTypes.IF,
@@ -163,7 +167,7 @@ var nav_tag = {
     redundantAttribute: 'expr0',
     selector: '[expr0]',
     itemName: 'navitem',
-    indexName: null,
+    indexName: 'index',
     evaluate: _scope => _scope.context.data.navbar.navitems
   }, {
     type: bindingTypes.IF,
