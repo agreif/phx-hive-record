@@ -11,42 +11,42 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:80
+#: lib/hiverec/handler/translation.ex:81
 #, elixir-autogen, elixir-format
 msgid "Add Hive"
 msgstr "Bienenstock hinzufügen"
 
-#: lib/hiverec/handler/translation.ex:85
+#: lib/hiverec/handler/translation.ex:86
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Name"
 
-#: lib/hiverec/handler/translation.ex:79
+#: lib/hiverec/handler/translation.ex:80
 #, elixir-autogen, elixir-format
 msgid "Hive"
 msgstr "Bienenstock"
 
-#: lib/hiverec/handler/translation.ex:83
+#: lib/hiverec/handler/translation.ex:84
 #, elixir-autogen, elixir-format
 msgid "Delete Hive"
 msgstr "Bienenstock löschen"
 
-#: lib/hiverec/handler/translation.ex:84
+#: lib/hiverec/handler/translation.ex:85
 #, elixir-autogen, elixir-format
 msgid "Do you really want to delete this Hive?"
 msgstr "Möchten Sie diesen Bienenstock wirklich löschen?"
 
-#: lib/hiverec/handler/translation.ex:81
+#: lib/hiverec/handler/translation.ex:82
 #, elixir-autogen, elixir-format
 msgid "Hive Detail"
 msgstr "Bienenstock Detail"
 
-#: lib/hiverec/handler/translation.ex:78
+#: lib/hiverec/handler/translation.ex:79
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Hives"
 msgstr "Bienenstöcke"
 
-#: lib/hiverec/handler/translation.ex:82
+#: lib/hiverec/handler/translation.ex:83
 #, elixir-autogen, elixir-format
 msgid "Edit Hive"
 msgstr "Bienenstock bearbeiten"

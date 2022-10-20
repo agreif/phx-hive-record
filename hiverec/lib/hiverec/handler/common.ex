@@ -24,7 +24,7 @@ defmodule Hiverec.Handler.Common do
                    },
       %Data.Navitem{label: nil,
                     label_msgid: "Hives",
-                    is_active: active_item == :location_list,
+                    is_active: false,
                     is_header: false,
                     url: nil,
                     data_url: nil,

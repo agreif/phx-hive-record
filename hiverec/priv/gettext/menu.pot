@@ -14,3 +14,8 @@ msgstr ""
 #, elixir-autogen, elixir-format
 msgid "Locations"
 msgstr ""
+
+#: lib/hiverec/handler/translation.ex:32
+#, elixir-autogen, elixir-format
+msgid "Hives"
+msgstr ""

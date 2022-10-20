@@ -29,6 +29,7 @@ defmodule Hiverec.Handler.Translation do
     Gettext.with_locale("en", fn ->
       [
         dgettext(@menu_domain, "Locations"),
+        dgettext(@menu_domain, "Hives"),
       ]
     end)
   end
