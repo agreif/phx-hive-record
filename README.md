@@ -23,7 +23,7 @@ or you create a new dummy account on the register page.
 - [ ] custom inspection properties
 - [ ] extend hive detail with 'queen_year' etc
 - [ ] add inspections to hive
-- [ ] hives menu item
+- [x] hives menu item
 - [x] breadcrumbs
 - [x] refactor redundant gettext msgids
 - [x] hive creation/update/delete

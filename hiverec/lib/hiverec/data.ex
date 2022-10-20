@@ -31,8 +31,8 @@ defmodule Hiverec.Data.Navitem do
   Navogation item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:label, :label_msgid, :is_active, :url, :data_url]
-  defstruct [:label, :label_msgid, :is_active, :url, :data_url]
+  @enforce_keys [:label, :label_msgid, :is_active, :is_header, :url, :data_url, :dropdown_items]
+  defstruct [:label, :label_msgid, :is_active, :is_header, :url, :data_url, :dropdown_items]
 end
 
 

@@ -3,20 +3,62 @@ defmodule Hiverec.Handler.Common do
   Common business logic.
   """
 
-  alias Hiverec.{Data}
+  alias Hiverec.{Data, Model}
+  alias Hiverec.Handler.Common
   alias HiverecWeb.Router.Helpers, as: Routes
   alias Plug.Conn
   alias Ecto.Changeset
   alias Phoenix.HTML.Tag
 
-  def gen_navbar(conn, active_item) do
+  def gen_navbar(conn, active_item) when is_atom(active_item) do
+    user_id = Common.user_id(conn)
+    hive_rows = Model.Hive.get_hives_with_locations(user_id)
     navitems = [
       %Data.Navitem{label: nil,
                     label_msgid: "Locations",
                     is_active: active_item == :location_list,
+                    is_header: false,
                     url: Routes.page_url(conn, :get_location_list_page),
-                    data_url: Routes.page_url(conn, :get_location_list_data) },
-      ]
+                    data_url: Routes.page_url(conn, :get_location_list_data),
+                    dropdown_items: nil
+                   },
+      %Data.Navitem{label: nil,
+                    label_msgid: "Hives",
+                    is_active: active_item == :location_list,
+                    is_header: false,
+                    url: nil,
+                    data_url: nil,
+                    dropdown_items:
+                    hive_rows
+                    |> Enum.map(fn [hive, location] -> [location.name, hive] end)
+                    |> Enum.group_by(&List.first/1, &List.last/1)
+                    |> Map.to_list
+                    |> Enum.sort_by(fn {location_name, _hives} -> location_name end)
+                    |> Enum.map(fn {location_name, hives} ->
+                      [[%Data.Navitem{label: location_name,
+                                      label_msgid: nil,
+                                      is_active: false,
+                                      is_header: true,
+                                      url: nil,
+                                      data_url: nil,
+                                      dropdown_items: nil
+                                     }]
+                       ++
+                       Enum.map(hives, fn hive ->
+                         %Data.Navitem{label: hive.name,
+                                       label_msgid: nil,
+                                       is_active: false,
+                                       is_header: false,
+                                       url: Routes.page_url(conn, :get_hive_detail_page, hive),
+                                       data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
+                                       dropdown_items: nil
+                                      }
+                       end)
+                      ]
+                    end)
+                    |> List.flatten
+      }
+    ]
     %Data.Navbar{navitems: navitems}
   end
 

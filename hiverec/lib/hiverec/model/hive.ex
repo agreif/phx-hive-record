@@ -27,6 +27,16 @@ defmodule Hiverec.Model.Hive do
     |> assoc_constraint(:location)
   end
 
+  def get_hives_with_locations(user_id) do
+    query = from l in Model.Location,
+      join: h in Model.Hive,
+      on: l.id == h.location_id,
+      where: l.user_id == ^user_id,
+      select: [h, l],
+      order_by: [l.name, h.name]
+    Repo.all(query)
+  end
+
   def get_hive(hive_id, user_id) do
     query = from l in Model.Location,
       join: h in Model.Hive,
