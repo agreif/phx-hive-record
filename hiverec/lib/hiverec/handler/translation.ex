@@ -92,4 +92,18 @@ defmodule Hiverec.Handler.Translation do
     end)
   end
 
+  @inspection_domain "inspection"
+  defp texts_en(@inspection_domain = _domain) do
+    Gettext.with_locale("en", fn ->
+      [
+        dgettext(@inspection_domain, "Inspections"),
+        dgettext(@inspection_domain, "Date"),
+        dgettext(@inspection_domain, "Add Inspection"),
+        dgettext(@inspection_domain, "Delete Inspection"),
+        dgettext(@inspection_domain, "Edit Inspection"),
+        dgettext(@inspection_domain, "Do you really want to delete this Inspection?"),
+      ]
+    end)
+  end
+
 end

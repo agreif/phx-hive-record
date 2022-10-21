@@ -63,7 +63,17 @@ defmodule Hiverec.Handler.Hive do
   def gen_detail_data(conn, hive_id) when is_integer(hive_id) do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
-    {hive, location} = Model.Hive.get_hive_with_location(hive_id, user_id)
+    {hive, location, inspections} = Model.Hive.get_hive_with_location_and_inspections(hive_id, user_id)
+    inspection_list_items =
+      inspections
+      |> Enum.map(fn inspection ->
+      post_data_url = Routes.page_url(conn, :post_inspection_delete_data, inspection)
+      %Data.HiveDetailPage.InspectionListItem{
+        inspection: to_data(inspection),
+        post_inspection_delete_data_url: post_data_url,
+        csrf_token: Tag.csrf_token_value(post_data_url),
+      }
+    end)
 
     %Data{data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
           locale: locale,
@@ -75,9 +85,11 @@ defmodule Hiverec.Handler.Hive do
             hive_detail: %Data.HiveDetailPage{
               hive: to_data(hive),
               get_hive_update_data_url: Routes.page_url(conn, :get_hive_update_data, hive),
+              inspection_list_items: inspection_list_items,
+              get_inspection_add_data_url: Routes.page_url(conn, :get_inspection_add_data, hive)
             }
           },
-          translations: translate_domains(["menu", "hive", "form"], locale)
+          translations: translate_domains(["menu", "hive", "inspection", "form"], locale)
     }
   end
 

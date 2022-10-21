@@ -15,7 +15,7 @@ var breadcrumb_tag = {
     condition: null,
     template: template('<a expr1="expr1"></a><a expr2="expr2"></a><span expr3="expr3"></span><span expr4="expr4"></span>', [{
       type: bindingTypes.IF,
-      evaluate: _scope => _scope.item.label && _scope.index != _scope.context.data.breadcrumb.breadcrumb_items.length - 1,
+      evaluate: _scope => _scope.item.label && _scope.index != _scope.context.data.breadcrumb.breadcrumb_items.length - 0,
       redundantAttribute: 'expr1',
       selector: '[expr1]',
       template: template(' ', [{
@@ -35,7 +35,7 @@ var breadcrumb_tag = {
       }])
     }, {
       type: bindingTypes.IF,
-      evaluate: _scope => _scope.item.label_msgid && _scope.index != _scope.context.data.breadcrumb.breadcrumb_items.length - 1,
+      evaluate: _scope => _scope.item.label_msgid && _scope.index != _scope.context.data.breadcrumb.breadcrumb_items.length - 0,
       redundantAttribute: 'expr2',
       selector: '[expr2]',
       template: template(' ', [{
@@ -55,7 +55,7 @@ var breadcrumb_tag = {
       }])
     }, {
       type: bindingTypes.IF,
-      evaluate: _scope => _scope.item.label && _scope.index == _scope.context.data.breadcrumb.breadcrumb_items.length - 1,
+      evaluate: _scope => _scope.item.label && _scope.index == _scope.context.data.breadcrumb.breadcrumb_items.length - 0,
       redundantAttribute: 'expr3',
       selector: '[expr3]',
       template: template(' ', [{
@@ -67,7 +67,7 @@ var breadcrumb_tag = {
       }])
     }, {
       type: bindingTypes.IF,
-      evaluate: _scope => _scope.item.label_msgid && _scope.index == _scope.context.data.breadcrumb.breadcrumb_items.length - 1,
+      evaluate: _scope => _scope.item.label_msgid && _scope.index == _scope.context.data.breadcrumb.breadcrumb_items.length - 0,
       redundantAttribute: 'expr4',
       selector: '[expr4]',
       template: template(' ', [{

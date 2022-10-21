@@ -93,6 +93,22 @@ defmodule Hiverec.Handler.Breadcrumb do
     }
   end
 
+  def inspection_add(conn, location, hive) do
+    %Data.Breadcrumb{
+      breadcrumb_items: [
+        locations_item(conn),
+        location_item(conn, location),
+        hive_item(conn, hive),
+        %Data.BreadcrumbItem{
+          label: nil,
+          label_msgid: "Add Inspection",
+          url: nil,
+          data_url: nil
+        }
+      ]
+    }
+  end
+
   # breadcrumb items
 
   defp locations_item(conn) do

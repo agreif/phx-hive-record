@@ -34,6 +34,49 @@
     </tbody>
   </table>
 
+  <h2>{context.data.translations['Inspections']}</h2>
+  <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
+    <thead>
+      <tr>
+        <th class="">{context.data.translations['Date']}</th>
+        <th class="uk-align-right">
+          <button onclick="{addInspection}" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" title="{context.data.translations['Add Inspection']}" uk-tooltip>
+            <span uk-icon="icon: plus"/>
+	  </button>
+	</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr each="{item in context.data.pages.hive_detail.inspection_list_items}">
+        <td class="uk-table-link">
+	  <a onclick="{(e) => detailInspection(e, item)}" class="uk-link-reset">{item.inspection.date}</a>
+	</td>
+	<td class="uk-width-small">
+	  <button uk-toggle="target: #modal-inspection-really-delete-{item.inspection.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Inspection']}" uk-tooltip >
+            <span uk-icon="icon: trash"/>
+	  </button>
+          <button onclick="{(e) => editInspection(e, item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Edit Inspection']}" uk-tooltip >
+            <span uk-icon="icon: pencil"/>
+	  </button>
+	</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div id="modal-inspection-really-delete-{item.inspection.id}" uk-modal each="{item in context.data.pages.hive_detail.inspection_list_items}">
+    <div class="uk-modal-dialog uk-modal-body">
+      <h2 class="uk-modal-title">{context.data.translations['Delete Inspection']}</h2>
+      <p>{context.data.translations['Do you really want to delete this Inspection?']}</p>
+      <p class="uk-text-center">
+	<button class="uk-button uk-button-default uk-modal-close">
+	  {context.data.translations['Cancel']}
+	</button>
+        <button onclick="{(e) => deleteInspection(e, item)}" class="uk-button uk-button-primary uk-modal-close">
+	  {context.data.translations['Delete']}
+	</button>
+      </p>
+    </div>
+  </div>
 
   <script>
     export default {
@@ -56,6 +99,15 @@
 	deleteHive(event, item) {
 	    this.context.refreshDataPost(item.post_hive_delete_data_url, item.csrf_token)
 	},
+
+	addInspection() {
+	    this.context.refreshDataGet(this.context.data.pages.hive_detail.get_inspection_add_data_url)
+	},
+
+	deleteInspection(event, item) {
+	    this.context.refreshDataPost(item.post_inspection_delete_data_url, item.csrf_token)
+	},
+
     }
   </script>
 </hive-detail-page>

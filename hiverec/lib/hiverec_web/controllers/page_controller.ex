@@ -51,9 +51,6 @@ defmodule HiverecWeb.PageController do
   def post_hive_add_data(conn, %{"location_id" => location_id_str} = params),
     do: json(conn, Handler.Hive.process_post_add(conn, String.to_integer(location_id_str), params))
 
-  def post_hive_delete_data(conn, %{"hive_id" => hive_id_str}),
-    do: json(conn, Handler.Hive.process_post_delete(conn, String.to_integer(hive_id_str)))
-
   def get_hive_detail_page(conn, params),
     do: render(conn, :page,
       data_url: Routes.page_url(conn, :get_hive_detail_data, params["hive_id"]))
@@ -66,6 +63,17 @@ defmodule HiverecWeb.PageController do
 
   def post_hive_update_data(conn, %{"hive_id" => hive_id_str} = params),
     do: json(conn, Handler.Hive.process_post_update(conn, String.to_integer(hive_id_str), params))
+
+  # inspection
+
+  def get_inspection_add_data(conn, %{"hive_id" => hive_id_str} = params),
+    do: json(conn, Handler.Inspection.gen_add_data(conn, String.to_integer(hive_id_str), params))
+
+  def post_inspection_add_data(conn, %{"hive_id" => hive_id_str} = params),
+    do: json(conn, Handler.Inspection.process_post_add(conn, String.to_integer(hive_id_str), params))
+
+  def post_inspection_delete_data(conn, %{"inspection_id" => inspection_id_str}),
+    do: json(conn, Handler.Inspection.process_post_delete(conn, String.to_integer(inspection_id_str)))
 
   # register
 

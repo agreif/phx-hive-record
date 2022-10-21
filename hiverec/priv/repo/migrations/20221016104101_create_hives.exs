@@ -3,7 +3,7 @@ defmodule Hiverec.Repo.Migrations.CreateHives do
 
   def change do
     create table(:hives) do
-      add :location_id, references(:locations), null: false
+      add :location_id, references(:locations, on_delete: :nothing), null: false
       add :name, :string, null: false
 
       timestamps()

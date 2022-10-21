@@ -1,0 +1,41 @@
+## This file is a PO Template file.
+##
+## "msgid"s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run "mix gettext.extract" to bring this file up to
+## date. Leave "msgstr"s empty as changing them here has no
+## effect: edit them in PO (.po) files instead.
+msgid ""
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:99
+#, elixir-autogen, elixir-format
+msgid "Inspections"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:101
+#, elixir-autogen, elixir-format
+msgid "Add Inspection"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:102
+#, elixir-autogen, elixir-format
+msgid "Delete Inspection"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:104
+#, elixir-autogen, elixir-format
+msgid "Do you really want to delete this Inspection?"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:103
+#, elixir-autogen, elixir-format
+msgid "Edit Inspection"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:100
+#, elixir-autogen, elixir-format
+msgid "Date"
+msgstr ""

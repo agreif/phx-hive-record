@@ -62,7 +62,7 @@ var body_tag = {
       this.postRequest(dataUrl, csrfToken, formJson, callbackFun);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div><unauth-nav-tag expr0="expr0"></unauth-nav-tag><nav-tag expr1="expr1"></nav-tag><breadcrumb-tag expr2="expr2"></breadcrumb-tag><div class="uk-container"><register-page expr3="expr3"></register-page><login-page expr4="expr4"></login-page><error-page expr5="expr5"></error-page><location-list-page expr6="expr6"></location-list-page><location-add-update-page expr7="expr7"></location-add-update-page><location-detail-page expr8="expr8"></location-detail-page><hive-add-update-page expr9="expr9"></hive-add-update-page><hive-detail-page expr10="expr10"></hive-detail-page></div></div>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div><unauth-nav-tag expr0="expr0"></unauth-nav-tag><nav-tag expr1="expr1"></nav-tag><breadcrumb-tag expr2="expr2"></breadcrumb-tag><div class="uk-container"><register-page expr3="expr3"></register-page><login-page expr4="expr4"></login-page><error-page expr5="expr5"></error-page><location-list-page expr6="expr6"></location-list-page><location-add-update-page expr7="expr7"></location-add-update-page><location-detail-page expr8="expr8"></location-detail-page><hive-add-update-page expr9="expr9"></hive-add-update-page><hive-detail-page expr10="expr10"></hive-detail-page><inspection-add-update-page expr11="expr11"></inspection-add-update-page></div></div>', [{
     type: bindingTypes.IF,
     evaluate: _scope => _scope.data.pages.register || _scope.data.pages.login,
     redundantAttribute: 'expr0',
@@ -231,6 +231,22 @@ var body_tag = {
       type: bindingTypes.TAG,
       getComponent: getComponent,
       evaluate: _scope => 'hive-detail-page',
+      slots: [],
+      attributes: [{
+        type: expressionTypes.ATTRIBUTE,
+        name: 'context',
+        evaluate: _scope => _scope
+      }]
+    }])
+  }, {
+    type: bindingTypes.IF,
+    evaluate: _scope => _scope.data.pages.inspection_add_update,
+    redundantAttribute: 'expr11',
+    selector: '[expr11]',
+    template: template(null, [{
+      type: bindingTypes.TAG,
+      getComponent: getComponent,
+      evaluate: _scope => 'inspection-add-update-page',
       slots: [],
       attributes: [{
         type: expressionTypes.ATTRIBUTE,

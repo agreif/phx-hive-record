@@ -60,6 +60,23 @@ defmodule Hiverec.Model.Hive do
     Repo.all(query) |> List.first
   end
 
+  def get_hive_with_location_and_inspections(hive_id, user_id) do
+    query = from l in Model.Location,
+      left_join: h in Model.Hive,
+      on: l.id == h.location_id,
+      left_join: i in Model.Inspection,
+      on: h.id == i.hive_id,
+      where: h.id == ^hive_id and l.user_id == ^user_id,
+      select: [h, l, i]
+    rows = Repo.all(query)
+    [hive, location, _] = rows |> List.first
+    inspections =
+      rows
+      |> Enum.map(fn row -> Enum.at(row, 2) end)
+      |> Enum.filter(& &1)
+    {hive, location, inspections}
+  end
+
   def create_hive(attrs, location_id, user_id) do
     location = Model.Location.get_location(location_id, user_id)
     Model.Hive.changeset(%Model.Hive{}, attrs)

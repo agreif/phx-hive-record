@@ -82,6 +82,7 @@ defmodule Hiverec.Data.Pages do
   @derive Jason.Encoder
   defstruct [:error, :location_list, :location_add_update, :location_detail,
              :hive_add_update, :hive_detail,
+             :inspection_add_update,
              :register, :login]
 end
 
@@ -147,6 +148,16 @@ defmodule Hiverec.Data.Hive do
   defstruct [:id, :name, :queen_year, :is_queen_marked, :notes]
 end
 
+defmodule Hiverec.Data.Inspection do
+  @moduledoc """
+  Inspection.
+  """
+  @derive Jason.Encoder
+  defstruct [:id, :date]
+end
+
+
+
 defmodule Hiverec.Data.LocationDetailPage do
   @moduledoc """
   Location detail page.
@@ -195,6 +206,27 @@ defmodule Hiverec.Data.HiveDetailPage do
   Hive detail page.
   """
   @derive Jason.Encoder
-  @enforce_keys [:hive, :get_hive_update_data_url]
-  defstruct [:hive, :get_hive_update_data_url]
+  @enforce_keys [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url]
+  defstruct [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url]
 end
+
+defmodule Hiverec.Data.HiveDetailPage.InspectionListItem do
+  @moduledoc """
+  inspection list item.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:inspection, :post_inspection_delete_data_url, :csrf_token]
+  defstruct [:inspection, :post_inspection_delete_data_url, :csrf_token]
+end
+
+
+defmodule Hiverec.Data.InspectionAddUpdatePage do
+  @moduledoc """
+  Page to add Inspection item.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:title_msgid, :form, :csrf_token]
+  defstruct [:title_msgid, :form, :csrf_token]
+end
+
+

@@ -1,0 +1,42 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+"Plural-Forms: nplurals=2\n"
+
+#: lib/hiverec/handler/translation.ex:99
+#, elixir-autogen, elixir-format
+msgid "Inspections"
+msgstr "Durchsichten"
+
+#: lib/hiverec/handler/translation.ex:101
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Add Inspection"
+msgstr "Durchsicht hinzufügen"
+
+#: lib/hiverec/handler/translation.ex:102
+#, elixir-autogen, elixir-format
+msgid "Delete Inspection"
+msgstr "Durchsicht löschen"
+
+#: lib/hiverec/handler/translation.ex:104
+#, elixir-autogen, elixir-format
+msgid "Do you really want to delete this Inspection?"
+msgstr "Möchten Sie diesen Durchsicht wirklich löschen?"
+
+#: lib/hiverec/handler/translation.ex:103
+#, elixir-autogen, elixir-format
+msgid "Edit Inspection"
+msgstr "Durchsicht bearbeiten"
+
+#: lib/hiverec/handler/translation.ex:100
+#, elixir-autogen, elixir-format
+msgid "Date"
+msgstr "Datum"

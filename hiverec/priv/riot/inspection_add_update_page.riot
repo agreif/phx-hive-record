@@ -1,0 +1,44 @@
+<inspection-add-update-page>
+  <div class="uk-card uk-card-default uk-card-body uk-card-hover">
+    <h2 class="uk-card-title">{context.data.translations[context.data.pages.inspection_add_update.title_msgid]}</h2>
+    <form id="inspection-add-update" class="uk-form-horizontal uk-margin-large">
+      <div class="uk-margin">
+
+	<label class="uk-form-label">{context.data.translations['Date']}</label>
+	<div class="uk-form-controls">
+          <input type="date" name="date" value="{context.data.pages.inspection_add_update.form.params.date}" class="uk-input"/>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.inspection_add_update.form.errors.date}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.inspection_add_update.form.errors.hive_id}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+        </div>
+
+      </div>
+      <div class="uk-text-center">
+        <button onclick="{cancel}" class="uk-button uk-button-default" type="button">{context.data.translations['Cancel']}</button>
+        <button onclick="{add}" class="uk-button uk-button-primary" type="button">{context.data.translations['Save']}</button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    export default {
+	onBeforeMount(props) { this.context = props.context },
+
+	add(event) {
+	    event.preventDefault()
+	    this.context.postForm(
+		this.context.data.pages.inspection_add_update.form.post_data_url,
+		this.context.data.pages.inspection_add_update.csrf_token,
+		'#inspection-add-update')
+	},
+
+	cancel(event) {
+	    event.preventDefault()
+	    this.context.refreshDataGet(this.context.data.pages.inspection_add_update.form.cancel_data_url)
+	},
+    }
+  </script>
+</inspection-add-update-page>
