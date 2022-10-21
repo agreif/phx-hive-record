@@ -9,6 +9,14 @@ var body_tag = {
     uikit() {
       return UIkit;
     },
+    newString(value) {
+      switch (value) {
+        case undefined:
+          return "";
+        default:
+          return new String(value);
+      }
+    },
     updateData(newData) {
       this.data = newData;
       this.update();

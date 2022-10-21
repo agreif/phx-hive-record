@@ -1,0 +1,38 @@
+<queen-dot-tag>
+  <span if="{props.isQueenMarked && props.year}">
+    <svg height="22" width="20">
+      <circle cx="10" cy="10" r="8" stroke="black" stroke-width="2" fill="{calcFill(props.year)}"/>
+    </svg>
+  </span>
+  <span if="{!props.isQueenMarked || !props.year}">
+    <svg height="22" width="20" >
+      <circle cx="10" cy="10" r="8" stroke="red" stroke-width="5" fill="transparent" stroke-dasharray="1 2"/>
+    </svg>
+  </span>
+
+  <script>
+    export default {
+        calcFill(year) {
+            switch((year - 2016) % 5) {
+            case 0:
+                return "white"
+                break;
+            case 1:
+                return "yellow"
+                break;
+            case 2:
+                return "red"
+                break;
+            case 3:
+                return "lime"
+                break;
+            case 4:
+                return "#0099ff"
+                break;
+            default:
+                return "transparent"
+            }
+        }
+    }
+  </script>
+</queen-dot-tag>

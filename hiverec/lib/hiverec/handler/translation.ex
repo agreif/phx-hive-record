@@ -84,7 +84,9 @@ defmodule Hiverec.Handler.Translation do
         dgettext(@hive_domain, "Delete Hive"),
         dgettext(@hive_domain, "Do you really want to delete this Hive?"),
         dgettext(@hive_domain, "Name"),
+        dgettext(@hive_domain, "Queen"),
         dgettext(@hive_domain, "Queen Year"),
+        dgettext(@hive_domain, "Is Queen Marked?"),
       ]
     end)
   end

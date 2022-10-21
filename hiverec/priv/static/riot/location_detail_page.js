@@ -19,7 +19,7 @@ var location_detail_page = {
       this.context.refreshDataPost(item.post_hive_delete_data_url, item.csrf_token);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1 expr0="expr0"> </h1><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr1="expr1" class="uk-width-2-5"> </th><th></th></tr></thead><tbody><tr><td class="uk-table-link"><a expr2="expr2" class="uk-link-reset"> </a></td><td class="uk-width-small"><button expr3="expr3" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: pencil"></span></button></td></tr></tbody></table><h2 expr4="expr4"> </h2><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr5="expr5" class="uk-width-2-5"> </th><th expr6="expr6" class="uk-width-2-5"> </th><th class="uk-align-right"><button expr7="expr7" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" uk-tooltip><span uk-icon="icon: plus"></span></button></th></tr></thead><tbody><tr expr8="expr8"></tr></tbody></table><div expr13="expr13" uk-modal></div>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1 expr0="expr0"> </h1><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr1="expr1" class="uk-width-2-5"> </th><th></th></tr></thead><tbody><tr><td class="uk-table-link"><a expr2="expr2" class="uk-link-reset"> </a></td><td class="uk-width-small"><button expr3="expr3" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: pencil"></span></button></td></tr></tbody></table><h2 expr4="expr4"> </h2><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr5="expr5" class="uk-width-2-5"> </th><th expr6="expr6" class="uk-width-2-5"> </th><th class="uk-align-right"><button expr7="expr7" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" uk-tooltip><span uk-icon="icon: plus"></span></button></th></tr></thead><tbody><tr expr8="expr8"></tr></tbody></table><div expr14="expr14" uk-modal></div>', [{
     redundantAttribute: 'expr0',
     selector: '[expr0]',
     expressions: [{
@@ -81,7 +81,7 @@ var location_detail_page = {
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
-      evaluate: _scope => _scope.context.data.translations['Queen Year']
+      evaluate: _scope => _scope.context.data.translations['Queen']
     }]
   }, {
     redundantAttribute: 'expr7',
@@ -99,7 +99,7 @@ var location_detail_page = {
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<td class="uk-table-link"><a expr9="expr9" class="uk-link-reset"> </a></td><td class="uk-table-link"><a expr10="expr10" class="uk-link-reset"> </a></td><td class="uk-width-small"><button expr11="expr11" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: trash"></span></button><button expr12="expr12" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: file-edit"></span></button></td>', [{
+    template: template('<td class="uk-table-link"><a expr9="expr9" class="uk-link-reset"> </a></td><td class="uk-table-link"><a expr10="expr10" class="uk-link-reset"><queen-dot-tag expr11="expr11" class="uk-margin-small-right"></queen-dot-tag> </a></td><td class="uk-width-small"><button expr12="expr12" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: trash"></span></button><button expr13="expr13" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: file-edit"></span></button></td>', [{
       redundantAttribute: 'expr9',
       selector: '[expr9]',
       expressions: [{
@@ -116,16 +116,32 @@ var location_detail_page = {
       selector: '[expr10]',
       expressions: [{
         type: expressionTypes.TEXT,
-        childNodeIndex: 0,
-        evaluate: _scope => _scope.item.hive.queen_year
+        childNodeIndex: 1,
+        evaluate: _scope => [_scope.item.hive.queen_year].join('')
       }, {
         type: expressionTypes.EVENT,
         name: 'onclick',
         evaluate: _scope => e => _scope.detailHive(e, _scope.item)
       }]
     }, {
+      type: bindingTypes.TAG,
+      getComponent: getComponent,
+      evaluate: _scope => 'queen-dot-tag',
+      slots: [],
+      attributes: [{
+        type: expressionTypes.ATTRIBUTE,
+        name: 'isQueenMarked',
+        evaluate: _scope => _scope.item.hive.is_queen_marked
+      }, {
+        type: expressionTypes.ATTRIBUTE,
+        name: 'year',
+        evaluate: _scope => _scope.item.hive.queen_year
+      }],
       redundantAttribute: 'expr11',
-      selector: '[expr11]',
+      selector: '[expr11]'
+    }, {
+      redundantAttribute: 'expr12',
+      selector: '[expr12]',
       expressions: [{
         type: expressionTypes.ATTRIBUTE,
         name: 'uk-toggle',
@@ -136,8 +152,8 @@ var location_detail_page = {
         evaluate: _scope => _scope.context.data.translations['Delete Hive']
       }]
     }, {
-      redundantAttribute: 'expr12',
-      selector: '[expr12]',
+      redundantAttribute: 'expr13',
+      selector: '[expr13]',
       expressions: [{
         type: expressionTypes.EVENT,
         name: 'onclick',
@@ -157,19 +173,11 @@ var location_detail_page = {
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<div class="uk-modal-dialog uk-modal-body"><h2 expr14="expr14" class="uk-modal-title"> </h2><p expr15="expr15"> </p><p class="uk-text-center"><button expr16="expr16" class="uk-button uk-button-default uk-modal-close"> </button><button expr17="expr17" class="uk-button uk-button-primary uk-modal-close"> </button></p></div>', [{
+    template: template('<div class="uk-modal-dialog uk-modal-body"><h2 expr15="expr15" class="uk-modal-title"> </h2><p expr16="expr16"> </p><p class="uk-text-center"><button expr17="expr17" class="uk-button uk-button-default uk-modal-close"> </button><button expr18="expr18" class="uk-button uk-button-primary uk-modal-close"> </button></p></div>', [{
       expressions: [{
         type: expressionTypes.ATTRIBUTE,
         name: 'id',
         evaluate: _scope => ['modal-hive-really-delete-', _scope.item.hive.id].join('')
-      }]
-    }, {
-      redundantAttribute: 'expr14',
-      selector: '[expr14]',
-      expressions: [{
-        type: expressionTypes.TEXT,
-        childNodeIndex: 0,
-        evaluate: _scope => _scope.context.data.translations['Delete Hive']
       }]
     }, {
       redundantAttribute: 'expr15',
@@ -177,7 +185,7 @@ var location_detail_page = {
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
-        evaluate: _scope => _scope.context.data.translations['Do you really want to delete this Hive?']
+        evaluate: _scope => _scope.context.data.translations['Delete Hive']
       }]
     }, {
       redundantAttribute: 'expr16',
@@ -185,11 +193,19 @@ var location_detail_page = {
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
-        evaluate: _scope => [_scope.context.data.translations['Cancel']].join('')
+        evaluate: _scope => _scope.context.data.translations['Do you really want to delete this Hive?']
       }]
     }, {
       redundantAttribute: 'expr17',
       selector: '[expr17]',
+      expressions: [{
+        type: expressionTypes.TEXT,
+        childNodeIndex: 0,
+        evaluate: _scope => [_scope.context.data.translations['Cancel']].join('')
+      }]
+    }, {
+      redundantAttribute: 'expr18',
+      selector: '[expr18]',
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
@@ -200,8 +216,8 @@ var location_detail_page = {
         evaluate: _scope => e => _scope.deleteHive(e, _scope.item)
       }]
     }]),
-    redundantAttribute: 'expr13',
-    selector: '[expr13]',
+    redundantAttribute: 'expr14',
+    selector: '[expr14]',
     itemName: 'item',
     indexName: null,
     evaluate: _scope => _scope.context.data.pages.location_detail.hive_list_items

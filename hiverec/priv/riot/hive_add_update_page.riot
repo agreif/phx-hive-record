@@ -3,9 +3,10 @@
     <h2 class="uk-card-title">{context.data.translations[context.data.pages.hive_add_update.title_msgid]}</h2>
     <form id="hive-add-update" class="uk-form-horizontal uk-margin-large">
       <div class="uk-margin">
-	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Name']}</label>
+
+	<label class="uk-form-label">{context.data.translations['Name']}</label>
 	<div class="uk-form-controls">
-          <input type="text" name="name" value="{new String(context.data.pages.hive_add_update.form.params.name)}" class="uk-input">
+          <input type="text" name="name" value="{context.newString(context.data.pages.hive_add_update.form.params.name)}" class="uk-input"/>
 	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
 	    <li each="{msg in context.data.pages.hive_add_update.form.errors.name}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>
@@ -13,13 +14,23 @@
 	    <li each="{msg in context.data.pages.hive_add_update.form.errors.location_id}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>
         </div>
-	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Queen Year']}</label>
+
+	<label class="uk-form-label">{context.data.translations['Queen Year']}</label>
 	<div class="uk-form-controls">
-          <input type="text" name="queen_year" value="{context.data.pages.hive_add_update.form.params.queen_year}" class="uk-input">
+          <input type="text" name="queen_year" value="{context.data.pages.hive_add_update.form.params.queen_year}" class="uk-input"/>
 	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
 	    <li each="{msg in context.data.pages.hive_add_update.form.errors.queen_year}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>
 	</div>
+
+	<label class="uk-form-label" for="is_queen_marked">{context.data.translations['Is Queen Marked?']}</label>
+	<div class="uk-form-controls">
+          <input id="is_queen_marked" type="checkbox" class="uk-checkbox" name="is_queen_marked" value="true" checked="{context.data.pages.hive_add_update.form.params.is_queen_marked}"/>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.hive_add_update.form.errors.is_queen_marked}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+	</div>
+
       </div>
       <div class="uk-text-center">
         <button onclick="{cancel}" class="uk-button uk-button-default" type="button">{context.data.translations['Cancel']}</button>

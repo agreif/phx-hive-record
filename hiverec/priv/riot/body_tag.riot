@@ -25,6 +25,13 @@
             return UIkit
 	},
 
+        newString(value) {
+            switch(value) {
+            case undefined: return ""; break
+            default: return new String(value)
+            }
+        },
+
 	updateData(newData) {
 	    this.data = newData
 	    this.update()

@@ -14,6 +14,7 @@ defmodule Hiverec.Model.Hive do
   schema "hives" do
     field :name, :string
     field :queen_year, :integer
+    field :is_queen_marked, :boolean
     belongs_to :location, Model.Location
 
     timestamps()
@@ -22,7 +23,7 @@ defmodule Hiverec.Model.Hive do
   @doc false
   def changeset(hive, attrs) do
     hive
-    |> cast(attrs, [:name], empty_values: [])
+    |> cast(attrs, [:name, :is_queen_marked], empty_values: [])
     |> Model.Common.validate_required_with_change(:name)
     |> cast(attrs, [:queen_year], empty_values: [""])
     |> validate_number(:queen_year, greater_than: 2000, less_than: 2100)

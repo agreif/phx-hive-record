@@ -51,7 +51,17 @@ msgstr ""
 msgid "Edit Hive"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:87
+#: lib/hiverec/handler/translation.ex:88
 #, elixir-autogen, elixir-format
 msgid "Queen Year"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:89
+#, elixir-autogen, elixir-format
+msgid "Is Queen Marked?"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:87
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Queen"
 msgstr ""
