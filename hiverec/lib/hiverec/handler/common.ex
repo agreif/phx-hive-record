@@ -1,6 +1,6 @@
 defmodule Hiverec.Handler.Common do
   @moduledoc """
-  Common business logic.
+  Common functions all handler can use.
   """
 
   alias Hiverec.{Data, Model}
