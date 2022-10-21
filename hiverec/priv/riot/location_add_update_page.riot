@@ -5,7 +5,7 @@
       <div class="uk-margin">
 	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Name']}</label>
 	<div class="uk-form-controls">
-          <input type="text" name="name" value="{context.data.pages.location_add_update.form.params.name}" class="uk-input">
+          <input type="text" name="name" value="{new String(context.data.pages.location_add_update.form.params.name)}" class="uk-input">
 	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
 	    <li each="{msg in context.data.pages.location_add_update.form.errors.name}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>

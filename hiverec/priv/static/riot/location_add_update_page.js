@@ -34,7 +34,7 @@ var location_add_update_page = {
     selector: '[expr2]',
     expressions: [{
       type: expressionTypes.VALUE,
-      evaluate: _scope => _scope.context.data.pages.location_add_update.form.params.name
+      evaluate: _scope => new String(_scope.context.data.pages.location_add_update.form.params.name)
     }]
   }, {
     type: bindingTypes.EACH,
