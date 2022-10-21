@@ -144,7 +144,7 @@ defmodule Hiverec.Data.Hive do
   Hive.
   """
   @derive Jason.Encoder
-  defstruct [:id, :name, :queen_year, :is_queen_marked]
+  defstruct [:id, :name, :queen_year, :is_queen_marked, :notes]
 end
 
 defmodule Hiverec.Data.LocationDetailPage do

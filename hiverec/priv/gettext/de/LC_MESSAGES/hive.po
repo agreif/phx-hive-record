@@ -65,3 +65,8 @@ msgstr "Königin ist gezeichnet?"
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Queen"
 msgstr "Königin"
+
+#: lib/hiverec/handler/translation.ex:90
+#, elixir-autogen, elixir-format
+msgid "Notes"
+msgstr "Notizen"

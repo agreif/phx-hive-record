@@ -3,8 +3,9 @@
   <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
     <thead>
       <tr>
-        <th class="uk-width-2-5">{context.data.translations['Name']}</th>
-        <th class="uk-width-2-5">{context.data.translations['Queen']}</th>
+        <th class="">{context.data.translations['Name']}</th>
+        <th class="">{context.data.translations['Queen']}</th>
+        <th class="">{context.data.translations['Notes']}</th>
         <th/>
       </tr>
     </thead>
@@ -17,6 +18,11 @@
 	  <a onclick="{editHive}" class="uk-link-reset">
             <queen-dot-tag class="uk-margin-small-right" isQueenMarked="{context.data.pages.hive_detail.hive.is_queen_marked}" year="{context.data.pages.hive_detail.hive.queen_year}"/>
             {context.data.pages.hive_detail.hive.queen_year}
+          </a>
+	</td>
+        <td class="uk-table-link">
+	  <a onclick="{editHive}" class="uk-link-reset">
+	    <span class="textarea-wrap">{context.data.pages.hive_detail.hive.notes}</span>
           </a>
 	</td>
 	<td class="uk-width-small">

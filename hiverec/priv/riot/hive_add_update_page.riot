@@ -31,6 +31,14 @@
 	  </ul>
 	</div>
 
+	<label class="uk-form-label">{context.data.translations['Notes']}</label>
+	<div class="uk-form-controls">
+          <textarea class="uk-textarea" rows="5" name="notes">{context.data.pages.hive_add_update.form.params.notes}</textarea>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.hive_add_update.form.errors.notes}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+	</div>
+
       </div>
       <div class="uk-text-center">
         <button onclick="{cancel}" class="uk-button uk-button-default" type="button">{context.data.translations['Cancel']}</button>

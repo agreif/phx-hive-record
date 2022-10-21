@@ -25,8 +25,9 @@
   <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
     <thead>
       <tr>
-        <th class="uk-width-2-5">{context.data.translations['Name']}</th>
-        <th class="uk-width-2-5">{context.data.translations['Queen']}</th>
+        <th class="">{context.data.translations['Name']}</th>
+        <th class="">{context.data.translations['Queen']}</th>
+        <th class="">{context.data.translations['Notes']}</th>
         <th class="uk-align-right">
           <button onclick="{addHive}" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" title="{context.data.translations['Add Hive']}" uk-tooltip>
             <span uk-icon="icon: plus"/>
@@ -43,6 +44,11 @@
 	  <a onclick="{(e) => detailHive(e, item)}" class="uk-link-reset">
             <queen-dot-tag class="uk-margin-small-right" isQueenMarked="{item.hive.is_queen_marked}" year="{item.hive.queen_year}"/>
             {item.hive.queen_year}
+          </a>
+	</td>
+        <td class="uk-table-link">
+	  <a onclick="{(e) => detailHive(e, item)}" class="uk-link-reset">
+	    <span class="textarea-wrap">{item.hive.notes}</span>
           </a>
 	</td>
 	<td class="uk-width-small">

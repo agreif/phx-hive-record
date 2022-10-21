@@ -65,3 +65,8 @@ msgstr ""
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Queen"
 msgstr ""
+
+#: lib/hiverec/handler/translation.ex:90
+#, elixir-autogen, elixir-format
+msgid "Notes"
+msgstr ""

@@ -21,8 +21,8 @@ or you create a new dummy account on the register page.
 ## TODOs
 
 - [ ] custom inspection properties
-- [ ] extend hive detail with 'queen_year', 'is_queen_marked', 'description'
 - [ ] add inspections to hive
+- [x] extend hive detail with 'queen_year', 'is_queen_marked', 'notes'
 - [x] hives menu item
 - [x] breadcrumbs
 - [x] refactor redundant gettext msgids

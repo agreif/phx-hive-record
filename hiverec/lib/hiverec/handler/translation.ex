@@ -87,6 +87,7 @@ defmodule Hiverec.Handler.Translation do
         dgettext(@hive_domain, "Queen"),
         dgettext(@hive_domain, "Queen Year"),
         dgettext(@hive_domain, "Is Queen Marked?"),
+        dgettext(@hive_domain, "Notes"),
       ]
     end)
   end
