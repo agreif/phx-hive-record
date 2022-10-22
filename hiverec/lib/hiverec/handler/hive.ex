@@ -109,9 +109,8 @@ defmodule Hiverec.Handler.Hive do
     locale = Common.locale(conn)
     result = Model.Hive.update_hive(hive_id, params, user_id)
     case result do
-      {:ok, _} -> Handler.Hive.gen_detail_data(conn, hive_id)
-      {:error, changeset} ->
-        {_hive, location} = Model.Hive.get_hive_with_location(hive_id, user_id)
+      {{:ok, _}, _} -> Handler.Hive.gen_detail_data(conn, hive_id)
+      {{:error, changeset}, location} ->
         gen_update_data(conn,
           location,
           Changeset.apply_changes(changeset),

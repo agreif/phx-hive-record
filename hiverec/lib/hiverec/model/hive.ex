@@ -76,12 +76,12 @@ defmodule Hiverec.Model.Hive do
   end
 
   def update_hive(hive_id, attrs, user_id) do
-    {hive, _} = get_hive_with_location(hive_id, user_id)
+    {hive, location} = get_hive_with_location(hive_id, user_id)
     changeset = Model.Hive.changeset(hive, attrs)
     if changeset.valid? do
-      Repo.update(changeset)
+      {Repo.update(changeset), location}
     else
-      {:error, changeset}
+      {{:error, changeset}, location}
     end
   end
 
