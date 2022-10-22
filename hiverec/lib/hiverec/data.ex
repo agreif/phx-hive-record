@@ -215,8 +215,8 @@ defmodule Hiverec.Data.HiveDetailPage.InspectionListItem do
   inspection list item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:inspection, :post_inspection_delete_data_url, :csrf_token]
-  defstruct [:inspection, :post_inspection_delete_data_url, :csrf_token]
+  @enforce_keys [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url]
+  defstruct [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url]
 end
 
 

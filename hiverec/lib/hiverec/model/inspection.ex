@@ -28,29 +28,38 @@ defmodule Hiverec.Model.Inspection do
   end
 
   def create_inspection(attrs, hive_id, user_id) do
-    hive = Model.Hive.get_hive(hive_id, user_id)
+    {hive, _} = Model.Hive.get_hive_with_location(hive_id, user_id)
     Model.Inspection.changeset(%Model.Inspection{}, attrs)
     |> put_change(:hive_id, hive.id)
     |> Repo.insert
   end
 
   def delete_inspection(inspection_id, user_id) do
-    {inspection, hive} = get_inspection_with_hive(inspection_id, user_id)
+    {inspection, hive, _} = get_inspection_with_hive_and_location(inspection_id, user_id)
     result = Repo.delete(inspection)
     {result, hive}
   end
 
-  def get_inspection_with_hive(inspection_id, user_id) do
+  def get_inspection_with_hive_and_location(inspection_id, user_id) do
     query = from l in Model.Location,
       join: h in Model.Hive,
       on: l.id == h.location_id,
       join: i in Model.Inspection,
       on: h.id == i.hive_id,
       where: i.id == ^inspection_id and l.user_id == ^user_id,
-      select: {i, h}
+      select: {i, h, l}
     Repo.all(query) |> List.first
   end
 
+  def update_inspection(inspection_id, attrs, user_id) do
+    {inspection, hive, location} = get_inspection_with_hive_and_location(inspection_id, user_id)
+    changeset = Model.Inspection.changeset(inspection, attrs)
+    if changeset.valid? do
+      {Repo.update(changeset), hive, location}
+    else
+      {{:error, changeset}, hive, location}
+    end
+  end
 
 
 end

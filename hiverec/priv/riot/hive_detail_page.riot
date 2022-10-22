@@ -49,7 +49,7 @@
     <tbody>
       <tr each="{item in context.data.pages.hive_detail.inspection_list_items}">
         <td class="uk-table-link">
-	  <a onclick="{(e) => detailInspection(e, item)}" class="uk-link-reset">{item.inspection.date}</a>
+	  <a onclick="{(e) => editInspection(e, item)}" class="uk-link-reset">{item.inspection.date}</a>
 	</td>
 	<td class="uk-width-small">
 	  <button uk-toggle="target: #modal-inspection-really-delete-{item.inspection.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Inspection']}" uk-tooltip >
@@ -106,6 +106,10 @@
 
 	deleteInspection(event, item) {
 	    this.context.refreshDataPost(item.post_inspection_delete_data_url, item.csrf_token)
+	},
+
+	editInspection(event, item) {
+	    this.context.refreshDataGet(item.get_inspection_update_data_url)
 	},
 
     }

@@ -23,6 +23,9 @@ var hive_detail_page = {
     },
     deleteInspection(event, item) {
       this.context.refreshDataPost(item.post_inspection_delete_data_url, item.csrf_token);
+    },
+    editInspection(event, item) {
+      this.context.refreshDataGet(item.get_inspection_update_data_url);
     }
   },
   template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1 expr0="expr0"> </h1><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr1="expr1" class> </th><th expr2="expr2" class> </th><th expr3="expr3" class> </th><th></th></tr></thead><tbody><tr><td class="uk-table-link"><a expr4="expr4" class="uk-link-reset"> </a></td><td class="uk-table-link"><a expr5="expr5" class="uk-link-reset"><queen-dot-tag expr6="expr6" class="uk-margin-small-right"></queen-dot-tag> </a></td><td class="uk-table-link"><a expr7="expr7" class="uk-link-reset"><span expr8="expr8" class="textarea-wrap"> </span></a></td><td class="uk-width-small"><button expr9="expr9" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: pencil"></span></button></td></tr></tbody></table><h2 expr10="expr10"> </h2><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr11="expr11" class> </th><th class="uk-align-right"><button expr12="expr12" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" uk-tooltip><span uk-icon="icon: plus"></span></button></th></tr></thead><tbody><tr expr13="expr13"></tr></tbody></table><div expr17="expr17" uk-modal></div>', [{
@@ -167,7 +170,7 @@ var hive_detail_page = {
       }, {
         type: expressionTypes.EVENT,
         name: 'onclick',
-        evaluate: _scope => e => _scope.detailInspection(e, _scope.item)
+        evaluate: _scope => e => _scope.editInspection(e, _scope.item)
       }]
     }, {
       redundantAttribute: 'expr15',

@@ -44,8 +44,8 @@ defmodule HiverecWeb.Router do
 
     get  "/inspection_add/:hive_id/data", PageController, :get_inspection_add_data
     post "/inspection_add/:hive_id/data", PageController, :post_inspection_add_data
-    # get  "/inspection_update/:inspection_id/data", PageController, :get_inspection_update_data
-    # post "/inspection_update/:inspection_id/data", PageController, :post_inspection_update_data
+    get  "/inspection_update/:inspection_id/data", PageController, :get_inspection_update_data
+    post "/inspection_update/:inspection_id/data", PageController, :post_inspection_update_data
     post "/inspection_delete/:inspection_id/data", PageController, :post_inspection_delete_data
 
   end

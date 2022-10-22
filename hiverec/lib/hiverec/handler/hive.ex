@@ -72,6 +72,7 @@ defmodule Hiverec.Handler.Hive do
         inspection: to_data(inspection),
         post_inspection_delete_data_url: post_data_url,
         csrf_token: Tag.csrf_token_value(post_data_url),
+        get_inspection_update_data_url: Routes.page_url(conn, :get_inspection_update_data, inspection)
       }
     end)
 

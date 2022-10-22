@@ -42,15 +42,6 @@ defmodule Hiverec.Model.Hive do
     Repo.all(query)
   end
 
-  def get_hive(hive_id, user_id) do
-    query = from l in Model.Location,
-      join: h in Model.Hive,
-      on: l.id == h.location_id,
-      where: h.id == ^hive_id and l.user_id == ^user_id,
-      select: h
-    Repo.all(query) |> List.first
-  end
-
   def get_hive_with_location(hive_id, user_id) do
     query = from l in Model.Location,
       join: h in Model.Hive,
@@ -85,7 +76,7 @@ defmodule Hiverec.Model.Hive do
   end
 
   def update_hive(hive_id, attrs, user_id) do
-    hive = get_hive(hive_id, user_id)
+    {hive, _} = get_hive_with_location(hive_id, user_id)
     changeset = Model.Hive.changeset(hive, attrs)
     if changeset.valid? do
       Repo.update(changeset)

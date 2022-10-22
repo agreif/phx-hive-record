@@ -75,6 +75,12 @@ defmodule HiverecWeb.PageController do
   def post_inspection_delete_data(conn, %{"inspection_id" => inspection_id_str}),
     do: json(conn, Handler.Inspection.process_post_delete(conn, String.to_integer(inspection_id_str)))
 
+  def get_inspection_update_data(conn, %{"inspection_id" => inspection_id_str}),
+    do: json(conn, Handler.Inspection.process_get_update(conn, String.to_integer(inspection_id_str)))
+
+  def post_inspection_update_data(conn, %{"inspection_id" => inspection_id_str} = params),
+    do: json(conn, Handler.Inspection.process_post_update(conn, String.to_integer(inspection_id_str), params))
+
   # register
 
   def get_register_page(conn, _params),
