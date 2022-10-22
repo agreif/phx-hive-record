@@ -87,7 +87,6 @@ defmodule Hiverec.Model.Hive do
 
   def delete_hive(hive_id, user_id) do
     {hive, location} = get_hive_with_location(hive_id, user_id)
-    result = Repo.delete(hive)
-    {result, location}
+    {Repo.delete(hive), location}
   end
 end
