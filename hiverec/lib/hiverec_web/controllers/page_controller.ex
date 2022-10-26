@@ -69,8 +69,8 @@ defmodule HiverecWeb.PageController do
 
   # inspection
 
-  def get_inspection_add_data(conn, %{"hive_id" => hive_id_str} = params),
-    do: json(conn, Handler.Inspection.gen_add_data(conn, String.to_integer(hive_id_str), params))
+  def get_inspection_add_data(conn, %{"hive_id" => hive_id_str}),
+    do: json(conn, Handler.Inspection.gen_add_data(conn, String.to_integer(hive_id_str)))
 
   def post_inspection_add_data(conn, %{"hive_id" => hive_id_str} = params),
     do: json(conn, Handler.Inspection.process_post_add(conn, String.to_integer(hive_id_str), params))

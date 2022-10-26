@@ -31,7 +31,7 @@ defmodule Hiverec.Handler.Inspection do
     end
   end
 
-  def gen_add_data(conn, hive_id, params, errors \\ %{}) when is_integer(hive_id) do
+  def gen_add_data(conn, hive_id, params \\ %{}, errors \\ %{}) when is_integer(hive_id) do
     form_post_data_url = Routes.page_url(conn, :post_inspection_add_data, hive_id)
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
