@@ -3,19 +3,51 @@
     <h2 class="uk-card-title">{context.data.translations[context.data.pages.inspection_add_update.title_msgid]}</h2>
     <form id="inspection-add-update" class="uk-form-horizontal uk-margin-large">
       <div class="uk-margin">
+	  <label class="uk-form-label" for="form-field-date">{context.data.translations['Date']}</label>
+	  <div class="uk-form-controls">
+            <input id="form-field-date" type="date" name="date" value="{context.data.pages.inspection_add_update.form.params.date}" class="uk-input"/>
+	    <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	      <li each="{msg in context.data.pages.inspection_add_update.form.errors.date}"><span class="uk-text-danger">{msg}</span></li>
+	    </ul>
+          </div>
+      </div>
 
-	<label class="uk-form-label">{context.data.translations['Date']}</label>
-	<div class="uk-form-controls">
-          <input type="date" name="date" value="{context.data.pages.inspection_add_update.form.params.date}" class="uk-input"/>
+      <div class="uk-margin" each="{formField in context.data.pages.inspection_add_update.form.form_fields}">
+	<label class="uk-form-label" for="{formField.id}">{formField.name}</label>
+	<div class="uk-form-controls" if="{formField.type == 'string'}">
+          <input id="{formField.id}" type="text" name="{formField.id}" value="" class="uk-input"/>
 	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
-	    <li each="{msg in context.data.pages.inspection_add_update.form.errors.date}"><span class="uk-text-danger">{msg}</span></li>
-	  </ul>
-	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
-	    <li each="{msg in context.data.pages.inspection_add_update.form.errors.hive_id}"><span class="uk-text-danger">{msg}</span></li>
+	    <li each="{msg in context.data.pages.inspection_add_update.form.errors[formField.id]}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>
         </div>
-
+	<div class="uk-form-controls" if="{formField.type == 'int'}">
+          <input id="{formField.id}" type="text" name="{formField.id}" value="" class="uk-input"/>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.inspection_add_update.form.errors[formField.id]}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+        </div>
+	<div class="uk-form-controls" if="{formField.type == 'bool'}">
+          <input id="{formField.id}" type="checkbox" name="{formField.id}" class="uk-checkbox"/>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.inspection_add_update.form.errors[formField.id]}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+        </div>
+	<div class="uk-form-controls" if="{formField.type == 'text'}">
+          <textarea id="{formField.id}" name="{formField.id}" class="uk-textarea" rows="5" placeholder="Textarea"></textarea>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.inspection_add_update.form.errors[formField.id]}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+        </div>
+	<div class="uk-form-controls" if="{formField.type == 'dropdown'}">
+          <select id="{formField.id}" name="{formField.id}" class="uk-select">
+            <option each="{option in formField.options.values}">{option}</option>
+          </select>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.inspection_add_update.form.errors[formField.id]}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+        </div>
       </div>
+
       <div class="uk-text-center">
         <button onclick="{cancel}" class="uk-button uk-button-default" type="button">{context.data.translations['Cancel']}</button>
         <button onclick="{add}" class="uk-button uk-button-primary" type="button">{context.data.translations['Save']}</button>

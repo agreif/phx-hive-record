@@ -70,10 +70,19 @@ defmodule Hiverec.Data.Form do
   Generic HTML Form data.
   """
   @derive Jason.Encoder
-  @enforce_keys [:post_data_url, :cancel_data_url, :params, :errors]
-  defstruct [:post_data_url, :cancel_data_url, :params, :errors]
+  @enforce_keys [:post_data_url, :cancel_data_url, :params, :errors, :form_fields]
+  defstruct [:post_data_url, :cancel_data_url, :params, :errors, :form_fields]
 end
 
+defmodule Hiverec.Data.FormField do
+  @moduledoc """
+  Form Field
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:id, :name, :type, :options]
+  defstruct [:id, :name, :type, :options]
+
+end
 
 defmodule Hiverec.Data.Pages do
   @moduledoc """

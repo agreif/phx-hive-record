@@ -34,6 +34,10 @@ defmodule Hiverec.Handler.Inspection do
   def gen_add_data(conn, hive_id, params \\ %{}, errors \\ %{}) when is_integer(hive_id) do
     form_post_data_url = Routes.page_url(conn, :post_inspection_add_data, hive_id)
     user_id = Common.user_id(conn)
+    form_fields = Model.InsparamType.get_insparam_types(user_id)
+    |> Enum.map(fn ipt ->
+      %Data.FormField{id: ipt.id, name: ipt.name, type: ipt.type, options: ipt.options}
+    end)
     locale = Common.locale(conn)
     {hive, location} = Model.Hive.get_hive_with_location(hive_id, user_id)
     %Data{data_url: Routes.page_url(conn, :get_inspection_add_data, hive_id),
@@ -48,7 +52,8 @@ defmodule Hiverec.Handler.Inspection do
               form: %Data.Form{post_data_url: form_post_data_url,
                                cancel_data_url: Routes.page_url(conn, :get_hive_detail_data, hive_id),
                                params: params,
-                               errors: errors},
+                               errors: errors,
+                               form_fields: form_fields},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
@@ -97,7 +102,8 @@ defmodule Hiverec.Handler.Inspection do
               form: %Data.Form{post_data_url: form_post_data_url,
                                cancel_data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
                                params: to_data(inspection),
-                               errors: errors},
+                               errors: errors,
+                               form_fields: nil},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },

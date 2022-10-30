@@ -21,4 +21,19 @@ defmodule Hiverec.Model.Common do
     end)
   end
 
+  @doc """
+  Validates the given string that it in an integer.
+
+  Returns nil or a the error as {string, [opts]}
+  """
+  def validate_int(str) do
+    data = %{}
+    types = %{value: :integer}
+    changeset = {data, types}
+    |> cast(%{"value" => str}, Map.keys(types))
+    # |> validate_number(:value, greater_than_or_equal_to: 0)
+    # |> validate_number(:value, less_than: 100)
+    changeset.errors[:value]
+  end
+
 end

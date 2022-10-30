@@ -80,7 +80,8 @@ defmodule Hiverec.Handler.Location do
               form: %Data.Form{post_data_url: form_post_data_url,
                                cancel_data_url: Routes.page_url(conn, :get_location_list_data),
                                params: params,
-                               errors: errors},
+                               errors: errors,
+                               form_fields: nil},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
@@ -163,7 +164,8 @@ defmodule Hiverec.Handler.Location do
               form: %Data.Form{post_data_url: form_post_data_url,
                                cancel_data_url: Routes.page_url(conn, :get_location_detail_data, location),
                                params: to_data(location),
-                               errors: errors},
+                               errors: errors,
+                               form_fields: nil},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },

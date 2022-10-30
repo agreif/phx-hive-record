@@ -48,7 +48,8 @@ defmodule Hiverec.Handler.Register do
               form: %Data.Form{post_data_url: form_post_data_url,
                                cancel_data_url: nil,
                                params: params,
-                               errors: errors},
+                               errors: errors,
+                               form_fields: nil},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
               get_login_url: Routes.page_url(conn, :get_login_page),
               get_login_data_url: Routes.page_url(conn, :get_login_data)

@@ -48,7 +48,8 @@ defmodule Hiverec.Handler.Hive do
               form: %Data.Form{post_data_url: form_post_data_url,
                                cancel_data_url: Routes.page_url(conn, :get_location_detail_data, location_id),
                                params: params,
-                               errors: errors},
+                               errors: errors,
+                               form_fields: nil},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
@@ -61,6 +62,7 @@ defmodule Hiverec.Handler.Hive do
   ###################
 
   def gen_detail_data(conn, hive_id) when is_integer(hive_id) do
+    # Model.InsparamType.insert_alex_types()
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     {hive, location, inspections} = Model.Hive.get_hive_with_location_and_inspections(hive_id, user_id)
@@ -75,7 +77,6 @@ defmodule Hiverec.Handler.Hive do
         get_inspection_update_data_url: Routes.page_url(conn, :get_inspection_update_data, inspection)
       }
     end)
-
     %Data{data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
@@ -133,7 +134,8 @@ defmodule Hiverec.Handler.Hive do
               form: %Data.Form{post_data_url: form_post_data_url,
                                cancel_data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
                                params: to_data(hive),
-                               errors: errors},
+                               errors: errors,
+                               form_fields: nil},
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },

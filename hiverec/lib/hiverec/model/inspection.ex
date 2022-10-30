@@ -29,9 +29,32 @@ defmodule Hiverec.Model.Inspection do
 
   def create_inspection(attrs, hive_id, user_id) do
     {hive, _} = Model.Hive.get_hive_with_location(hive_id, user_id)
-    Model.Inspection.changeset(%Model.Inspection{}, attrs)
-    |> put_change(:hive_id, hive.id)
-    |> Repo.insert
+    insparam_types = Model.InsparamType.get_insparam_types(user_id)
+    changeset =
+      Model.Inspection.changeset(%Model.Inspection{}, attrs)
+      |> put_change(:hive_id, hive.id)
+      |> Model.Insparam.validate_fields(insparam_types)
+
+    if changeset.valid? do
+      Repo.transaction(fn ->
+        {:ok, inspection} = Repo.insert(changeset)
+        insparam_types
+        |> Enum.each(fn ipt ->
+          str = Map.get(attrs, to_string(ipt.id))
+          value =
+            case ipt.type do
+              "int" -> Integer.parse(str) |> Tuple.to_list |> Enum.at(0)
+              "bool" -> if(str, do: true, else: false)
+              "string" -> str
+              "text" -> str
+              "dropdown" -> str
+            end
+          Model.Insparam.create_insparam(inspection, ipt, value)
+        end)
+      end)
+    else
+      {:error, changeset}
+    end
   end
 
   def delete_inspection(inspection_id, user_id) do
