@@ -215,8 +215,10 @@ defmodule Hiverec.Data.HiveDetailPage do
   Hive detail page.
   """
   @derive Jason.Encoder
-  @enforce_keys [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url]
-  defstruct [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url]
+  @enforce_keys [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url,
+                :insparam_names]
+  defstruct [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url,
+            :insparam_names]
 end
 
 defmodule Hiverec.Data.HiveDetailPage.InspectionListItem do
@@ -224,8 +226,10 @@ defmodule Hiverec.Data.HiveDetailPage.InspectionListItem do
   inspection list item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url]
-  defstruct [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url]
+  @enforce_keys [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url,
+                 :insparams]
+  defstruct [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url,
+             :insparams]
 end
 
 

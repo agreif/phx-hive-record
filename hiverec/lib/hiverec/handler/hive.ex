@@ -74,7 +74,8 @@ defmodule Hiverec.Handler.Hive do
         inspection: to_data(inspection),
         post_inspection_delete_data_url: post_data_url,
         csrf_token: Tag.csrf_token_value(post_data_url),
-        get_inspection_update_data_url: Routes.page_url(conn, :get_inspection_update_data, inspection)
+        get_inspection_update_data_url: Routes.page_url(conn, :get_inspection_update_data, inspection),
+        insparams: []
       }
     end)
     %Data{data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
@@ -88,7 +89,8 @@ defmodule Hiverec.Handler.Hive do
               hive: to_data(hive),
               get_hive_update_data_url: Routes.page_url(conn, :get_hive_update_data, hive),
               inspection_list_items: inspection_list_items,
-              get_inspection_add_data_url: Routes.page_url(conn, :get_inspection_add_data, hive)
+              get_inspection_add_data_url: Routes.page_url(conn, :get_inspection_add_data, hive),
+              insparam_names: []
             }
           },
           translations: translate_domains(["menu", "hive", "inspection", "form"], locale)

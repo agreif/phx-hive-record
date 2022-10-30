@@ -24,7 +24,7 @@ defmodule Hiverec.Model.Insparam do
     |> Repo.insert
   end
 
-  def validate_fields(changeset, insparam_types) do
+  def validate_fields(changeset, attrs, insparam_types) do
     insparam_types
     |> Enum.map(fn it ->
       str = Map.get(attrs, to_string(it.id))

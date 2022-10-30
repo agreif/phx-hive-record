@@ -33,7 +33,7 @@ defmodule Hiverec.Model.Inspection do
     changeset =
       Model.Inspection.changeset(%Model.Inspection{}, attrs)
       |> put_change(:hive_id, hive.id)
-      |> Model.Insparam.validate_fields(insparam_types)
+      |> Model.Insparam.validate_fields(attrs, insparam_types)
 
     if changeset.valid? do
       Repo.transaction(fn ->
