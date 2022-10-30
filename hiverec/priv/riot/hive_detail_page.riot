@@ -3,9 +3,9 @@
   <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
     <thead>
       <tr>
-        <th class="">{context.data.translations['Name']}</th>
-        <th class="">{context.data.translations['Queen']}</th>
-        <th class="">{context.data.translations['Notes']}</th>
+        <th>{context.data.translations['Name']}</th>
+        <th>{context.data.translations['Queen']}</th>
+        <th>{context.data.translations['Notes']}</th>
         <th/>
       </tr>
     </thead>
@@ -38,7 +38,8 @@
   <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
     <thead>
       <tr>
-        <th class="">{context.data.translations['Date']}</th>
+        <th >{context.data.translations['Date']}</th>
+        <th each="{name in context.data.pages.hive_detail.insparam_names}">{name}</th>
         <th class="uk-align-right">
           <button onclick="{addInspection}" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" title="{context.data.translations['Add Inspection']}" uk-tooltip>
             <span uk-icon="icon: plus"/>
@@ -47,15 +48,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr each="{item in context.data.pages.hive_detail.inspection_list_items}">
+      <tr each="{inspection_list_item in context.data.pages.hive_detail.inspection_list_items}">
         <td class="uk-table-link">
-	  <a onclick="{(e) => editInspection(e, item)}" class="uk-link-reset">{item.inspection.date}</a>
+	  <a onclick="{(e) => editInspection(e, inspection_list_item)}" class="uk-link-reset">{inspection_list_item.inspection.date}</a>
+	</td>
+        <td class="uk-table-link" each="{insparam_item in inspection_list_item.insparam_items}">
+	  <a onclick="{(e) => editInspection(e, inspection_list_item)}" class="uk-link-reset">{insparam_item.value}</a>
 	</td>
 	<td class="uk-width-small">
-	  <button uk-toggle="target: #modal-inspection-really-delete-{item.inspection.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Inspection']}" uk-tooltip >
+	  <button uk-toggle="target: #modal-inspection-really-delete-{inspection_list_item.inspection.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Inspection']}" uk-tooltip >
             <span uk-icon="icon: trash"/>
 	  </button>
-          <button onclick="{(e) => editInspection(e, item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Edit Inspection']}" uk-tooltip >
+          <button onclick="{(e) => editInspection(e, inspection_list_item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Edit Inspection']}" uk-tooltip >
             <span uk-icon="icon: pencil"/>
 	  </button>
 	</td>
@@ -63,7 +67,7 @@
     </tbody>
   </table>
 
-  <div id="modal-inspection-really-delete-{item.inspection.id}" uk-modal each="{item in context.data.pages.hive_detail.inspection_list_items}">
+  <div id="modal-inspection-really-delete-{inspection_list_item.inspection.id}" uk-modal each="{inspection_list_item in context.data.pages.hive_detail.inspection_list_items}">
     <div class="uk-modal-dialog uk-modal-body">
       <h2 class="uk-modal-title">{context.data.translations['Delete Inspection']}</h2>
       <p>{context.data.translations['Do you really want to delete this Inspection?']}</p>
@@ -71,7 +75,7 @@
 	<button class="uk-button uk-button-default uk-modal-close">
 	  {context.data.translations['Cancel']}
 	</button>
-        <button onclick="{(e) => deleteInspection(e, item)}" class="uk-button uk-button-primary uk-modal-close">
+        <button onclick="{(e) => deleteInspection(e, inspection_list_item)}" class="uk-button uk-button-primary uk-modal-close">
 	  {context.data.translations['Delete']}
 	</button>
       </p>
@@ -85,19 +89,6 @@
 	editHive() {
 	    event.preventDefault()
 	    this.context.refreshDataGet(this.context.data.pages.hive_detail.get_hive_update_data_url)
-	},
-
-	addHive() {
-	    this.context.refreshDataGet(this.context.data.pages.hive_detail.get_hive_add_data_url)
-	},
-
-	detailHive(event, item) {
-	    event.preventDefault()
-	    this.context.refreshDataGet(item.get_hive_detail_data_url)
-	},
-
-	deleteHive(event, item) {
-	    this.context.refreshDataPost(item.post_hive_delete_data_url, item.csrf_token)
 	},
 
 	addInspection() {

@@ -65,17 +65,27 @@ defmodule Hiverec.Handler.Hive do
     # Model.InsparamType.insert_alex_types()
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
-    {hive, location, inspections} = Model.Hive.get_hive_with_location_and_inspections(hive_id, user_id)
+    insparam_types = Model.InsparamType.get_insparam_types(user_id)
+    {hive, location, inspection_tuples} = Model.Hive.get_hive_with_location_and_inspections(hive_id, user_id)
     inspection_list_items =
-      inspections
-      |> Enum.map(fn inspection ->
+      inspection_tuples
+      |> Enum.map(fn {inspection, insparams} ->
+      insparam_items = Enum.map(insparams,
+      fn insparam ->
+        insparam_type = Enum.find(insparam_types, fn ipt -> insparam.insparam_type_id == ipt.id end)
+        %Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem{
+          type: insparam_type.type,
+          value: Map.get(insparam.value, "value"),
+          sort_index: insparam_type.sort_index
+        }
+      end) |> Enum.sort_by(&(&1.sort_index))
       post_data_url = Routes.page_url(conn, :post_inspection_delete_data, inspection)
       %Data.HiveDetailPage.InspectionListItem{
         inspection: to_data(inspection),
         post_inspection_delete_data_url: post_data_url,
         csrf_token: Tag.csrf_token_value(post_data_url),
         get_inspection_update_data_url: Routes.page_url(conn, :get_inspection_update_data, inspection),
-        insparams: []
+        insparam_items: insparam_items
       }
     end)
     %Data{data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
@@ -90,7 +100,7 @@ defmodule Hiverec.Handler.Hive do
               get_hive_update_data_url: Routes.page_url(conn, :get_hive_update_data, hive),
               inspection_list_items: inspection_list_items,
               get_inspection_add_data_url: Routes.page_url(conn, :get_inspection_add_data, hive),
-              insparam_names: []
+              insparam_names: Enum.map(insparam_types, &(&1.name))
             }
           },
           translations: translate_domains(["menu", "hive", "inspection", "form"], locale)

@@ -227,10 +227,21 @@ defmodule Hiverec.Data.HiveDetailPage.InspectionListItem do
   """
   @derive Jason.Encoder
   @enforce_keys [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url,
-                 :insparams]
+                 :insparam_items]
   defstruct [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url,
-             :insparams]
+             :insparam_items]
 end
+
+
+defmodule Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem do
+  @moduledoc """
+  inspection param item.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:type, :value, :sort_index]
+  defstruct [:type, :value, :sort_index]
+end
+
 
 
 defmodule Hiverec.Data.InspectionAddUpdatePage do
@@ -241,5 +252,3 @@ defmodule Hiverec.Data.InspectionAddUpdatePage do
   @enforce_keys [:title_msgid, :form, :csrf_token]
   defstruct [:title_msgid, :form, :csrf_token]
 end
-
-
