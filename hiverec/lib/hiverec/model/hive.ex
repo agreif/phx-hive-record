@@ -60,13 +60,13 @@ defmodule Hiverec.Model.Hive do
       left_join: ip in Model.Insparam,
       on: i.id == ip.inspection_id,
       where: h.id == ^hive_id and l.user_id == ^user_id,
-      select: [h, l, i, ip]
+      select: {h, l, i, ip}
     rows = Repo.all(query)
-    [hive, location, _, _] = rows |> List.first
+    {hive, location, _, _} = rows |> List.first
     inspection_tuples =
       rows
-      |> Enum.filter(&(Enum.at(&1, 2)))
-      |> Enum.group_by(&(Enum.at(&1, 2)), &(Enum.at(&1, 3)))
+      |> Enum.filter(&(elem(&1, 2))) # only valid inspections
+      |> Enum.group_by(&(elem(&1, 2)), &(elem(&1, 3)))
       |> Map.to_list
       |> Enum.sort_by(fn {i, _} -> i.date end, :asc)
     {hive, location, inspection_tuples}
