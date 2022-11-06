@@ -65,6 +65,7 @@ defmodule Hiverec.Model.Hive do
     [hive, location, _, _] = rows |> List.first
     inspection_tuples =
       rows
+      |> Enum.filter(&(Enum.at(&1, 2)))
       |> Enum.group_by(&(Enum.at(&1, 2)), &(Enum.at(&1, 3)))
       |> Map.to_list
       |> Enum.sort_by(fn {i, _} -> i.date end, :asc)
