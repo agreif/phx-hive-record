@@ -81,11 +81,12 @@ defmodule Hiverec.Handler.Inspection do
     result = Model.Inspection.update_inspection(inspection_id, params, user_id)
     case result do
       {{:ok, _}, hive, _} -> Handler.Hive.gen_detail_data(conn, hive.id)
-      {{:error, changeset}, hive, location} ->
+      {{:error, changeset}, hive, location, insparams} ->
         gen_update_data(conn,
           Changeset.apply_changes(changeset),
           hive,
           location,
+          insparams,
           insparam_form_fields(user_id),
           Common.human_errors(changeset, locale))
     end

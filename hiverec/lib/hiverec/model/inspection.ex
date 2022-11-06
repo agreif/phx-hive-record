@@ -34,26 +34,28 @@ defmodule Hiverec.Model.Inspection do
       Model.Inspection.changeset(%Model.Inspection{}, attrs)
       |> put_change(:hive_id, hive.id)
       |> Model.Insparam.validate_fields(attrs, insparam_types)
-
     if changeset.valid? do
       Repo.transaction(fn ->
         {:ok, inspection} = Repo.insert(changeset)
         insparam_types
         |> Enum.each(fn ipt ->
-          str = Map.get(attrs, to_string(ipt.id))
-          value =
-            case ipt.type do
-              "int" -> Integer.parse(str) |> Tuple.to_list |> Enum.at(0)
-              "bool" -> if(str, do: true, else: false)
-              "string" -> str
-              "text" -> str
-              "dropdown" -> str
-            end
+          value = get_value(attrs, ipt)
           Model.Insparam.create_insparam(inspection, ipt, value)
         end)
       end)
     else
       {:error, changeset}
+    end
+  end
+
+  def get_value(attrs, insparam_type) do
+    str = Map.get(attrs, to_string(insparam_type.id))
+    case insparam_type.type do
+      "int" -> Integer.parse(str) |> Tuple.to_list |> Enum.at(0)
+      "bool" -> if(str, do: true, else: false)
+      "string" -> str
+      "text" -> str
+      "dropdown" -> str
     end
   end
 
@@ -80,12 +82,26 @@ defmodule Hiverec.Model.Inspection do
   end
 
   def update_inspection(inspection_id, attrs, user_id) do
-    {inspection, hive, location} = get_inspection_with_hive_and_location(inspection_id, user_id)
-    changeset = Model.Inspection.changeset(inspection, attrs)
+    {inspection, hive, location, insparams} = get_inspection_with_hive_and_location(inspection_id, user_id)
+    tuples = Model.Insparam.get_insparams_with_types(inspection_id, user_id)
+    insparam_types = for {_, ipt} <- tuples, do: ipt
+    changeset =
+      Model.Inspection.changeset(inspection, attrs)
+      |> Model.Insparam.validate_fields(attrs, insparam_types)
     if changeset.valid? do
-      {Repo.update(changeset), hive, location}
+      Repo.transaction(fn ->
+        {:ok, _} = Repo.update(changeset)
+        tuples
+        |> Enum.each(fn {ip, ipt} ->
+                      value = get_value(attrs, ipt)
+                      change(ip)
+                      |> put_change(:value, %{"value" => value})
+                      |> Repo.update
+                    end)
+      end)
+      {{:ok, inspection}, hive, location}
     else
-      {{:error, changeset}, hive, location}
+      {{:error, changeset}, hive, location, insparams}
     end
   end
 
