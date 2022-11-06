@@ -76,7 +76,7 @@ end
 
 defmodule Hiverec.Data.FormField do
   @moduledoc """
-  Form Field
+  Form Field.
   """
   @derive Jason.Encoder
   @enforce_keys [:id, :name, :type, :options]

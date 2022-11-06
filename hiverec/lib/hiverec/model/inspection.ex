@@ -69,9 +69,14 @@ defmodule Hiverec.Model.Inspection do
       on: l.id == h.location_id,
       join: i in Model.Inspection,
       on: h.id == i.hive_id,
+      left_join: ip in Model.Insparam,
+      on: i.id == ip.inspection_id,
       where: i.id == ^inspection_id and l.user_id == ^user_id,
-      select: {i, h, l}
-    Repo.all(query) |> List.first
+      select: [i, h, l, ip]
+    rows = Repo.all(query)
+    [inspection, hive, location, _] = rows |> List.first
+    insparams = rows |> Enum.map(&(Enum.at(&1, 3)))
+    {inspection, hive, location, insparams}
   end
 
   def update_inspection(inspection_id, attrs, user_id) do

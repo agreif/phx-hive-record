@@ -75,7 +75,7 @@ var inspection_add_update_page = {
       evaluate: _scope => _scope.formField.type == 'string',
       redundantAttribute: 'expr7',
       selector: '[expr7]',
-      template: template('<input expr8="expr8" type="text" value class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr9="expr9"></li></ul>', [{
+      template: template('<input expr8="expr8" type="text" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr9="expr9"></li></ul>', [{
         redundantAttribute: 'expr8',
         selector: '[expr8]',
         expressions: [{
@@ -86,6 +86,9 @@ var inspection_add_update_page = {
           type: expressionTypes.ATTRIBUTE,
           name: 'name',
           evaluate: _scope => _scope.formField.id
+        }, {
+          type: expressionTypes.VALUE,
+          evaluate: _scope => _scope.context.data.pages.inspection_add_update.form.params[_scope.formField.id]
         }]
       }, {
         type: bindingTypes.EACH,
@@ -111,7 +114,7 @@ var inspection_add_update_page = {
       evaluate: _scope => _scope.formField.type == 'int',
       redundantAttribute: 'expr11',
       selector: '[expr11]',
-      template: template('<input expr12="expr12" type="text" value class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr13="expr13"></li></ul>', [{
+      template: template('<input expr12="expr12" type="text" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr13="expr13"></li></ul>', [{
         redundantAttribute: 'expr12',
         selector: '[expr12]',
         expressions: [{
@@ -122,6 +125,9 @@ var inspection_add_update_page = {
           type: expressionTypes.ATTRIBUTE,
           name: 'name',
           evaluate: _scope => _scope.formField.id
+        }, {
+          type: expressionTypes.VALUE,
+          evaluate: _scope => _scope.context.data.pages.inspection_add_update.form.params[_scope.formField.id]
         }]
       }, {
         type: bindingTypes.EACH,
@@ -158,6 +164,10 @@ var inspection_add_update_page = {
           type: expressionTypes.ATTRIBUTE,
           name: 'name',
           evaluate: _scope => _scope.formField.id
+        }, {
+          type: expressionTypes.ATTRIBUTE,
+          name: 'checked',
+          evaluate: _scope => _scope.context.data.pages.inspection_add_update.form.params[_scope.formField.id]
         }]
       }, {
         type: bindingTypes.EACH,
@@ -183,10 +193,14 @@ var inspection_add_update_page = {
       evaluate: _scope => _scope.formField.type == 'text',
       redundantAttribute: 'expr19',
       selector: '[expr19]',
-      template: template('<textarea expr20="expr20" class="uk-textarea" rows="5" placeholder="Textarea"></textarea><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr21="expr21"></li></ul>', [{
+      template: template('<textarea expr20="expr20" class="uk-textarea" rows="5" placeholder="Textarea"> </textarea><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr21="expr21"></li></ul>', [{
         redundantAttribute: 'expr20',
         selector: '[expr20]',
         expressions: [{
+          type: expressionTypes.TEXT,
+          childNodeIndex: 0,
+          evaluate: _scope => [_scope.context.data.pages.inspection_add_update.form.params[_scope.formField.id]].join('')
+        }, {
           type: expressionTypes.ATTRIBUTE,
           name: 'id',
           evaluate: _scope => _scope.formField.id
@@ -240,6 +254,10 @@ var inspection_add_update_page = {
             type: expressionTypes.TEXT,
             childNodeIndex: 0,
             evaluate: _scope => _scope.option
+          }, {
+            type: expressionTypes.ATTRIBUTE,
+            name: 'selected',
+            evaluate: _scope => _scope.context.data.pages.inspection_add_update.form.params[_scope.formField.id] == _scope.option
           }]
         }]),
         redundantAttribute: 'expr25',
