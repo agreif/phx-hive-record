@@ -25,6 +25,7 @@
       <ul class="uk-navbar-nav">
 	<li if="{context.data.locale == 'de'}"><a onclick="{(e) => changeLocale(e, 'en')}">EN</a></li>
 	<li if="{context.data.locale == 'en'}"><a onclick="{(e) => changeLocale(e, 'de')}">DE</a></li>
+        <li><a href="{context.data.preferences_url}" onclick="{(e) => changeNav(e, context.data.preferences_data_url)}">{context.data.translations['Preferences']}</a></li>
 	<li><a onclick="{logout}">Logout</a></li>
       </ul>
     </div>

@@ -3,8 +3,12 @@ defmodule Hiverec.Data do
   Top of the Data hierarchy that is sent to the client as JSON.
   """
   @derive Jason.Encoder
-  @enforce_keys [:data_url, :locale, :navbar, :history_state, :logout, :breadcrumb, :pages, :translations]
-  defstruct [:data_url, :locale, :navbar, :history_state, :logout, :breadcrumb, :pages, :translations]
+  @enforce_keys [:data_url, :locale, :navbar, :history_state,
+                 :preferences_url, :preferences_data_url,
+                 :logout, :breadcrumb, :pages, :translations]
+  defstruct [:data_url, :locale, :navbar, :history_state,
+             :preferences_url, :preferences_data_url,
+             :logout, :breadcrumb, :pages, :translations]
 end
 
 defmodule Hiverec.Data.HistoryState do
@@ -65,6 +69,7 @@ defmodule Hiverec.Data.Logout do
 end
 
 
+
 defmodule Hiverec.Data.Form do
   @moduledoc """
   Generic HTML Form data.
@@ -92,6 +97,7 @@ defmodule Hiverec.Data.Pages do
   defstruct [:error, :location_list, :location_add_update, :location_detail,
              :hive_add_update, :hive_detail,
              :inspection_add_update,
+             :preferences, :insparamtype_add_update,
              :register, :login]
 end
 
@@ -121,6 +127,7 @@ defmodule Hiverec.Data.ErrorPage do
   @enforce_keys [:message]
   defstruct [:message]
 end
+
 
 defmodule Hiverec.Data.LocationListPage do
   @moduledoc """
@@ -252,3 +259,42 @@ defmodule Hiverec.Data.InspectionAddUpdatePage do
   @enforce_keys [:title_msgid, :form, :csrf_token]
   defstruct [:title_msgid, :form, :csrf_token]
 end
+
+
+
+defmodule Hiverec.Data.PreferencesPage do
+  @moduledoc """
+  preferences page.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:insparamtype_list_items, :get_insparamtype_add_data_url]
+  defstruct [:insparamtype_list_items, :get_insparamtype_add_data_url]
+end
+
+defmodule Hiverec.Data.PreferencesPage.InsparamtypeListItem do
+  @moduledoc """
+  inspection param type list item.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:insparamtype, :post_insparamtype_delete_data_url, :csrf_token]
+  defstruct [:insparamtype, :post_insparamtype_delete_data_url, :csrf_token]
+end
+
+defmodule Hiverec.Data.InsparamType do
+  @moduledoc """
+  inspection param type.
+  """
+  @derive Jason.Encoder
+  defstruct [:id, :name, :type, :sort_index, :options]
+end
+
+
+defmodule Hiverec.Data.InsparamtypeAddUpdatePage do
+  @moduledoc """
+  Page to add Inspection Param Type.
+  """
+  @derive Jason.Encoder
+  @enforce_keys [:title_msgid, :form, :csrf_token]
+  defstruct [:title_msgid, :form, :csrf_token]
+end
+

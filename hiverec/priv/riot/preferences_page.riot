@@ -1,0 +1,96 @@
+<preferences-page>
+  <h2>{context.data.translations['Preferences']}</h2>
+
+  <div>
+    <div uk-grid>
+      <div class="uk-width-auto@m">
+        <ul class="uk-tab-left" uk-tab="connect: #component-tab-left; animation: uk-animation-fast">
+          <li><a href="#">{context.data.translations['Inspection Params']}</a></li>
+          <li><a href="#">Item</a></li>
+          <li><a href="#">Item</a></li>
+        </ul>
+      </div>
+      <div class="uk-width-expand@m">
+        <ul id="component-tab-left" class="uk-switcher">
+
+          <!-- ====================== -->
+          <!-- inspection param types -->
+          <!-- ====================== -->
+          <li>
+            <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
+              <thead>
+                <tr>
+                  <th class="uk-width-1-5">{context.data.translations['Name']}</th>
+                  <th class="uk-width-1-5">{context.data.translations['Type']}</th>
+                  <th class="uk-width-1-5">{context.data.translations['Options']}</th>
+                  <th class="uk-width-1-5">{context.data.translations['Sort Index']}</th>
+                  <th class="uk-align-right">
+                    <button onclick="{addInsparamtype}" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" title="{context.data.translations['Add Inspection Param']}" uk-tooltip>
+                      <span uk-icon="icon: plus"/>
+	            </button>
+	          </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr each="{item in context.data.pages.preferences.insparamtype_list_items}">
+                  <td class="uk-table-link">
+	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">{item.insparamtype.name}</a>
+	          </td>
+                  <td class="uk-table-link">
+	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">{context.data.translations[item.insparamtype.type]}</a>
+	          </td>
+                  <td class="uk-table-link">
+	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">{item.insparamtype.options ? item.insparamtype.options.values : ""}</a>
+	          </td>
+                  <td class="uk-table-link">
+	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">{item.insparamtype.sort_index}</a>
+	          </td>
+	          <td class="uk-width-small">
+	            <button uk-toggle="target: #modal-insparamtype-really-delete-{item.insparamtype.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Inspection Param']}" uk-tooltip >
+                      <span uk-icon="icon: trash"/>
+	            </button>
+                    <button onclick="{editInsparamtype}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Edit Inspection Param']}" uk-tooltip >
+                      <span uk-icon="icon: pencil"/>
+	            </button>
+	          </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div id="modal-insparamtype-really-delete-{item.insparamtype.id}" uk-modal each="{item in context.data.pages.preferences.insparamtype_list_items}">
+              <div class="uk-modal-dialog uk-modal-body">
+                <h2 class="uk-modal-title">{context.data.translations['Delete Inspection Param']}</h2>
+                <p>{context.data.translations['Do you really want to delete this Inspection Param?']}</p>
+                <p class="uk-text-center">
+	          <button class="uk-button uk-button-default uk-modal-close">
+	            {context.data.translations['Cancel']}
+	          </button>
+                  <button onclick="{(e) => deleteInsparamtype(e, item)}" class="uk-button uk-button-primary uk-modal-close">
+	            {context.data.translations['Delete']}
+	          </button>
+                </p>
+              </div>
+            </div>
+
+          </li>
+
+          <!-- ====================== -->
+          <!--  -->
+          <!-- ====================== -->
+          <li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
+          <li>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur, sed do eiusmod.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    export default {
+	onBeforeMount(props) { this.context = props.context },
+
+	addInsparamtype() {
+	    this.context.refreshDataGet(this.context.data.pages.preferences.get_insparamtype_add_data_url)
+	},
+    }
+  </script>
+</preferences-page>

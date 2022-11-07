@@ -33,6 +33,8 @@ defmodule Hiverec.Handler.Location do
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: HistoryState.locations(conn),
+          preferences_url: Routes.page_url(conn, :get_preferences_page),
+          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
           logout: Common.gen_logout_data(conn),
           breadcrumb: Breadcrumb.locations(conn),
           pages: %Data.Pages{
@@ -41,7 +43,7 @@ defmodule Hiverec.Handler.Location do
               get_location_add_data_url: Routes.page_url(conn, :get_location_add_data),
             }
           },
-          translations: translate_domains(["menu", "location", "form"], locale)
+          translations: translate_domains(["menu", "preferences", "location", "form"], locale)
     }
   end
 
@@ -72,6 +74,8 @@ defmodule Hiverec.Handler.Location do
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
+          preferences_url: Routes.page_url(conn, :get_preferences_page),
+          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
           logout: Common.gen_logout_data(conn),
           breadcrumb: Breadcrumb.location_add(conn),
           pages: %Data.Pages{
@@ -85,7 +89,7 @@ defmodule Hiverec.Handler.Location do
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
-          translations: translate_domains(["menu", "location", "form"], locale)
+          translations: translate_domains(["menu", "preferences", "location", "form"], locale)
     }
   end
 
@@ -112,6 +116,8 @@ defmodule Hiverec.Handler.Location do
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: HistoryState.location(conn, location),
+          preferences_url: Routes.page_url(conn, :get_preferences_page),
+          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
           logout: Common.gen_logout_data(conn),
           breadcrumb: Breadcrumb.location(conn, location),
           pages: %Data.Pages{
@@ -122,7 +128,7 @@ defmodule Hiverec.Handler.Location do
               get_hive_add_data_url: Routes.page_url(conn, :get_hive_add_data, location)
             }
           },
-          translations: translate_domains(["menu", "location", "hive", "form"], locale)
+          translations: translate_domains(["menu", "preferences", "location", "hive", "form"], locale)
     }
   end
 
@@ -156,6 +162,8 @@ defmodule Hiverec.Handler.Location do
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
+          preferences_url: Routes.page_url(conn, :get_preferences_page),
+          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
           logout: Common.gen_logout_data(conn),
           breadcrumb: Breadcrumb.location_update(conn, location),
           pages: %Data.Pages{
@@ -169,7 +177,7 @@ defmodule Hiverec.Handler.Location do
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
-          translations: translate_domains(["menu", "location", "form"], locale)
+          translations: translate_domains(["menu", "preferences", "location", "form"], locale)
     }
   end
 
@@ -185,6 +193,5 @@ defmodule Hiverec.Handler.Location do
       {:error, _changeset} -> Handler.Location.gen_list_data(conn)
     end
   end
-
 
 end

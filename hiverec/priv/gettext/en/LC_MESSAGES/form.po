@@ -11,17 +11,17 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:52
+#: lib/hiverec/handler/translation.ex:72
 #, elixir-autogen, elixir-format
 msgid "Cancel"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:54
+#: lib/hiverec/handler/translation.ex:74
 #, elixir-autogen, elixir-format
 msgid "Delete"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:53
+#: lib/hiverec/handler/translation.ex:73
 #, elixir-autogen, elixir-format
 msgid "Save"
 msgstr ""

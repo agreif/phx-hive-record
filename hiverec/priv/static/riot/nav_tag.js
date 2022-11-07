@@ -19,7 +19,7 @@ var nav_tag = {
       window.location.href = '/';
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<nav class="uk-navbar-container uk-margin" uk-navbar><div class="uk-navbar-left uk-margin-left"><a class="uk-navbar-item uk-logo" href="#">HiveRec</a><ul class="uk-navbar-nav"><li expr0="expr0"></li></ul></div><div class="uk-navbar-right uk-margin-right"><ul class="uk-navbar-nav"><li expr9="expr9"></li><li expr11="expr11"></li><li><a expr13="expr13">Logout</a></li></ul></div></nav>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<nav class="uk-navbar-container uk-margin" uk-navbar><div class="uk-navbar-left uk-margin-left"><a class="uk-navbar-item uk-logo" href="#">HiveRec</a><ul class="uk-navbar-nav"><li expr0="expr0"></li></ul></div><div class="uk-navbar-right uk-margin-right"><ul class="uk-navbar-nav"><li expr9="expr9"></li><li expr11="expr11"></li><li><a expr13="expr13"> </a></li><li><a expr14="expr14">Logout</a></li></ul></div></nav>', [{
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
@@ -200,6 +200,22 @@ var nav_tag = {
   }, {
     redundantAttribute: 'expr13',
     selector: '[expr13]',
+    expressions: [{
+      type: expressionTypes.TEXT,
+      childNodeIndex: 0,
+      evaluate: _scope => _scope.context.data.translations['Preferences']
+    }, {
+      type: expressionTypes.ATTRIBUTE,
+      name: 'href',
+      evaluate: _scope => _scope.context.data.preferences_url
+    }, {
+      type: expressionTypes.EVENT,
+      name: 'onclick',
+      evaluate: _scope => e => _scope.changeNav(e, _scope.context.data.preferences_data_url)
+    }]
+  }, {
+    redundantAttribute: 'expr14',
+    selector: '[expr14]',
     expressions: [{
       type: expressionTypes.EVENT,
       name: 'onclick',

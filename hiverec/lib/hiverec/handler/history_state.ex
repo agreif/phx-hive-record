@@ -25,4 +25,11 @@ defmodule Hiverec.Handler.HistoryState do
       url: Routes.page_url(conn, :get_hive_detail_page, hive)}
   end
 
+  def preferences(conn) do
+    %Data.HistoryState{
+      title: "Preferences",
+      url: Routes.page_url(conn, :get_preferences_page)
+    }
+  end
+
 end

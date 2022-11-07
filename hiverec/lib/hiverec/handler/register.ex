@@ -41,6 +41,8 @@ defmodule Hiverec.Handler.Register do
           history_state: %Data.HistoryState{
             title: "Register",
             url: Routes.page_url(conn, :get_register_page)},
+          preferences_url: nil,
+          preferences_data_url: nil,
           logout: nil,
           breadcrumb: nil,
           pages: %Data.Pages{

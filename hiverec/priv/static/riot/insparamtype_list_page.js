@@ -1,27 +1,27 @@
-var location_list_page = {
+var insparamtype_list_page = {
   css: null,
   exports: {
     onBeforeMount(props) {
       this.context = props.context;
     },
-    addLocation() {
-      this.context.refreshDataGet(this.context.data.pages.location_list.get_location_add_data_url);
+    addInsparamtype() {
+      this.context.refreshDataGet(this.context.data.pages.insparamtype_list.get_insparamtype_add_data_url);
     },
-    detailLocation(event, item) {
+    detailInsparamtype(event, item) {
       event.preventDefault();
-      this.context.refreshDataGet(item.get_location_detail_data_url);
+      this.context.refreshDataGet(item.get_insparamtype_detail_data_url);
     },
-    deleteLocation(event, item) {
-      this.context.refreshDataPost(item.post_location_delete_data_url, item.csrf_token);
+    deleteInsparamtype(event, item) {
+      this.context.refreshDataPost(item.post_insparamtype_delete_data_url, item.csrf_token);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h2 expr0="expr0"> </h2><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr1="expr1" class="uk-width-2-5"> </th><th class="uk-align-right"><button expr2="expr2" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" uk-tooltip><span uk-icon="icon: plus"></span></button></th></tr></thead><tbody><tr expr3="expr3"></tr></tbody></table><div expr7="expr7" uk-modal></div>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<h1 expr0="expr0"> </h1><table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted"><thead><tr><th expr1="expr1" class="uk-width-2-5"> </th><th class="uk-align-right"><button expr2="expr2" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" uk-tooltip><span uk-icon="icon: plus"></span></button></th></tr></thead><tbody><tr expr3="expr3"></tr></tbody></table><div expr7="expr7" uk-modal></div>', [{
     redundantAttribute: 'expr0',
     selector: '[expr0]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
-      evaluate: _scope => _scope.context.data.translations['Locations']
+      evaluate: _scope => _scope.context.data.translations['Insparamtypes']
     }]
   }, {
     redundantAttribute: 'expr1',
@@ -37,11 +37,11 @@ var location_list_page = {
     expressions: [{
       type: expressionTypes.EVENT,
       name: 'onclick',
-      evaluate: _scope => _scope.addLocation
+      evaluate: _scope => _scope.addInsparamtype
     }, {
       type: expressionTypes.ATTRIBUTE,
       name: 'title',
-      evaluate: _scope => _scope.context.data.translations['Add Location']
+      evaluate: _scope => _scope.context.data.translations['Add Insparamtype']
     }]
   }, {
     type: bindingTypes.EACH,
@@ -53,11 +53,11 @@ var location_list_page = {
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
-        evaluate: _scope => _scope.item.location.name
+        evaluate: _scope => _scope.item.insparamtype.name
       }, {
         type: expressionTypes.EVENT,
         name: 'onclick',
-        evaluate: _scope => e => _scope.detailLocation(e, _scope.item)
+        evaluate: _scope => e => _scope.detailInsparamtype(e, _scope.item)
       }]
     }, {
       redundantAttribute: 'expr5',
@@ -65,11 +65,11 @@ var location_list_page = {
       expressions: [{
         type: expressionTypes.ATTRIBUTE,
         name: 'uk-toggle',
-        evaluate: _scope => ['target: #modal-location-really-delete-', _scope.item.location.id].join('')
+        evaluate: _scope => ['target: #modal-insparamtype-really-delete-', _scope.item.insparamtype.id].join('')
       }, {
         type: expressionTypes.ATTRIBUTE,
         name: 'title',
-        evaluate: _scope => _scope.context.data.translations['Delete Location']
+        evaluate: _scope => _scope.context.data.translations['Delete Insparamtype']
       }]
     }, {
       redundantAttribute: 'expr6',
@@ -77,18 +77,18 @@ var location_list_page = {
       expressions: [{
         type: expressionTypes.EVENT,
         name: 'onclick',
-        evaluate: _scope => e => _scope.detailLocation(e, _scope.item)
+        evaluate: _scope => e => _scope.detailInsparamtype(e, _scope.item)
       }, {
         type: expressionTypes.ATTRIBUTE,
         name: 'title',
-        evaluate: _scope => _scope.context.data.translations['Location Detail']
+        evaluate: _scope => _scope.context.data.translations['Insparamtype Detail']
       }]
     }]),
     redundantAttribute: 'expr3',
     selector: '[expr3]',
     itemName: 'item',
     indexName: null,
-    evaluate: _scope => _scope.context.data.pages.location_list.location_list_items
+    evaluate: _scope => _scope.context.data.pages.insparamtype_list.insparamtype_list_items
   }, {
     type: bindingTypes.EACH,
     getKey: null,
@@ -97,7 +97,7 @@ var location_list_page = {
       expressions: [{
         type: expressionTypes.ATTRIBUTE,
         name: 'id',
-        evaluate: _scope => ['modal-location-really-delete-', _scope.item.location.id].join('')
+        evaluate: _scope => ['modal-insparamtype-really-delete-', _scope.item.insparamtype.id].join('')
       }]
     }, {
       redundantAttribute: 'expr8',
@@ -105,7 +105,7 @@ var location_list_page = {
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
-        evaluate: _scope => _scope.context.data.translations['Delete Location']
+        evaluate: _scope => _scope.context.data.translations['Delete Insparamtype']
       }]
     }, {
       redundantAttribute: 'expr9',
@@ -113,7 +113,7 @@ var location_list_page = {
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
-        evaluate: _scope => _scope.context.data.translations['Do you really want to delete this Location?']
+        evaluate: _scope => _scope.context.data.translations['Do you really want to delete this Insparamtype?']
       }]
     }, {
       redundantAttribute: 'expr10',
@@ -133,16 +133,16 @@ var location_list_page = {
       }, {
         type: expressionTypes.EVENT,
         name: 'onclick',
-        evaluate: _scope => e => _scope.deleteLocation(e, _scope.item)
+        evaluate: _scope => e => _scope.deleteInsparamtype(e, _scope.item)
       }]
     }]),
     redundantAttribute: 'expr7',
     selector: '[expr7]',
     itemName: 'item',
     indexName: null,
-    evaluate: _scope => _scope.context.data.pages.location_list.location_list_items
+    evaluate: _scope => _scope.context.data.pages.insparamtype_list.insparamtype_list_items
   }]),
-  name: 'location-list-page'
+  name: 'insparamtype-list-page'
 };
 
-export { location_list_page as default };
+export { insparamtype_list_page as default };

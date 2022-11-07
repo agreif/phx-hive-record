@@ -10,17 +10,7 @@
 msgid ""
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:63
+#: lib/hiverec/handler/translation.ex:133
 #, elixir-autogen, elixir-format
-msgid "Forgot your password"
-msgstr ""
-
-#: lib/hiverec/handler/translation.ex:61
-#, elixir-autogen, elixir-format
-msgid "Password"
-msgstr ""
-
-#: lib/hiverec/handler/translation.ex:62
-#, elixir-autogen, elixir-format
-msgid "Register"
+msgid "Preferences"
 msgstr ""

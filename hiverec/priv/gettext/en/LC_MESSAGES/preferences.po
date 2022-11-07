@@ -8,20 +8,10 @@
 ## to merge POT files into PO files.
 msgid ""
 msgstr ""
-"Language: de\n"
+"Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:72
+#: lib/hiverec/handler/translation.ex:133
 #, elixir-autogen, elixir-format
-msgid "Cancel"
-msgstr "Abbrechen"
-
-#: lib/hiverec/handler/translation.ex:74
-#, elixir-autogen, elixir-format
-msgid "Delete"
-msgstr "Löschen"
-
-#: lib/hiverec/handler/translation.ex:73
-#, elixir-autogen, elixir-format
-msgid "Save"
-msgstr "Speichern"
+msgid "Preferences"
+msgstr ""

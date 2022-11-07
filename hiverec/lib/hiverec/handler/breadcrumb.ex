@@ -125,6 +125,27 @@ defmodule Hiverec.Handler.Breadcrumb do
     }
   end
 
+  def preferences(conn) do
+    %Data.Breadcrumb{
+      breadcrumb_items: [
+        preferences_item(conn)
+      ]
+    }
+  end
+
+  def insparamtype_add(conn) do
+    %Data.Breadcrumb{
+      breadcrumb_items: [
+        preferences_item(conn),
+        %Data.BreadcrumbItem{
+          label: nil,
+          label_msgid: "Add Inspection Param",
+          url: nil,
+          data_url: nil
+        }
+      ]
+    }
+  end
   # breadcrumb items
 
   defp locations_item(conn) do
@@ -153,4 +174,17 @@ defmodule Hiverec.Handler.Breadcrumb do
       data_url: Routes.page_url(conn, :get_hive_detail_data, hive)
     }
   end
+
+  defp preferences_item(conn) do
+    %Data.BreadcrumbItem{
+      label: nil,
+      label_msgid: "Preferences",
+      url: Routes.page_url(conn, :get_preferences_page),
+      data_url: Routes.page_url(conn, :get_preferences_data)
+    }
+  end
+
+
+
+
 end

@@ -40,6 +40,8 @@ defmodule Hiverec.Handler.Hive do
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
+          preferences_url: Routes.page_url(conn, :get_preferences_page),
+          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
           logout: Common.gen_logout_data(conn),
           breadcrumb: Breadcrumb.hive_add(conn, location),
           pages: %Data.Pages{
@@ -53,7 +55,7 @@ defmodule Hiverec.Handler.Hive do
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
-          translations: translate_domains(["menu", "hive", "form"], locale)
+          translations: translate_domains(["menu", "preferences", "hive", "form"], locale)
     }
   end
 
@@ -92,6 +94,8 @@ defmodule Hiverec.Handler.Hive do
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: HistoryState.hive(conn, hive),
+          preferences_url: Routes.page_url(conn, :get_preferences_page),
+          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
           logout: Common.gen_logout_data(conn),
           breadcrumb: Breadcrumb.hive(conn, location, hive),
           pages: %Data.Pages{
@@ -103,7 +107,7 @@ defmodule Hiverec.Handler.Hive do
               insparam_names: Enum.map(insparam_types, &(&1.name))
             }
           },
-          translations: translate_domains(["menu", "hive", "inspection", "form"], locale)
+          translations: translate_domains(["menu", "preferences", "hive", "inspection", "form"], locale)
     }
   end
 
@@ -138,6 +142,8 @@ defmodule Hiverec.Handler.Hive do
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
+          preferences_url: Routes.page_url(conn, :get_preferences_page),
+          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
           logout: Common.gen_logout_data(conn),
           breadcrumb: Breadcrumb.hive_update(conn, location, hive),
           pages: %Data.Pages{
@@ -151,7 +157,7 @@ defmodule Hiverec.Handler.Hive do
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
-          translations: translate_domains(["menu", "hive", "form"], locale)
+          translations: translate_domains(["menu", "preferences", "hive", "form"], locale)
     }
   end
 

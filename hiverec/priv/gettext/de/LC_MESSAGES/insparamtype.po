@@ -1,0 +1,82 @@
+## "msgid"s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove "msgid"s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use "mix gettext.extract --merge" or "mix gettext.merge"
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: de\n"
+"Plural-Forms: nplurals=2\n"
+
+#: lib/hiverec/handler/translation.ex:144
+#, elixir-autogen, elixir-format
+msgid "Edit Inspection Param"
+msgstr "Durchsicht Parameter bearbeiten"
+
+#: lib/hiverec/handler/translation.ex:142
+#, elixir-autogen, elixir-format
+msgid "Inspection Params"
+msgstr "Durchsicht Parameter"
+
+#: lib/hiverec/handler/translation.ex:147
+#, elixir-autogen, elixir-format
+msgid "Name"
+msgstr "Name"
+
+#: lib/hiverec/handler/translation.ex:150
+#, elixir-autogen, elixir-format
+msgid "Options"
+msgstr "Optionen"
+
+#: lib/hiverec/handler/translation.ex:149
+#, elixir-autogen, elixir-format
+msgid "Sort Index"
+msgstr "Reihenfolge"
+
+#: lib/hiverec/handler/translation.ex:148
+#, elixir-autogen, elixir-format
+msgid "Type"
+msgstr "Typ"
+
+#: lib/hiverec/handler/translation.ex:145
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Delete Inspection Param"
+msgstr "Durchsicht Parameter löschen"
+
+#: lib/hiverec/handler/translation.ex:143
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Add Inspection Param"
+msgstr "Durchsicht Parameter hinzufügen"
+
+#: lib/hiverec/handler/translation.ex:146
+#, elixir-autogen, elixir-format, fuzzy
+msgid "Do you really want to delete this Inspection Param?"
+msgstr "Möchten Sie diesen Durchsicht Parameter wirklich löschen?"
+
+#: lib/hiverec/handler/translation.ex:158
+#, elixir-autogen, elixir-format
+msgid "bool"
+msgstr "Ja/Nein"
+
+#: lib/hiverec/handler/translation.ex:157
+#, elixir-autogen, elixir-format
+msgid "dropdown"
+msgstr "Aufklapp-Menu"
+
+#: lib/hiverec/handler/translation.ex:159
+#, elixir-autogen, elixir-format
+msgid "int"
+msgstr "Ganze Zahl"
+
+#: lib/hiverec/handler/translation.ex:160
+#, elixir-autogen, elixir-format
+msgid "string"
+msgstr "Kurzer Text"
+
+#: lib/hiverec/handler/translation.ex:161
+#, elixir-autogen, elixir-format
+msgid "text"
+msgstr "Langer Text"

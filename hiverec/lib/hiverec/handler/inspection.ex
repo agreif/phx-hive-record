@@ -4,12 +4,11 @@ defmodule Hiverec.Handler.Inspection do
   """
 
   alias Hiverec.{Data, Model, Handler}
-  alias Hiverec.Handler.{Common, Breadcrumb}       # {Common, HistoryState, Breadcrumb}
+  alias Hiverec.Handler.{Common, Breadcrumb}
   alias HiverecWeb.Router.Helpers, as: Routes
   alias Phoenix.HTML.Tag
   alias Ecto.Changeset
   import Hiverec.Handler.Translation
-#  import Hiverec.Datable
 
   defp insparam_form_fields(user_id) do
     Model.InsparamType.get_insparam_types(user_id)
@@ -47,6 +46,8 @@ defmodule Hiverec.Handler.Inspection do
           locale: locale,
           navbar: Common.gen_navbar(conn, :hive_list),
           history_state: nil,
+          preferences_url: Routes.page_url(conn, :get_preferences_page),
+          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
           logout: Common.gen_logout_data(conn),
           breadcrumb: Breadcrumb.inspection_add(conn, location, hive),
           pages: %Data.Pages{
@@ -60,7 +61,7 @@ defmodule Hiverec.Handler.Inspection do
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
-          translations: translate_domains(["menu", "inspection", "form"], locale)
+          translations: translate_domains(["menu", "preferences", "inspection", "form"], locale)
     }
   end
 
@@ -103,6 +104,8 @@ defmodule Hiverec.Handler.Inspection do
           locale: locale,
           navbar: Common.gen_navbar(conn, :location_list),
           history_state: nil,
+          preferences_url: Routes.page_url(conn, :get_preferences_page),
+          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
           logout: Common.gen_logout_data(conn),
           breadcrumb: Breadcrumb.inspection_update(conn, location, hive),
           pages: %Data.Pages{
@@ -116,7 +119,7 @@ defmodule Hiverec.Handler.Inspection do
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
-          translations: translate_domains(["menu", "inspection", "form"], locale)
+          translations: translate_domains(["menu", "preferences", "inspection", "form"], locale)
     }
   end
 

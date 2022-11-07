@@ -49,3 +49,10 @@ defimpl Hiverec.Datable, for: Hiverec.Model.Inspection do
       Hiverec.Datable.to_data(Map.from_struct(inspection)))
   end
 end
+
+defimpl Hiverec.Datable, for: Hiverec.Model.InsparamType do
+  def to_data(insparam_type) do
+    struct(Hiverec.Data.InsparamType,
+      Hiverec.Datable.to_data(Map.from_struct(insparam_type)))
+  end
+end

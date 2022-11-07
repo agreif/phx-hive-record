@@ -23,6 +23,8 @@ defmodule HiverecWeb.Router do
     pipe_through [:browser, :set_riot_tags, :require_authenticated_user, :fetch_user_id]
     get  "/", PageController, :get_index
     post "/logout", PageController, :post_logout
+    get "/preferences", PageController, :get_preferences_page
+    get "/preferences/data", PageController, :get_preferences_data
 
     get  "/location_list", PageController, :get_location_list_page
     get  "/location_list/data", PageController, :get_location_list_data
@@ -48,6 +50,11 @@ defmodule HiverecWeb.Router do
     post "/inspection_update/:inspection_id/data", PageController, :post_inspection_update_data
     post "/inspection_delete/:inspection_id/data", PageController, :post_inspection_delete_data
 
+    get  "/insparamtype_add/data", PageController, :get_insparamtype_add_data
+    post "/insparamtype_add/data", PageController, :post_insparamtype_add_data
+    get  "/insparamtype_update/:insparamtype_id/data", PageController, :get_insparamtype_update_data
+    post "/insparamtype_update/:insparamtype_id/data", PageController, :post_insparamtype_update_data
+    post "/insparamtype_delete/:insparamtype_id/data", PageController, :post_insparamtype_delete_data
   end
 
   scope "/", HiverecWeb do
@@ -69,7 +76,8 @@ defmodule HiverecWeb.Router do
       |> assign(:riot_pages, [:error,
                              :location_list, :location_add_update, :location_detail,
                              :hive_add_update, :hive_detail,
-                             :inspection_add_update
+                             :inspection_add_update,
+                             :preferences, :insparamtype_add_update,
                              ])
     else
       conn

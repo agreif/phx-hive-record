@@ -10,12 +10,17 @@
 msgid ""
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:31
+#: lib/hiverec/handler/translation.ex:50
 #, elixir-autogen, elixir-format
 msgid "Locations"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:32
+#: lib/hiverec/handler/translation.ex:51
 #, elixir-autogen, elixir-format
 msgid "Hives"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:52
+#, elixir-autogen, elixir-format
+msgid "Inspection Params"
 msgstr ""

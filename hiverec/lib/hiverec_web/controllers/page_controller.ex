@@ -12,6 +12,15 @@ defmodule HiverecWeb.PageController do
     get_location_list_page(conn, params)
   end
 
+  # preferences
+
+  def get_preferences_page(conn, _params),
+    do: render(conn, :page,
+          data_url: Routes.page_url(conn, :get_preferences_data))
+
+  def get_preferences_data(conn, _params),
+    do: json(conn, Handler.Preferences.gen_data(conn))
+
   # location
 
   def get_location_list_page(conn, _params),
@@ -83,6 +92,23 @@ defmodule HiverecWeb.PageController do
 
   def post_inspection_update_data(conn, %{"inspection_id" => inspection_id_str} = params),
     do: json(conn, Handler.Inspection.process_post_update(conn, String.to_integer(inspection_id_str), params))
+
+  # inspection param type
+
+  def get_insparamtype_add_data(conn, _params),
+    do: json(conn, Handler.Preferences.gen_insparamtype_add_data(conn))
+
+  def post_insparamtype_add_data(_conn, _params),
+    do: :foo #json(conn, Handler.InsparamType.process_post_add(conn, params))
+
+  def post_insparamtype_delete_data(_conn, %{"insparamtype_id" => _insparamtype_id_str}),
+    do: :foo #json(conn, Handler.InsparamType.process_post_delete(conn, String.to_integer(insparamtype_id_str)))
+
+  def get_insparamtype_update_data(_conn, %{"insparamtype_id" => _insparamtype_id_str}),
+    do: :foo #json(conn, Handler.InsparamType.process_get_update(conn, String.to_integer(insparamtype_id_str)))
+
+  def post_insparamtype_update_data(_conn, %{"insparamtype_id" => _insparamtype_id_str} = _params),
+    do: :foo #json(conn, Handler.InsparamType.process_post_update(conn, String.to_integer(insparamtype_id_str), params))
 
   # register
 

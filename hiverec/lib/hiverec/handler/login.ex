@@ -59,6 +59,8 @@ defmodule Hiverec.Handler.Login do
           history_state: %Data.HistoryState{
             title: "Login",
             url: Routes.page_url(conn, :get_login_page)},
+          preferences_url: nil,
+          preferences_data_url: nil,
           logout: nil,
           breadcrumb: nil,
           pages: %Data.Pages{
