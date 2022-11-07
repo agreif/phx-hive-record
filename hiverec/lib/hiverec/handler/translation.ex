@@ -14,9 +14,28 @@ defmodule Hiverec.Handler.Translation do
     end)
   end
 
+  def translate_domain_keys(domains, locale) do
+    domains
+    |> Enum.reduce(%{}, fn domain, acc ->
+      Map.merge(acc,
+        translate_keys(domain, locale)
+      )
+    end)
+  end
+
   defp translate_texts(domain, texts_en, locale) do
     texts_en
     |> Map.new(fn k ->
+      {k,
+       Gettext.with_locale(locale,
+         fn -> Gettext.dgettext(HiverecWeb.Gettext, domain, k) end)
+      }
+    end)
+  end
+
+  defp translate_keys(domain, locale) do
+    keys_en(domain)
+    |> Map.new(fn {k, _} ->
       {k,
        Gettext.with_locale(locale,
          fn -> Gettext.dgettext(HiverecWeb.Gettext, domain, k) end)
@@ -30,6 +49,7 @@ defmodule Hiverec.Handler.Translation do
       [
         dgettext(@menu_domain, "Locations"),
         dgettext(@menu_domain, "Hives"),
+        dgettext(@menu_domain, "Inspection Params"),
       ]
     end)
   end
@@ -102,6 +122,43 @@ defmodule Hiverec.Handler.Translation do
         dgettext(@inspection_domain, "Delete Inspection"),
         dgettext(@inspection_domain, "Edit Inspection"),
         dgettext(@inspection_domain, "Do you really want to delete this Inspection?"),
+      ]
+    end)
+  end
+
+  @insparamtype_domain "preferences"
+  defp texts_en(@insparamtype_domain = _domain) do
+    Gettext.with_locale("en", fn ->
+      [
+        dgettext(@insparamtype_domain, "Preferences"),
+      ]
+    end)
+  end
+
+  @insparamtype_domain "insparamtype"
+  defp texts_en(@insparamtype_domain = _domain) do
+    Gettext.with_locale("en", fn ->
+      [
+        dgettext(@insparamtype_domain, "Inspection Params"),
+        dgettext(@insparamtype_domain, "Add Inspection Param"),
+        dgettext(@insparamtype_domain, "Edit Inspection Param"),
+        dgettext(@insparamtype_domain, "Delete Inspection Param"),
+        dgettext(@insparamtype_domain, "Do you really want to delete this Inspection Param?"),
+        dgettext(@insparamtype_domain, "Name"),
+        dgettext(@insparamtype_domain, "Type"),
+        dgettext(@insparamtype_domain, "Sort Index"),
+        dgettext(@insparamtype_domain, "Options"),
+      ]
+    end)
+  end
+  defp keys_en(@insparamtype_domain = _domain) do
+    Gettext.with_locale("en", fn ->
+      [
+        {"dropdown", dgettext(@insparamtype_domain, "dropdown")},
+        {"bool", dgettext(@insparamtype_domain, "bool")},
+        {"int", dgettext(@insparamtype_domain, "int")},
+        {"string", dgettext(@insparamtype_domain, "string")},
+        {"text", dgettext(@insparamtype_domain, "text")},
       ]
     end)
   end
