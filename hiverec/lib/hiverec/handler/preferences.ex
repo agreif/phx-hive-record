@@ -72,7 +72,7 @@ defmodule Hiverec.Handler.Preferences do
               csrf_token: Tag.csrf_token_value(form_post_data_url),
             }
           },
-          translations: translate_domains(["menu", "preferences", "insparamtype"], locale) |> Map.merge(translate_domain_keys(["insparamtype"], locale))
+          translations: translate_domains(["menu", "preferences", "insparamtype", "form"], locale) |> Map.merge(translate_domain_keys(["insparamtype"], locale))
     }
   end
 

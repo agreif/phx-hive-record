@@ -3,6 +3,7 @@
     <h2 class="uk-card-title">{context.data.translations[context.data.pages.insparamtype_add_update.title_msgid]}</h2>
     <form id="insparamtype-add-update" class="uk-form-horizontal uk-margin-large">
       <div class="uk-margin">
+
 	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Name']}</label>
 	<div class="uk-form-controls">
           <input type="text" name="name" value="{context.newString(context.data.pages.insparamtype_add_update.form.params.name)}" class="uk-input"/>
@@ -10,6 +11,25 @@
 	    <li each="{msg in context.data.pages.insparamtype_add_update.form.errors.name}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>
 	</div>
+
+	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Type']}</label>
+	<div class="uk-form-controls">
+          <select name="type" class="uk-select">
+            <option each="{option in ['int', 'bool', 'string', 'text', 'dropdown']}" selected="{context.data.pages.insparamtype_add_update.form.params.type == option}">{context.data.translations[option]}</option>
+            </option>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.insparamtype_add_update.form.errors.type}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+	</div>
+
+	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Options']}</label>
+	<div class="uk-form-controls">
+          <input type="text" name="options" value="{context.newString(context.data.pages.insparamtype_add_update.form.params.options)}" class="uk-input"/>
+	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
+	    <li each="{msg in context.data.pages.insparamtype_add_update.form.errors.options}"><span class="uk-text-danger">{msg}</span></li>
+	  </ul>
+	</div>
+
       </div>
       <div class="uk-text-center">
         <button onclick="{cancel}" class="uk-button uk-button-default" type="button">{context.data.translations['Cancel']}</button>

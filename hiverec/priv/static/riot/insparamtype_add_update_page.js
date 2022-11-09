@@ -13,7 +13,7 @@ var insparamtype_add_update_page = {
       this.context.refreshDataGet(this.context.data.pages.insparamtype_add_update.form.cancel_data_url);
     }
   },
-  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-card uk-card-default uk-card-body uk-card-hover"><h2 expr0="expr0" class="uk-card-title"> </h2><form id="insparamtype-add-update" class="uk-form-horizontal uk-margin-large"><div class="uk-margin"><label expr1="expr1" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr2="expr2" type="text" name="name" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr3="expr3"></li></ul></div></div><div class="uk-text-center"><button expr5="expr5" class="uk-button uk-button-default" type="button"> </button><button expr6="expr6" class="uk-button uk-button-primary" type="button"> </button></div></form></div>', [{
+  template: (template, expressionTypes, bindingTypes, getComponent) => template('<div class="uk-card uk-card-default uk-card-body uk-card-hover"><h2 expr0="expr0" class="uk-card-title"> </h2><form id="insparamtype-add-update" class="uk-form-horizontal uk-margin-large"><div class="uk-margin"><label expr1="expr1" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr2="expr2" type="text" name="name" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr3="expr3"></li></ul></div><label expr5="expr5" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><select name="type" class="uk-select"><option expr6="expr6"></option></select><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr7="expr7"></li></ul></div><label expr9="expr9" class="uk-form-label" for="form-horizontal-text"> </label><div class="uk-form-controls"><input expr10="expr10" type="text" name="options" class="uk-input"/><ul class="uk-list uk-list-collapse uk-margin-remove-top"><li expr11="expr11"></li></ul></div></div><div class="uk-text-center"><button expr13="expr13" class="uk-button uk-button-default" type="button"> </button><button expr14="expr14" class="uk-button uk-button-primary" type="button"> </button></div></form></div>', [{
     redundantAttribute: 'expr0',
     selector: '[expr0]',
     expressions: [{
@@ -60,6 +60,85 @@ var insparamtype_add_update_page = {
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
+      evaluate: _scope => _scope.context.data.translations['Type']
+    }]
+  }, {
+    type: bindingTypes.EACH,
+    getKey: null,
+    condition: null,
+    template: template(' ', [{
+      expressions: [{
+        type: expressionTypes.TEXT,
+        childNodeIndex: 0,
+        evaluate: _scope => _scope.context.data.translations[_scope.option]
+      }, {
+        type: expressionTypes.ATTRIBUTE,
+        name: 'selected',
+        evaluate: _scope => _scope.context.data.pages.insparamtype_add_update.form.params.type == _scope.option
+      }]
+    }]),
+    redundantAttribute: 'expr6',
+    selector: '[expr6]',
+    itemName: 'option',
+    indexName: null,
+    evaluate: _scope => ['int', 'bool', 'string', 'text', 'dropdown']
+  }, {
+    type: bindingTypes.EACH,
+    getKey: null,
+    condition: null,
+    template: template('<span expr8="expr8" class="uk-text-danger"> </span>', [{
+      redundantAttribute: 'expr8',
+      selector: '[expr8]',
+      expressions: [{
+        type: expressionTypes.TEXT,
+        childNodeIndex: 0,
+        evaluate: _scope => _scope.msg
+      }]
+    }]),
+    redundantAttribute: 'expr7',
+    selector: '[expr7]',
+    itemName: 'msg',
+    indexName: null,
+    evaluate: _scope => _scope.context.data.pages.insparamtype_add_update.form.errors.type
+  }, {
+    redundantAttribute: 'expr9',
+    selector: '[expr9]',
+    expressions: [{
+      type: expressionTypes.TEXT,
+      childNodeIndex: 0,
+      evaluate: _scope => _scope.context.data.translations['Options']
+    }]
+  }, {
+    redundantAttribute: 'expr10',
+    selector: '[expr10]',
+    expressions: [{
+      type: expressionTypes.VALUE,
+      evaluate: _scope => _scope.context.newString(_scope.context.data.pages.insparamtype_add_update.form.params.options)
+    }]
+  }, {
+    type: bindingTypes.EACH,
+    getKey: null,
+    condition: null,
+    template: template('<span expr12="expr12" class="uk-text-danger"> </span>', [{
+      redundantAttribute: 'expr12',
+      selector: '[expr12]',
+      expressions: [{
+        type: expressionTypes.TEXT,
+        childNodeIndex: 0,
+        evaluate: _scope => _scope.msg
+      }]
+    }]),
+    redundantAttribute: 'expr11',
+    selector: '[expr11]',
+    itemName: 'msg',
+    indexName: null,
+    evaluate: _scope => _scope.context.data.pages.insparamtype_add_update.form.errors.options
+  }, {
+    redundantAttribute: 'expr13',
+    selector: '[expr13]',
+    expressions: [{
+      type: expressionTypes.TEXT,
+      childNodeIndex: 0,
       evaluate: _scope => _scope.context.data.translations['Cancel']
     }, {
       type: expressionTypes.EVENT,
@@ -67,8 +146,8 @@ var insparamtype_add_update_page = {
       evaluate: _scope => _scope.cancel
     }]
   }, {
-    redundantAttribute: 'expr6',
-    selector: '[expr6]',
+    redundantAttribute: 'expr14',
+    selector: '[expr14]',
     expressions: [{
       type: expressionTypes.TEXT,
       childNodeIndex: 0,
