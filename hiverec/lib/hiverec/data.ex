@@ -223,9 +223,9 @@ defmodule Hiverec.Data.HiveDetailPage do
   """
   @derive Jason.Encoder
   @enforce_keys [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url,
-                :insparam_names]
+                :insparam_types]
   defstruct [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url,
-            :insparam_names]
+            :insparam_types]
 end
 
 defmodule Hiverec.Data.HiveDetailPage.InspectionListItem do
@@ -245,8 +245,8 @@ defmodule Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem do
   inspection param item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:type, :value, :sort_index]
-  defstruct [:type, :value, :sort_index]
+  @enforce_keys [:type, :value]
+  defstruct [:type, :value]
 end
 
 
@@ -276,8 +276,8 @@ defmodule Hiverec.Data.PreferencesPage.InsparamtypeListItem do
   inspection param type list item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:insparamtype, :post_insparamtype_delete_data_url, :csrf_token]
-  defstruct [:insparamtype, :post_insparamtype_delete_data_url, :csrf_token]
+  @enforce_keys [:insparamtype, :get_insparamtype_update_data_url, :post_insparamtype_delete_data_url, :csrf_token]
+  defstruct [:insparamtype, :get_insparamtype_update_data_url, :post_insparamtype_delete_data_url, :csrf_token]
 end
 
 defmodule Hiverec.Data.InsparamType do

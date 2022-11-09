@@ -12,6 +12,6 @@ defmodule Hiverec.Repo.Migrations.CreateInsparamTypes do
       timestamps()
     end
 
-    create index(:insparam_types, [:user_id, :name])
+    create index(:insparam_types, [:user_id, :name], unique: true)
   end
 end

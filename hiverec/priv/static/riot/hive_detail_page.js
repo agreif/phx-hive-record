@@ -142,14 +142,14 @@ var hive_detail_page = {
       expressions: [{
         type: expressionTypes.TEXT,
         childNodeIndex: 0,
-        evaluate: _scope => _scope.name
+        evaluate: _scope => _scope.ipt.name
       }]
     }]),
     redundantAttribute: 'expr12',
     selector: '[expr12]',
-    itemName: 'name',
+    itemName: 'ipt',
     indexName: null,
-    evaluate: _scope => _scope.context.data.pages.hive_detail.insparam_names
+    evaluate: _scope => _scope.context.data.pages.hive_detail.insparam_types
   }, {
     redundantAttribute: 'expr13',
     selector: '[expr13]',
@@ -166,7 +166,7 @@ var hive_detail_page = {
     type: bindingTypes.EACH,
     getKey: null,
     condition: null,
-    template: template('<td class="uk-table-link"><a expr15="expr15" class="uk-link-reset"> </a></td><td expr16="expr16" class="uk-table-link"></td><td class="uk-width-small"><button expr18="expr18" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: trash"></span></button><button expr19="expr19" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: pencil"></span></button></td>', [{
+    template: template('<td class="uk-table-link"><a expr15="expr15" class="uk-link-reset"> </a></td><td expr16="expr16"></td><td class="uk-width-small"><button expr18="expr18" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: trash"></span></button><button expr19="expr19" class="uk-float-right uk-button uk-button-link" uk-tooltip><span uk-icon="icon: pencil"></span></button></td>', [{
       redundantAttribute: 'expr15',
       selector: '[expr15]',
       expressions: [{
@@ -183,12 +183,18 @@ var hive_detail_page = {
       getKey: null,
       condition: null,
       template: template('<a expr17="expr17" class="uk-link-reset"> </a>', [{
+        expressions: [{
+          type: expressionTypes.ATTRIBUTE,
+          name: 'class',
+          evaluate: _scope => ['uk-table-link ', _scope.ipt.type == 'text' ? 'textarea-wrap' : ''].join('')
+        }]
+      }, {
         redundantAttribute: 'expr17',
         selector: '[expr17]',
         expressions: [{
           type: expressionTypes.TEXT,
           childNodeIndex: 0,
-          evaluate: _scope => _scope.insparam_item.value
+          evaluate: _scope => _scope.inspection_list_item.insparam_items[_scope.ipt.id] ? _scope.inspection_list_item.insparam_items[_scope.ipt.id].value : ''
         }, {
           type: expressionTypes.EVENT,
           name: 'onclick',
@@ -197,9 +203,9 @@ var hive_detail_page = {
       }]),
       redundantAttribute: 'expr16',
       selector: '[expr16]',
-      itemName: 'insparam_item',
+      itemName: 'ipt',
       indexName: null,
-      evaluate: _scope => _scope.inspection_list_item.insparam_items
+      evaluate: _scope => _scope.context.data.pages.hive_detail.insparam_types
     }, {
       redundantAttribute: 'expr18',
       selector: '[expr18]',

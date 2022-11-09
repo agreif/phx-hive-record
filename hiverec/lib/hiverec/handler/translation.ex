@@ -148,6 +148,7 @@ defmodule Hiverec.Handler.Translation do
         dgettext(@insparamtype_domain, "Type"),
         dgettext(@insparamtype_domain, "Sort Index"),
         dgettext(@insparamtype_domain, "Options"),
+        dgettext(@insparamtype_domain, "Options (comma separated)"),
       ]
     end)
   end

@@ -48,7 +48,7 @@ defmodule Hiverec.Model.Inspection do
     end
   end
 
-  def get_value(attrs, insparam_type) do
+  defp get_value(attrs, insparam_type) do
     str = Map.get(attrs, to_string(insparam_type.id))
     case insparam_type.type do
       "int" -> Integer.parse(str) |> Tuple.to_list |> Enum.at(0)
@@ -84,20 +84,31 @@ defmodule Hiverec.Model.Inspection do
   def update_inspection(inspection_id, attrs, user_id) do
     {inspection, hive, location, insparams} = get_inspection_with_hive_and_location(inspection_id, user_id)
     tuples = Model.Insparam.get_insparams_with_types(inspection_id, user_id)
-    insparam_types = for {_, ipt} <- tuples, do: ipt
+    insparam_types = Model.InsparamType.get_insparam_types(user_id)
     changeset =
       Model.Inspection.changeset(inspection, attrs)
       |> Model.Insparam.validate_fields(attrs, insparam_types)
     if changeset.valid? do
       Repo.transaction(fn ->
+        # update inspection
         {:ok, _} = Repo.update(changeset)
+        # update persisted insparams
         tuples
         |> Enum.each(fn {ip, ipt} ->
-                      value = get_value(attrs, ipt)
-                      change(ip)
-                      |> put_change(:value, %{"value" => value})
-                      |> Repo.update
-                    end)
+          value = get_value(attrs, ipt)
+          change(ip)
+          |> put_change(:value, %{"value" => value})
+          |> Repo.update
+        end)
+        # insert missing insparams
+        insparam_types
+        |> Enum.reject(fn ipt ->
+          Enum.find(tuples, fn {_, ipt2} -> ipt.id == ipt2.id end)
+        end)
+        |> Enum.each(fn ipt ->
+          value = get_value(attrs, ipt)
+          Model.Insparam.create_insparam(inspection, ipt, value)
+        end)
       end)
       {{:ok, inspection}, hive, location}
     else

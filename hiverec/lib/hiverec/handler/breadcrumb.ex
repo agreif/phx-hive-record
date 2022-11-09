@@ -146,6 +146,21 @@ defmodule Hiverec.Handler.Breadcrumb do
       ]
     }
   end
+
+  def insparamtype_update(conn) do
+    %Data.Breadcrumb{
+      breadcrumb_items: [
+        preferences_item(conn),
+        %Data.BreadcrumbItem{
+          label: nil,
+          label_msgid: "Edit Inspection Param",
+          url: nil,
+          data_url: nil
+        }
+      ]
+    }
+  end
+
   # breadcrumb items
 
   defp locations_item(conn) do

@@ -17,6 +17,18 @@ defmodule Hiverec.Model.InsparamType do
 
   @doc false
   def changeset(insparam_type, attrs) do
+    # convert options to a map
+    attrs =
+      case {Map.get(attrs, "type"), Map.get(attrs, "options")} do
+        {"dropdown", nil} -> attrs
+        {"dropdown", str} ->
+          values = String.split(String.trim(str), [","], trim: true) |> Enum.map(&String.trim/1)
+          case values do
+            [] -> %{attrs | "options" => nil}
+            _ -> %{attrs | "options" => %{"values" => values}}
+          end
+        _ -> %{attrs | "options" => nil}
+      end
     insparam_type
     |> cast(attrs, [:type, :name, :options])
     |> validate_required([:type, :name])
@@ -32,6 +44,32 @@ defmodule Hiverec.Model.InsparamType do
         order_by: :sort_index
       )
     )
+  end
+
+  def get_insparam_type(insparamtype_id, user_id) do
+    Model.InsparamType
+    |> Repo.get_by!([id: insparamtype_id, user_id: user_id])
+  end
+
+  def create_insparam_type(attrs, user_id) do
+    Model.InsparamType.changeset(%Model.InsparamType{}, attrs)
+    |> put_change(:user_id, user_id)
+    |> Repo.insert
+  end
+
+  def update_insparam_type(insparamtype_id, attrs, user_id) do
+    insparam_type = get_insparam_type(insparamtype_id, user_id)
+    changeset = Model.InsparamType.changeset(insparam_type, attrs)
+    if changeset.valid? do
+      Repo.update(changeset)
+    else
+      {:error, changeset}
+    end
+  end
+
+  def delete_insparam_type(insparamtype_id, user_id) do
+    get_insparam_type(insparamtype_id, user_id)
+    |> Repo.delete
   end
 
   def insert_alex_types() do

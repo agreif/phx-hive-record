@@ -72,15 +72,27 @@ defmodule Hiverec.Handler.Hive do
     inspection_list_items =
       inspection_tuples
       |> Enum.map(fn {inspection, insparams} ->
-      insparam_items = Enum.map(insparams,
-      fn insparam ->
+
+      insparam_items = Enum.reduce(insparams, %{},
+      fn insparam, acc ->
         insparam_type = Enum.find(insparam_types, fn ipt -> insparam.insparam_type_id == ipt.id end)
-        %Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem{
+        insparam_item = %Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem{
           type: insparam_type.type,
           value: Map.get(insparam.value, "value"),
-          sort_index: insparam_type.sort_index
         }
-      end) |> Enum.sort_by(&(&1.sort_index))
+        Map.put(acc, insparam_type.id, insparam_item)
+      end)
+
+      # insparam_items = Enum.map(insparams,
+      # fn insparam ->
+      #   insparam_type = Enum.find(insparam_types, fn ipt -> insparam.insparam_type_id == ipt.id end)
+      #   %Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem{
+      #     type: insparam_type.type,
+      #     value: Map.get(insparam.value, "value"),
+      #     #sort_index: insparam_type.sort_index
+      #   }
+      # end)
+
       post_data_url = Routes.page_url(conn, :post_inspection_delete_data, inspection)
       %Data.HiveDetailPage.InspectionListItem{
         inspection: to_data(inspection),
@@ -104,7 +116,7 @@ defmodule Hiverec.Handler.Hive do
               get_hive_update_data_url: Routes.page_url(conn, :get_hive_update_data, hive),
               inspection_list_items: inspection_list_items,
               get_inspection_add_data_url: Routes.page_url(conn, :get_inspection_add_data, hive),
-              insparam_names: Enum.map(insparam_types, &(&1.name))
+              insparam_types: to_data(insparam_types)
             }
           },
           translations: translate_domains(["menu", "preferences", "hive", "inspection", "form"], locale)

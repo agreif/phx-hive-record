@@ -39,7 +39,7 @@
     <thead>
       <tr>
         <th >{context.data.translations['Date']}</th>
-        <th each="{name in context.data.pages.hive_detail.insparam_names}">{name}</th>
+        <th each="{ipt in context.data.pages.hive_detail.insparam_types}">{ipt.name}</th>
         <th class="uk-align-right">
           <button onclick="{addInspection}" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" title="{context.data.translations['Add Inspection']}" uk-tooltip>
             <span uk-icon="icon: plus"/>
@@ -52,8 +52,8 @@
         <td class="uk-table-link">
 	  <a onclick="{(e) => editInspection(e, inspection_list_item)}" class="uk-link-reset">{inspection_list_item.inspection.date}</a>
 	</td>
-        <td class="uk-table-link" each="{insparam_item in inspection_list_item.insparam_items}">
-	  <a onclick="{(e) => editInspection(e, inspection_list_item)}" class="uk-link-reset">{insparam_item.value}</a>
+        <td class="uk-table-link {ipt.type == 'text' ? 'textarea-wrap' : ''}" each="{ipt in context.data.pages.hive_detail.insparam_types}">
+	  <a onclick="{(e) => editInspection(e, inspection_list_item)}" class="uk-link-reset">{inspection_list_item.insparam_items[ipt.id] ? inspection_list_item.insparam_items[ipt.id].value : ''}</a>
 	</td>
 	<td class="uk-width-small">
 	  <button uk-toggle="target: #modal-inspection-really-delete-{inspection_list_item.inspection.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Inspection']}" uk-tooltip >

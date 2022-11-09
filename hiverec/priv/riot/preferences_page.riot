@@ -40,7 +40,9 @@
 	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">{context.data.translations[item.insparamtype.type]}</a>
 	          </td>
                   <td class="uk-table-link">
-	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">{item.insparamtype.options ? item.insparamtype.options.values : ""}</a>
+	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">
+                      <span class="textarea-wrap">{item.insparamtype.options ? item.insparamtype.options.values.join('\n') : ""}</span>
+                    </a>
 	          </td>
                   <td class="uk-table-link">
 	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">{item.insparamtype.sort_index}</a>
@@ -91,6 +93,16 @@
 	addInsparamtype() {
 	    this.context.refreshDataGet(this.context.data.pages.preferences.get_insparamtype_add_data_url)
 	},
+
+	deleteInsparamtype(event, item) {
+	    this.context.refreshDataPost(item.post_insparamtype_delete_data_url, item.csrf_token)
+	},
+
+	editInsparamtype(event, item) {
+	    event.preventDefault()
+	    this.context.refreshDataGet(item.get_insparamtype_update_data_url)
+	},
+
     }
   </script>
 </preferences-page>

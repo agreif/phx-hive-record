@@ -9,22 +9,23 @@
           <input type="text" name="name" value="{context.newString(context.data.pages.insparamtype_add_update.form.params.name)}" class="uk-input"/>
 	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
 	    <li each="{msg in context.data.pages.insparamtype_add_update.form.errors.name}"><span class="uk-text-danger">{msg}</span></li>
+	    <li each="{msg in context.data.pages.insparamtype_add_update.form.errors.user_id}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>
 	</div>
 
 	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Type']}</label>
 	<div class="uk-form-controls">
           <select name="type" class="uk-select">
-            <option each="{option in ['int', 'bool', 'string', 'text', 'dropdown']}" selected="{context.data.pages.insparamtype_add_update.form.params.type == option}">{context.data.translations[option]}</option>
+            <option each="{option in ['', 'int', 'bool', 'string', 'text', 'dropdown']}" value="{option}" selected="{context.data.pages.insparamtype_add_update.form.params.type == option}">{context.data.translations[option]}</option>
             </option>
 	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
 	    <li each="{msg in context.data.pages.insparamtype_add_update.form.errors.type}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>
 	</div>
 
-	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Options']}</label>
+	<label class="uk-form-label" for="form-horizontal-text">{context.data.translations['Options (comma separated)']}</label>
 	<div class="uk-form-controls">
-          <input type="text" name="options" value="{context.newString(context.data.pages.insparamtype_add_update.form.params.options)}" class="uk-input"/>
+          <input type="text" name="options" value="{context.newString(context.data.pages.insparamtype_add_update.form.params.options ? context.data.pages.insparamtype_add_update.form.params.options.values : '')}" class="uk-input"/>
 	  <ul class="uk-list uk-list-collapse uk-margin-remove-top">
 	    <li each="{msg in context.data.pages.insparamtype_add_update.form.errors.options}"><span class="uk-text-danger">{msg}</span></li>
 	  </ul>

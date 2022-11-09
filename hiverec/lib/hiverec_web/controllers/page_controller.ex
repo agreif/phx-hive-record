@@ -98,17 +98,17 @@ defmodule HiverecWeb.PageController do
   def get_insparamtype_add_data(conn, _params),
     do: json(conn, Handler.Preferences.gen_insparamtype_add_data(conn))
 
-  def post_insparamtype_add_data(_conn, _params),
-    do: :foo #json(conn, Handler.InsparamType.process_post_add(conn, params))
+  def post_insparamtype_add_data(conn, params),
+    do: json(conn, Handler.Preferences.process_post_add(conn, params))
 
-  def post_insparamtype_delete_data(_conn, %{"insparamtype_id" => _insparamtype_id_str}),
-    do: :foo #json(conn, Handler.InsparamType.process_post_delete(conn, String.to_integer(insparamtype_id_str)))
+  def post_insparamtype_delete_data(conn, %{"insparamtype_id" => insparamtype_id_str}),
+    do: json(conn, Handler.Preferences.process_post_delete(conn, String.to_integer(insparamtype_id_str)))
 
-  def get_insparamtype_update_data(_conn, %{"insparamtype_id" => _insparamtype_id_str}),
-    do: :foo #json(conn, Handler.InsparamType.process_get_update(conn, String.to_integer(insparamtype_id_str)))
+  def get_insparamtype_update_data(conn, %{"insparamtype_id" => insparamtype_id_str}),
+    do: json(conn, Handler.Preferences.process_get_update(conn, String.to_integer(insparamtype_id_str)))
 
-  def post_insparamtype_update_data(_conn, %{"insparamtype_id" => _insparamtype_id_str} = _params),
-    do: :foo #json(conn, Handler.InsparamType.process_post_update(conn, String.to_integer(insparamtype_id_str), params))
+  def post_insparamtype_update_data(conn, %{"insparamtype_id" => insparamtype_id_str} = params),
+    do: json(conn, Handler.Preferences.process_post_update(conn, String.to_integer(insparamtype_id_str), params))
 
   # register
 
