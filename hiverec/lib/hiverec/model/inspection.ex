@@ -60,12 +60,17 @@ defmodule Hiverec.Model.Inspection do
   end
 
   def delete_inspection(inspection_id, user_id) do
-    {inspection, hive, _} = get_inspection_with_hive_and_location(inspection_id, user_id)
-    result = Repo.delete(inspection)
+    {inspection, hive, _, _} = get_inspection_with_hive_location_insparams(inspection_id, user_id)
+    result =
+      Repo.transaction(fn ->
+        from(ip in Model.Insparam, where: ip.inspection_id == ^inspection_id)
+        |> Repo.delete_all
+        Repo.delete(inspection)
+      end)
     {result, hive}
   end
 
-  def get_inspection_with_hive_and_location(inspection_id, user_id) do
+  def get_inspection_with_hive_location_insparams(inspection_id, user_id) do
     query = from l in Model.Location,
       join: h in Model.Hive,
       on: l.id == h.location_id,
@@ -82,7 +87,7 @@ defmodule Hiverec.Model.Inspection do
   end
 
   def update_inspection(inspection_id, attrs, user_id) do
-    {inspection, hive, location, insparams} = get_inspection_with_hive_and_location(inspection_id, user_id)
+    {inspection, hive, location, insparams} = get_inspection_with_hive_location_insparams(inspection_id, user_id)
     tuples = Model.Insparam.get_insparams_with_types(inspection_id, user_id)
     insparam_types = Model.InsparamType.get_insparam_types(user_id)
     changeset =

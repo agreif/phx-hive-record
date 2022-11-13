@@ -71,7 +71,7 @@ defmodule Hiverec.Handler.Inspection do
 
   def process_get_update(conn, inspection_id) when is_integer(inspection_id) do
     user_id = Common.user_id(conn)
-    {inspection, hive, location, insparams} = Model.Inspection.get_inspection_with_hive_and_location(inspection_id, user_id)
+    {inspection, hive, location, insparams} = Model.Inspection.get_inspection_with_hive_location_insparams(inspection_id, user_id)
 
     gen_update_data(conn, inspection, hive, location, insparams, insparam_form_fields(user_id))
   end

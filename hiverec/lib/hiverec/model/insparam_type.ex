@@ -68,8 +68,13 @@ defmodule Hiverec.Model.InsparamType do
   end
 
   def delete_insparam_type(insparamtype_id, user_id) do
-    get_insparam_type(insparamtype_id, user_id)
-    |> Repo.delete
+    insparamtype = get_insparam_type(insparamtype_id, user_id)
+    Repo.transaction(fn ->
+      Repo.delete_all(
+        from(ip in Model.Insparam, where: ip.insparam_type_id == ^insparamtype_id)
+      )
+      Repo.delete(insparamtype)
+    end)
   end
 
   def insert_alex_types() do
