@@ -68,6 +68,7 @@ defmodule Hiverec.Model.Hive do
       |> Enum.filter(&(elem(&1, 2))) # only valid inspections
       |> Enum.group_by(&(elem(&1, 2)), &(elem(&1, 3)))
       |> Map.to_list
+      |> Enum.map(fn {i, ips} -> {i, Enum.filter(ips, & &1)} end)
       |> Enum.sort_by(fn {i, _} -> i.date end, :asc)
     {hive, location, inspection_tuples}
   end
