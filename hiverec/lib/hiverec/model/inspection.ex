@@ -82,7 +82,10 @@ defmodule Hiverec.Model.Inspection do
       select: [i, h, l, ip]
     rows = Repo.all(query)
     [inspection, hive, location, _] = rows |> List.first
-    insparams = rows |> Enum.map(&(Enum.at(&1, 3)))
+    insparams =
+      rows
+      |> Enum.map(&(Enum.at(&1, 3)))
+      |> Enum.filter(& &1)
     {inspection, hive, location, insparams}
   end
 
