@@ -55,6 +55,7 @@ defmodule Hiverec.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:doctor, "~> 0.19.0", only: :dev},
+      {:sobelow, "~> 0.8", only: :dev},
       {:say, ">= 0.0.0"}
     ]
   end
@@ -73,7 +74,8 @@ defmodule Hiverec.MixProject do
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.deploy": ["esbuild default --minify", "phx.digest"],
       credo: "credo --strict",
-      dialyzer: "dialyzer --ignore-exit-status"
+      dialyzer: "dialyzer --ignore-exit-status",
+      sobelow: "sobelow --verbose"
     ]
   end
 end
