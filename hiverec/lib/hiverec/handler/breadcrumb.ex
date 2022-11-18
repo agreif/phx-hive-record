@@ -198,8 +198,4 @@ defmodule Hiverec.Handler.Breadcrumb do
       data_url: Routes.page_url(conn, :get_preferences_data)
     }
   end
-
-
-
-
 end

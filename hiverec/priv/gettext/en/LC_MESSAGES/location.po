@@ -11,42 +11,42 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:85
+#: lib/hiverec/handler/translation.ex:89
 #, elixir-autogen, elixir-format
 msgid "Add Location"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:88
+#: lib/hiverec/handler/translation.ex:92
 #, elixir-autogen, elixir-format
 msgid "Delete Location"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:89
+#: lib/hiverec/handler/translation.ex:93
 #, elixir-autogen, elixir-format
 msgid "Do you really want to delete this Location?"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:87
+#: lib/hiverec/handler/translation.ex:91
 #, elixir-autogen, elixir-format
 msgid "Edit Location"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:83
+#: lib/hiverec/handler/translation.ex:87
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Locations"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:90
+#: lib/hiverec/handler/translation.ex:94
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:84
+#: lib/hiverec/handler/translation.ex:88
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Location"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:86
+#: lib/hiverec/handler/translation.ex:90
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Location Detail"
 msgstr ""

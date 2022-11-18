@@ -3,12 +3,30 @@ defmodule Hiverec.Data do
   Top of the Data hierarchy that is sent to the client as JSON.
   """
   @derive Jason.Encoder
-  @enforce_keys [:data_url, :locale, :navbar, :history_state,
-                 :preferences_url, :preferences_data_url,
-                 :logout, :breadcrumb, :pages, :translations]
-  defstruct [:data_url, :locale, :navbar, :history_state,
-             :preferences_url, :preferences_data_url,
-             :logout, :breadcrumb, :pages, :translations]
+  @enforce_keys [
+    :data_url,
+    :locale,
+    :navbar,
+    :history_state,
+    :preferences_url,
+    :preferences_data_url,
+    :logout,
+    :breadcrumb,
+    :pages,
+    :translations
+  ]
+  defstruct [
+    :data_url,
+    :locale,
+    :navbar,
+    :history_state,
+    :preferences_url,
+    :preferences_data_url,
+    :logout,
+    :breadcrumb,
+    :pages,
+    :translations
+  ]
 end
 
 defmodule Hiverec.Data.HistoryState do
@@ -19,7 +37,6 @@ defmodule Hiverec.Data.HistoryState do
   @enforce_keys [:title, :url]
   defstruct [:title, :url]
 end
-
 
 defmodule Hiverec.Data.Navbar do
   @moduledoc """
@@ -39,7 +56,6 @@ defmodule Hiverec.Data.Navitem do
   defstruct [:label, :label_msgid, :is_active, :is_header, :url, :data_url, :dropdown_items]
 end
 
-
 defmodule Hiverec.Data.Breadcrumb do
   @moduledoc """
   Breadcrumb.
@@ -58,7 +74,6 @@ defmodule Hiverec.Data.BreadcrumbItem do
   defstruct [:label, :label_msgid, :url, :data_url]
 end
 
-
 defmodule Hiverec.Data.Logout do
   @moduledoc """
   Logout data.
@@ -67,8 +82,6 @@ defmodule Hiverec.Data.Logout do
   @enforce_keys [:post_url, :csrf_token]
   defstruct [:post_url, :csrf_token]
 end
-
-
 
 defmodule Hiverec.Data.Form do
   @moduledoc """
@@ -86,7 +99,6 @@ defmodule Hiverec.Data.FormField do
   @derive Jason.Encoder
   @enforce_keys [:id, :name, :type, :options]
   defstruct [:id, :name, :type, :options]
-
 end
 
 defmodule Hiverec.Data.Pages do
@@ -94,11 +106,19 @@ defmodule Hiverec.Data.Pages do
   Container for all available pages.
   """
   @derive Jason.Encoder
-  defstruct [:error, :location_list, :location_add_update, :location_detail,
-             :hive_add_update, :hive_detail,
-             :inspection_add_update,
-             :preferences, :insparamtype_add_update,
-             :register, :login]
+  defstruct [
+    :error,
+    :location_list,
+    :location_add_update,
+    :location_detail,
+    :hive_add_update,
+    :hive_detail,
+    :inspection_add_update,
+    :preferences,
+    :insparamtype_add_update,
+    :register,
+    :login
+  ]
 end
 
 defmodule Hiverec.Data.RegisterPage do
@@ -128,7 +148,6 @@ defmodule Hiverec.Data.ErrorPage do
   defstruct [:message]
 end
 
-
 defmodule Hiverec.Data.LocationListPage do
   @moduledoc """
   Location list page.
@@ -138,14 +157,23 @@ defmodule Hiverec.Data.LocationListPage do
   defstruct [:location_list_items, :get_location_add_data_url]
 end
 
-
 defmodule Hiverec.Data.LocationListPage.LocationListItem do
   @moduledoc """
   location list item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:location, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
-  defstruct [:location, :get_location_detail_data_url, :post_location_delete_data_url, :csrf_token]
+  @enforce_keys [
+    :location,
+    :get_location_detail_data_url,
+    :post_location_delete_data_url,
+    :csrf_token
+  ]
+  defstruct [
+    :location,
+    :get_location_detail_data_url,
+    :post_location_delete_data_url,
+    :csrf_token
+  ]
 end
 
 defmodule Hiverec.Data.Location do
@@ -172,17 +200,19 @@ defmodule Hiverec.Data.Inspection do
   defstruct [:id, :date]
 end
 
-
-
 defmodule Hiverec.Data.LocationDetailPage do
   @moduledoc """
   Location detail page.
   """
   @derive Jason.Encoder
-  @enforce_keys [:location, :get_location_update_data_url, :hive_list_items, :get_hive_add_data_url]
+  @enforce_keys [
+    :location,
+    :get_location_update_data_url,
+    :hive_list_items,
+    :get_hive_add_data_url
+  ]
   defstruct [:location, :get_location_update_data_url, :hive_list_items, :get_hive_add_data_url]
 end
-
 
 defmodule Hiverec.Data.LocationDetailPage.HiveListItem do
   @moduledoc """
@@ -193,10 +223,6 @@ defmodule Hiverec.Data.LocationDetailPage.HiveListItem do
   defstruct [:hive, :get_hive_detail_data_url, :post_hive_delete_data_url, :csrf_token]
 end
 
-
-
-
-
 defmodule Hiverec.Data.LocationAddUpdatePage do
   @moduledoc """
   Page to add Location item.
@@ -205,7 +231,6 @@ defmodule Hiverec.Data.LocationAddUpdatePage do
   @enforce_keys [:title_msgid, :form, :csrf_token]
   defstruct [:title_msgid, :form, :csrf_token]
 end
-
 
 defmodule Hiverec.Data.HiveAddUpdatePage do
   @moduledoc """
@@ -216,16 +241,25 @@ defmodule Hiverec.Data.HiveAddUpdatePage do
   defstruct [:title_msgid, :form, :csrf_token]
 end
 
-
 defmodule Hiverec.Data.HiveDetailPage do
   @moduledoc """
   Hive detail page.
   """
   @derive Jason.Encoder
-  @enforce_keys [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url,
-                :insparam_types]
-  defstruct [:hive, :get_hive_update_data_url, :inspection_list_items, :get_inspection_add_data_url,
-            :insparam_types]
+  @enforce_keys [
+    :hive,
+    :get_hive_update_data_url,
+    :inspection_list_items,
+    :get_inspection_add_data_url,
+    :insparam_types
+  ]
+  defstruct [
+    :hive,
+    :get_hive_update_data_url,
+    :inspection_list_items,
+    :get_inspection_add_data_url,
+    :insparam_types
+  ]
 end
 
 defmodule Hiverec.Data.HiveDetailPage.InspectionListItem do
@@ -233,12 +267,21 @@ defmodule Hiverec.Data.HiveDetailPage.InspectionListItem do
   inspection list item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url,
-                 :insparam_items]
-  defstruct [:inspection, :post_inspection_delete_data_url, :csrf_token, :get_inspection_update_data_url,
-             :insparam_items]
+  @enforce_keys [
+    :inspection,
+    :post_inspection_delete_data_url,
+    :csrf_token,
+    :get_inspection_update_data_url,
+    :insparam_items
+  ]
+  defstruct [
+    :inspection,
+    :post_inspection_delete_data_url,
+    :csrf_token,
+    :get_inspection_update_data_url,
+    :insparam_items
+  ]
 end
-
 
 defmodule Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem do
   @moduledoc """
@@ -249,8 +292,6 @@ defmodule Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem do
   defstruct [:type, :value]
 end
 
-
-
 defmodule Hiverec.Data.InspectionAddUpdatePage do
   @moduledoc """
   Page to add Inspection item.
@@ -259,8 +300,6 @@ defmodule Hiverec.Data.InspectionAddUpdatePage do
   @enforce_keys [:title_msgid, :form, :csrf_token]
   defstruct [:title_msgid, :form, :csrf_token]
 end
-
-
 
 defmodule Hiverec.Data.PreferencesPage do
   @moduledoc """
@@ -276,8 +315,18 @@ defmodule Hiverec.Data.PreferencesPage.InsparamtypeListItem do
   inspection param type list item.
   """
   @derive Jason.Encoder
-  @enforce_keys [:insparamtype, :get_insparamtype_update_data_url, :post_insparamtype_delete_data_url, :csrf_token]
-  defstruct [:insparamtype, :get_insparamtype_update_data_url, :post_insparamtype_delete_data_url, :csrf_token]
+  @enforce_keys [
+    :insparamtype,
+    :get_insparamtype_update_data_url,
+    :post_insparamtype_delete_data_url,
+    :csrf_token
+  ]
+  defstruct [
+    :insparamtype,
+    :get_insparamtype_update_data_url,
+    :post_insparamtype_delete_data_url,
+    :csrf_token
+  ]
 end
 
 defmodule Hiverec.Data.InsparamType do
@@ -288,7 +337,6 @@ defmodule Hiverec.Data.InsparamType do
   defstruct [:id, :name, :type, :sort_index, :options]
 end
 
-
 defmodule Hiverec.Data.InsparamtypeAddUpdatePage do
   @moduledoc """
   Page to add Inspection Param Type.
@@ -297,4 +345,3 @@ defmodule Hiverec.Data.InsparamtypeAddUpdatePage do
   @enforce_keys [:title_msgid, :form, :csrf_token]
   defstruct [:title_msgid, :form, :csrf_token]
 end
-

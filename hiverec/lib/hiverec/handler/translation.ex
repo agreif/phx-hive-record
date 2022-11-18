@@ -8,7 +8,8 @@ defmodule Hiverec.Handler.Translation do
   def translate_domains(domains, locale) do
     domains
     |> Enum.reduce(%{}, fn domain, acc ->
-      Map.merge(acc,
+      Map.merge(
+        acc,
         translate_texts(domain, texts_en(domain), locale)
       )
     end)
@@ -17,7 +18,8 @@ defmodule Hiverec.Handler.Translation do
   def translate_domain_keys(domains, locale) do
     domains
     |> Enum.reduce(%{}, fn domain, acc ->
-      Map.merge(acc,
+      Map.merge(
+        acc,
         translate_keys(domain, locale)
       )
     end)
@@ -27,9 +29,10 @@ defmodule Hiverec.Handler.Translation do
     texts_en
     |> Map.new(fn k ->
       {k,
-       Gettext.with_locale(locale,
-         fn -> Gettext.dgettext(HiverecWeb.Gettext, domain, k) end)
-      }
+       Gettext.with_locale(
+         locale,
+         fn -> Gettext.dgettext(HiverecWeb.Gettext, domain, k) end
+       )}
     end)
   end
 
@@ -37,9 +40,10 @@ defmodule Hiverec.Handler.Translation do
     keys_en(domain)
     |> Map.new(fn {k, _} ->
       {k,
-       Gettext.with_locale(locale,
-         fn -> Gettext.dgettext(HiverecWeb.Gettext, domain, k) end)
-      }
+       Gettext.with_locale(
+         locale,
+         fn -> Gettext.dgettext(HiverecWeb.Gettext, domain, k) end
+       )}
     end)
   end
 
@@ -49,7 +53,7 @@ defmodule Hiverec.Handler.Translation do
       [
         dgettext(@menu_domain, "Locations"),
         dgettext(@menu_domain, "Hives"),
-        dgettext(@menu_domain, "Inspection Params"),
+        dgettext(@menu_domain, "Inspection Params")
       ]
     end)
   end
@@ -60,7 +64,7 @@ defmodule Hiverec.Handler.Translation do
       [
         dgettext(@login_domain, "Password"),
         dgettext(@login_domain, "Register"),
-        dgettext(@login_domain, "Forgot your password"),
+        dgettext(@login_domain, "Forgot your password")
       ]
     end)
   end
@@ -71,7 +75,7 @@ defmodule Hiverec.Handler.Translation do
       [
         dgettext(@form_domain, "Cancel"),
         dgettext(@form_domain, "Save"),
-        dgettext(@form_domain, "Delete"),
+        dgettext(@form_domain, "Delete")
       ]
     end)
   end
@@ -87,7 +91,7 @@ defmodule Hiverec.Handler.Translation do
         dgettext(@location_domain, "Edit Location"),
         dgettext(@location_domain, "Delete Location"),
         dgettext(@location_domain, "Do you really want to delete this Location?"),
-        dgettext(@location_domain, "Name"),
+        dgettext(@location_domain, "Name")
       ]
     end)
   end
@@ -107,7 +111,7 @@ defmodule Hiverec.Handler.Translation do
         dgettext(@hive_domain, "Queen"),
         dgettext(@hive_domain, "Queen Year"),
         dgettext(@hive_domain, "Is Queen Marked?"),
-        dgettext(@hive_domain, "Notes"),
+        dgettext(@hive_domain, "Notes")
       ]
     end)
   end
@@ -121,7 +125,7 @@ defmodule Hiverec.Handler.Translation do
         dgettext(@inspection_domain, "Add Inspection"),
         dgettext(@inspection_domain, "Delete Inspection"),
         dgettext(@inspection_domain, "Edit Inspection"),
-        dgettext(@inspection_domain, "Do you really want to delete this Inspection?"),
+        dgettext(@inspection_domain, "Do you really want to delete this Inspection?")
       ]
     end)
   end
@@ -130,7 +134,7 @@ defmodule Hiverec.Handler.Translation do
   defp texts_en(@insparamtype_domain = _domain) do
     Gettext.with_locale("en", fn ->
       [
-        dgettext(@insparamtype_domain, "Preferences"),
+        dgettext(@insparamtype_domain, "Preferences")
       ]
     end)
   end
@@ -148,10 +152,11 @@ defmodule Hiverec.Handler.Translation do
         dgettext(@insparamtype_domain, "Type"),
         dgettext(@insparamtype_domain, "Sort Index"),
         dgettext(@insparamtype_domain, "Options"),
-        dgettext(@insparamtype_domain, "Options (comma separated)"),
+        dgettext(@insparamtype_domain, "Options (comma separated)")
       ]
     end)
   end
+
   defp keys_en(@insparamtype_domain = _domain) do
     Gettext.with_locale("en", fn ->
       [
@@ -159,9 +164,8 @@ defmodule Hiverec.Handler.Translation do
         {"bool", dgettext(@insparamtype_domain, "bool")},
         {"int", dgettext(@insparamtype_domain, "int")},
         {"string", dgettext(@insparamtype_domain, "string")},
-        {"text", dgettext(@insparamtype_domain, "text")},
+        {"text", dgettext(@insparamtype_domain, "text")}
       ]
     end)
   end
-
 end

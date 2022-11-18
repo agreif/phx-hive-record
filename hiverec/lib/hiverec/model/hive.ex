@@ -33,56 +33,67 @@ defmodule Hiverec.Model.Hive do
   end
 
   def get_hives_with_locations(user_id) do
-    query = from l in Model.Location,
-      join: h in Model.Hive,
-      on: l.id == h.location_id,
-      where: l.user_id == ^user_id,
-      select: [h, l],
-      order_by: [l.name, h.name]
+    query =
+      from l in Model.Location,
+        join: h in Model.Hive,
+        on: l.id == h.location_id,
+        where: l.user_id == ^user_id,
+        select: [h, l],
+        order_by: [l.name, h.name]
+
     Repo.all(query)
   end
 
   def get_hive_with_location(hive_id, user_id) do
-    query = from l in Model.Location,
-      join: h in Model.Hive,
-      on: l.id == h.location_id,
-      where: h.id == ^hive_id and l.user_id == ^user_id,
-      select: {h, l}
-    Repo.all(query) |> List.first
+    query =
+      from l in Model.Location,
+        join: h in Model.Hive,
+        on: l.id == h.location_id,
+        where: h.id == ^hive_id and l.user_id == ^user_id,
+        select: {h, l}
+
+    Repo.all(query) |> List.first()
   end
 
   def get_hive_with_location_and_inspections(hive_id, user_id) do
-    query = from l in Model.Location,
-      left_join: h in Model.Hive,
-      on: l.id == h.location_id,
-      left_join: i in Model.Inspection,
-      on: h.id == i.hive_id,
-      left_join: ip in Model.Insparam,
-      on: i.id == ip.inspection_id,
-      where: h.id == ^hive_id and l.user_id == ^user_id,
-      select: {h, l, i, ip}
+    query =
+      from l in Model.Location,
+        left_join: h in Model.Hive,
+        on: l.id == h.location_id,
+        left_join: i in Model.Inspection,
+        on: h.id == i.hive_id,
+        left_join: ip in Model.Insparam,
+        on: i.id == ip.inspection_id,
+        where: h.id == ^hive_id and l.user_id == ^user_id,
+        select: {h, l, i, ip}
+
     rows = Repo.all(query)
-    {hive, location, _, _} = rows |> List.first
+    {hive, location, _, _} = rows |> List.first()
+
     inspection_tuples =
       rows
-      |> Enum.filter(&(elem(&1, 2))) # only valid inspections
-      |> Enum.group_by(&(elem(&1, 2)), &(elem(&1, 3)))
-      |> Map.to_list
+      # only valid inspections
+      |> Enum.filter(&elem(&1, 2))
+      |> Enum.group_by(&elem(&1, 2), &elem(&1, 3))
+      |> Map.to_list()
       |> Enum.map(fn {i, ips} -> {i, Enum.filter(ips, & &1)} end)
       |> Enum.sort_by(fn {i, _} -> i.date end, :asc)
+
     {hive, location, inspection_tuples}
   end
 
   def create_hive(attrs, location_id, user_id) do
     location = Model.Location.get_location(location_id, user_id)
+
     Model.Hive.changeset(%Model.Hive{}, attrs)
     |> put_change(:location_id, location.id)
-    |> Repo.insert
+    |> Repo.insert()
   end
 
   def update_hive(hive_id, attrs, user_id) do
     {hive, location} = get_hive_with_location(hive_id, user_id)
     changeset = Model.Hive.changeset(hive, attrs)
+
     if changeset.valid? do
       {Repo.update(changeset), location}
     else

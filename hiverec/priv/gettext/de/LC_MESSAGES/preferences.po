@@ -11,7 +11,7 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:133
+#: lib/hiverec/handler/translation.ex:137
 #, elixir-autogen, elixir-format
 msgid "Preferences"
 msgstr "Einstellungen"

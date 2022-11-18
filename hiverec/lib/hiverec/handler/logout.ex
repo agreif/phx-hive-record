@@ -15,5 +15,4 @@ defmodule Hiverec.Handler.Logout do
   def process_logout(conn) do
     Common.renew_session(conn)
   end
-
 end

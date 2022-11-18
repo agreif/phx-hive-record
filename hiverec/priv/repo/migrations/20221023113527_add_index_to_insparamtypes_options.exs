@@ -8,5 +8,4 @@ defmodule Hiverec.Repo.Migrations.AddIndexToInsparamtypesOptions do
   def down do
     execute("DROP INDEX insparam_types_options")
   end
-
 end

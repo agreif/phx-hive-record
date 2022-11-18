@@ -10,62 +10,62 @@
 msgid ""
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:101
+#: lib/hiverec/handler/translation.ex:105
 #, elixir-autogen, elixir-format
 msgid "Add Hive"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:106
+#: lib/hiverec/handler/translation.ex:110
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:100
+#: lib/hiverec/handler/translation.ex:104
 #, elixir-autogen, elixir-format
 msgid "Hive"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:104
+#: lib/hiverec/handler/translation.ex:108
 #, elixir-autogen, elixir-format
 msgid "Delete Hive"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:105
+#: lib/hiverec/handler/translation.ex:109
 #, elixir-autogen, elixir-format
 msgid "Do you really want to delete this Hive?"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:102
+#: lib/hiverec/handler/translation.ex:106
 #, elixir-autogen, elixir-format
 msgid "Hive Detail"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:99
+#: lib/hiverec/handler/translation.ex:103
 #, elixir-autogen, elixir-format
 msgid "Hives"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:103
+#: lib/hiverec/handler/translation.ex:107
 #, elixir-autogen, elixir-format
 msgid "Edit Hive"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:108
+#: lib/hiverec/handler/translation.ex:112
 #, elixir-autogen, elixir-format
 msgid "Queen Year"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:109
+#: lib/hiverec/handler/translation.ex:113
 #, elixir-autogen, elixir-format
 msgid "Is Queen Marked?"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:107
+#: lib/hiverec/handler/translation.ex:111
 #, elixir-autogen, elixir-format
 msgid "Queen"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:110
+#: lib/hiverec/handler/translation.ex:114
 #, elixir-autogen, elixir-format
 msgid "Notes"
 msgstr ""

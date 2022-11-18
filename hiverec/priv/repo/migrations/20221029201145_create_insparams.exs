@@ -18,5 +18,4 @@ defmodule Hiverec.Repo.Migrations.CreateInsparams do
 
     drop table(:insparams)
   end
-
 end

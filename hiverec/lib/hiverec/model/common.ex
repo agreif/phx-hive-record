@@ -29,10 +29,12 @@ defmodule Hiverec.Model.Common do
   def validate_int(str) do
     data = %{}
     types = %{value: :integer}
-    changeset = {data, types}
-    |> cast(%{"value" => str}, Map.keys(types), empty_values: [])
-    |> validate_number(:value, [])
+
+    changeset =
+      {data, types}
+      |> cast(%{"value" => str}, Map.keys(types), empty_values: [])
+      |> validate_number(:value, [])
+
     changeset.errors[:value]
   end
-
 end

@@ -18,7 +18,7 @@ defimpl Hiverec.Datable, for: Any do
         vv -> {k, vv}
       end
     end)
-    |> Map.new
+    |> Map.new()
   end
 
   def to_data([head | tail]) do
@@ -26,33 +26,40 @@ defimpl Hiverec.Datable, for: Any do
   end
 
   def to_data(value), do: value
-
 end
 
 defimpl Hiverec.Datable, for: Hiverec.Model.Location do
   def to_data(location) do
-    struct(Hiverec.Data.Location,
-      Hiverec.Datable.to_data(Map.from_struct(location)))
+    struct(
+      Hiverec.Data.Location,
+      Hiverec.Datable.to_data(Map.from_struct(location))
+    )
   end
 end
 
 defimpl Hiverec.Datable, for: Hiverec.Model.Hive do
   def to_data(hive) do
-    struct(Hiverec.Data.Hive,
-      Hiverec.Datable.to_data(Map.from_struct(hive)))
+    struct(
+      Hiverec.Data.Hive,
+      Hiverec.Datable.to_data(Map.from_struct(hive))
+    )
   end
 end
 
 defimpl Hiverec.Datable, for: Hiverec.Model.Inspection do
   def to_data(inspection) do
-    struct(Hiverec.Data.Inspection,
-      Hiverec.Datable.to_data(Map.from_struct(inspection)))
+    struct(
+      Hiverec.Data.Inspection,
+      Hiverec.Datable.to_data(Map.from_struct(inspection))
+    )
   end
 end
 
 defimpl Hiverec.Datable, for: Hiverec.Model.InsparamType do
   def to_data(insparam_type) do
-    struct(Hiverec.Data.InsparamType,
-      Hiverec.Datable.to_data(Map.from_struct(insparam_type)))
+    struct(
+      Hiverec.Data.InsparamType,
+      Hiverec.Datable.to_data(Map.from_struct(insparam_type))
+    )
   end
 end

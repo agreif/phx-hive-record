@@ -11,17 +11,17 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:50
+#: lib/hiverec/handler/translation.ex:54
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Locations"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:51
+#: lib/hiverec/handler/translation.ex:55
 #, elixir-autogen, elixir-format
 msgid "Hives"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:52
+#: lib/hiverec/handler/translation.ex:56
 #, elixir-autogen, elixir-format
 msgid "Inspection Params"
 msgstr ""

@@ -21,19 +21,23 @@ defmodule Hiverec.Model.Insparam do
     |> assoc_constraint(:inspection)
     |> assoc_constraint(:insparam_type)
     |> put_change(:value, %{"value" => value})
-    |> Repo.insert
+    |> Repo.insert()
   end
 
   def validate_fields(changeset, attrs, insparam_types) do
     insparam_types
     |> Enum.map(fn ipt ->
       str = Map.get(attrs, to_string(ipt.id))
+
       case ipt.type do
-        "int" -> case Model.Common.validate_int(str) do
-                   nil -> nil
-                   tuple -> {ipt.id, tuple}
-                 end
-        _ -> nil
+        "int" ->
+          case Model.Common.validate_int(str) do
+            nil -> nil
+            tuple -> {ipt.id, tuple}
+          end
+
+        _ ->
+          nil
       end
     end)
     |> Enum.filter(& &1)
@@ -43,11 +47,13 @@ defmodule Hiverec.Model.Insparam do
   end
 
   def get_insparams_with_types(inspection_id, user_id) do
-    query = from ip in Model.Insparam,
-      join: ipt in Model.InsparamType,
-      on: ip.insparam_type_id == ipt.id,
-      where: ip.inspection_id == ^inspection_id and ipt.user_id == ^user_id,
-      select: {ip, ipt}
+    query =
+      from ip in Model.Insparam,
+        join: ipt in Model.InsparamType,
+        on: ip.insparam_type_id == ipt.id,
+        where: ip.inspection_id == ^inspection_id and ipt.user_id == ^user_id,
+        select: {ip, ipt}
+
     Repo.all(query)
   end
 end

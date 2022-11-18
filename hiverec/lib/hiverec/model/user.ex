@@ -30,7 +30,6 @@ defmodule Hiverec.Model.User do
     |> unique_constraint([:login])
   end
 
-
   def get_id_by_login(login) do
     query = from u in Model.User, where: u.login == ^login, select: u.id
     Repo.one(query)
@@ -45,8 +44,8 @@ defmodule Hiverec.Model.User do
       when is_binary(hashed_password) and byte_size(password) > 0 do
     Bcrypt.verify_pass(password, hashed_password)
   end
+
   def valid_password?(_, _) do
     Bcrypt.no_user_verify()
   end
-
 end

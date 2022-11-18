@@ -11,77 +11,77 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:144
+#: lib/hiverec/handler/translation.ex:148
 #, elixir-autogen, elixir-format
 msgid "Edit Inspection Param"
 msgstr "Durchsicht Parameter bearbeiten"
 
-#: lib/hiverec/handler/translation.ex:142
+#: lib/hiverec/handler/translation.ex:146
 #, elixir-autogen, elixir-format
 msgid "Inspection Params"
 msgstr "Durchsicht Parameter"
 
-#: lib/hiverec/handler/translation.ex:147
+#: lib/hiverec/handler/translation.ex:151
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Name"
 
-#: lib/hiverec/handler/translation.ex:150
+#: lib/hiverec/handler/translation.ex:154
 #, elixir-autogen, elixir-format
 msgid "Options"
 msgstr "Optionen"
 
-#: lib/hiverec/handler/translation.ex:149
+#: lib/hiverec/handler/translation.ex:153
 #, elixir-autogen, elixir-format
 msgid "Sort Index"
 msgstr "Reihenfolge"
 
-#: lib/hiverec/handler/translation.ex:148
+#: lib/hiverec/handler/translation.ex:152
 #, elixir-autogen, elixir-format
 msgid "Type"
 msgstr "Typ"
 
-#: lib/hiverec/handler/translation.ex:145
+#: lib/hiverec/handler/translation.ex:149
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Delete Inspection Param"
 msgstr "Durchsicht Parameter löschen"
 
-#: lib/hiverec/handler/translation.ex:143
+#: lib/hiverec/handler/translation.ex:147
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Add Inspection Param"
 msgstr "Durchsicht Parameter hinzufügen"
 
-#: lib/hiverec/handler/translation.ex:146
+#: lib/hiverec/handler/translation.ex:150
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Do you really want to delete this Inspection Param?"
 msgstr "Möchten Sie diesen Durchsicht Parameter wirklich löschen?"
 
-#: lib/hiverec/handler/translation.ex:159
+#: lib/hiverec/handler/translation.ex:164
 #, elixir-autogen, elixir-format
 msgid "bool"
 msgstr "Ja/Nein"
 
-#: lib/hiverec/handler/translation.ex:158
+#: lib/hiverec/handler/translation.ex:163
 #, elixir-autogen, elixir-format
 msgid "dropdown"
 msgstr "Aufklapp-Menu"
 
-#: lib/hiverec/handler/translation.ex:160
+#: lib/hiverec/handler/translation.ex:165
 #, elixir-autogen, elixir-format
 msgid "int"
 msgstr "Ganze Zahl"
 
-#: lib/hiverec/handler/translation.ex:161
+#: lib/hiverec/handler/translation.ex:166
 #, elixir-autogen, elixir-format
 msgid "string"
 msgstr "Kurzer Text"
 
-#: lib/hiverec/handler/translation.ex:162
+#: lib/hiverec/handler/translation.ex:167
 #, elixir-autogen, elixir-format
 msgid "text"
 msgstr "Langer Text"
 
-#: lib/hiverec/handler/translation.ex:151
+#: lib/hiverec/handler/translation.ex:155
 #, elixir-autogen, elixir-format
 msgid "Options (comma separated)"
 msgstr "Optionen (Komma getrennt)"

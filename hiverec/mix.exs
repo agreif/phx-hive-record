@@ -11,7 +11,8 @@ defmodule Hiverec.MixProject do
       compilers: [] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      dialyzer: [plt_add_deps: :transitive]
     ]
   end
 
@@ -52,6 +53,7 @@ defmodule Hiverec.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:bcrypt_elixir, "~> 3.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
       {:say, ">= 0.0.0"}
     ]
   end
@@ -68,7 +70,9 @@ defmodule Hiverec.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"]
+      "assets.deploy": ["esbuild default --minify", "phx.digest"],
+      credo: "credo --strict",
+      dialyzer: "dialyzer --ignore-exit-status"
     ]
   end
 end

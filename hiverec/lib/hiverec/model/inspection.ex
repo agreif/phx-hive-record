@@ -30,13 +30,16 @@ defmodule Hiverec.Model.Inspection do
   def create_inspection(attrs, hive_id, user_id) do
     {hive, _} = Model.Hive.get_hive_with_location(hive_id, user_id)
     insparam_types = Model.InsparamType.get_insparam_types(user_id)
+
     changeset =
       Model.Inspection.changeset(%Model.Inspection{}, attrs)
       |> put_change(:hive_id, hive.id)
       |> Model.Insparam.validate_fields(attrs, insparam_types)
+
     if changeset.valid? do
       Repo.transaction(fn ->
         {:ok, inspection} = Repo.insert(changeset)
+
         insparam_types
         |> Enum.each(fn ipt ->
           value = get_value(attrs, ipt)
@@ -50,8 +53,9 @@ defmodule Hiverec.Model.Inspection do
 
   defp get_value(attrs, insparam_type) do
     str = Map.get(attrs, to_string(insparam_type.id))
+
     case insparam_type.type do
-      "int" -> Integer.parse(str) |> Tuple.to_list |> Enum.at(0)
+      "int" -> Integer.parse(str) |> Tuple.to_list() |> Enum.at(0)
       "bool" -> if(str, do: true, else: false)
       "string" -> str
       "text" -> str
@@ -61,41 +65,52 @@ defmodule Hiverec.Model.Inspection do
 
   def delete_inspection(inspection_id, user_id) do
     {inspection, hive, _, _} = get_inspection_with_hive_location_insparams(inspection_id, user_id)
+
     result =
       Repo.transaction(fn ->
         from(ip in Model.Insparam, where: ip.inspection_id == ^inspection_id)
-        |> Repo.delete_all
+        |> Repo.delete_all()
+
         Repo.delete(inspection)
       end)
+
     {result, hive}
   end
 
   def get_inspection_with_hive_location_insparams(inspection_id, user_id) do
-    query = from l in Model.Location,
-      join: h in Model.Hive,
-      on: l.id == h.location_id,
-      join: i in Model.Inspection,
-      on: h.id == i.hive_id,
-      left_join: ip in Model.Insparam,
-      on: i.id == ip.inspection_id,
-      where: i.id == ^inspection_id and l.user_id == ^user_id,
-      select: [i, h, l, ip]
+    query =
+      from l in Model.Location,
+        join: h in Model.Hive,
+        on: l.id == h.location_id,
+        join: i in Model.Inspection,
+        on: h.id == i.hive_id,
+        left_join: ip in Model.Insparam,
+        on: i.id == ip.inspection_id,
+        where: i.id == ^inspection_id and l.user_id == ^user_id,
+        select: [i, h, l, ip]
+
     rows = Repo.all(query)
-    [inspection, hive, location, _] = rows |> List.first
+    [inspection, hive, location, _] = rows |> List.first()
+
     insparams =
       rows
-      |> Enum.map(&(Enum.at(&1, 3)))
+      |> Enum.map(&Enum.at(&1, 3))
       |> Enum.filter(& &1)
+
     {inspection, hive, location, insparams}
   end
 
   def update_inspection(inspection_id, attrs, user_id) do
-    {inspection, hive, location, insparams} = get_inspection_with_hive_location_insparams(inspection_id, user_id)
+    {inspection, hive, location, insparams} =
+      get_inspection_with_hive_location_insparams(inspection_id, user_id)
+
     tuples = Model.Insparam.get_insparams_with_types(inspection_id, user_id)
     insparam_types = Model.InsparamType.get_insparam_types(user_id)
+
     changeset =
       Model.Inspection.changeset(inspection, attrs)
       |> Model.Insparam.validate_fields(attrs, insparam_types)
+
     if changeset.valid? do
       Repo.transaction(fn ->
         # update inspection
@@ -104,10 +119,12 @@ defmodule Hiverec.Model.Inspection do
         tuples
         |> Enum.each(fn {ip, ipt} ->
           value = get_value(attrs, ipt)
+
           change(ip)
           |> put_change(:value, %{"value" => value})
-          |> Repo.update
+          |> Repo.update()
         end)
+
         # insert missing insparams
         insparam_types
         |> Enum.reject(fn ipt ->
@@ -118,11 +135,10 @@ defmodule Hiverec.Model.Inspection do
           Model.Insparam.create_insparam(inspection, ipt, value)
         end)
       end)
+
       {{:ok, inspection}, hive, location}
     else
       {{:error, changeset}, hive, location, insparams}
     end
   end
-
-
 end

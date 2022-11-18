@@ -10,17 +10,17 @@
 msgid ""
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:72
+#: lib/hiverec/handler/translation.ex:76
 #, elixir-autogen, elixir-format
 msgid "Cancel"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:74
+#: lib/hiverec/handler/translation.ex:78
 #, elixir-autogen, elixir-format
 msgid "Delete"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:73
+#: lib/hiverec/handler/translation.ex:77
 #, elixir-autogen, elixir-format
 msgid "Save"
 msgstr ""

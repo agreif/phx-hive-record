@@ -11,32 +11,32 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:119
+#: lib/hiverec/handler/translation.ex:123
 #, elixir-autogen, elixir-format
 msgid "Inspections"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:121
+#: lib/hiverec/handler/translation.ex:125
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Add Inspection"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:122
+#: lib/hiverec/handler/translation.ex:126
 #, elixir-autogen, elixir-format
 msgid "Delete Inspection"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:124
+#: lib/hiverec/handler/translation.ex:128
 #, elixir-autogen, elixir-format
 msgid "Do you really want to delete this Inspection?"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:123
+#: lib/hiverec/handler/translation.ex:127
 #, elixir-autogen, elixir-format
 msgid "Edit Inspection"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:120
+#: lib/hiverec/handler/translation.ex:124
 #, elixir-autogen, elixir-format
 msgid "Date"
 msgstr ""

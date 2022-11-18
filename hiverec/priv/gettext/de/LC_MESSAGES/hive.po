@@ -11,62 +11,62 @@ msgstr ""
 "Language: de\n"
 "Plural-Forms: nplurals=2\n"
 
-#: lib/hiverec/handler/translation.ex:101
+#: lib/hiverec/handler/translation.ex:105
 #, elixir-autogen, elixir-format
 msgid "Add Hive"
 msgstr "Bienenstock hinzufügen"
 
-#: lib/hiverec/handler/translation.ex:106
+#: lib/hiverec/handler/translation.ex:110
 #, elixir-autogen, elixir-format
 msgid "Name"
 msgstr "Name"
 
-#: lib/hiverec/handler/translation.ex:100
+#: lib/hiverec/handler/translation.ex:104
 #, elixir-autogen, elixir-format
 msgid "Hive"
 msgstr "Bienenstock"
 
-#: lib/hiverec/handler/translation.ex:104
+#: lib/hiverec/handler/translation.ex:108
 #, elixir-autogen, elixir-format
 msgid "Delete Hive"
 msgstr "Bienenstock löschen"
 
-#: lib/hiverec/handler/translation.ex:105
+#: lib/hiverec/handler/translation.ex:109
 #, elixir-autogen, elixir-format
 msgid "Do you really want to delete this Hive?"
 msgstr "Möchten Sie diesen Bienenstock wirklich löschen?"
 
-#: lib/hiverec/handler/translation.ex:102
+#: lib/hiverec/handler/translation.ex:106
 #, elixir-autogen, elixir-format
 msgid "Hive Detail"
 msgstr "Bienenstock Detail"
 
-#: lib/hiverec/handler/translation.ex:99
+#: lib/hiverec/handler/translation.ex:103
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Hives"
 msgstr "Bienenstöcke"
 
-#: lib/hiverec/handler/translation.ex:103
+#: lib/hiverec/handler/translation.ex:107
 #, elixir-autogen, elixir-format
 msgid "Edit Hive"
 msgstr "Bienenstock bearbeiten"
 
-#: lib/hiverec/handler/translation.ex:108
+#: lib/hiverec/handler/translation.ex:112
 #, elixir-autogen, elixir-format
 msgid "Queen Year"
 msgstr "Königin Jahr"
 
-#: lib/hiverec/handler/translation.ex:109
+#: lib/hiverec/handler/translation.ex:113
 #, elixir-autogen, elixir-format
 msgid "Is Queen Marked?"
 msgstr "Königin ist gezeichnet?"
 
-#: lib/hiverec/handler/translation.ex:107
+#: lib/hiverec/handler/translation.ex:111
 #, elixir-autogen, elixir-format, fuzzy
 msgid "Queen"
 msgstr "Königin"
 
-#: lib/hiverec/handler/translation.ex:110
+#: lib/hiverec/handler/translation.ex:114
 #, elixir-autogen, elixir-format
 msgid "Notes"
 msgstr "Notizen"

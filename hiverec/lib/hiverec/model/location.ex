@@ -36,7 +36,7 @@ defmodule Hiverec.Model.Location do
 
   def get_location(location_id, user_id) do
     Model.Location
-    |> Repo.get_by!([id: location_id, user_id: user_id])
+    |> Repo.get_by!(id: location_id, user_id: user_id)
   end
 
   def get_location_with_hives(location_id, user_id) do
@@ -47,26 +47,27 @@ defmodule Hiverec.Model.Location do
     #   )
     # )
 
-    query = from l in Model.Location,
-      left_join: h in Model.Hive,
-      on: l.id == h.location_id,
-      where: l.id == ^location_id and l.user_id == ^user_id,
-      select: [l, h]
+    query =
+      from l in Model.Location,
+        left_join: h in Model.Hive,
+        on: l.id == h.location_id,
+        where: l.id == ^location_id and l.user_id == ^user_id,
+        select: [l, h]
+
     rows = Repo.all(query)
-    {rows |> List.first |> List.first,
-     Enum.map(rows, &List.last/1) |> Enum.filter(& &1)
-    }
+    {rows |> List.first() |> List.first(), Enum.map(rows, &List.last/1) |> Enum.filter(& &1)}
   end
 
   def create_location(attrs, user_id) do
     Model.Location.changeset(%Model.Location{}, attrs)
     |> put_change(:user_id, user_id)
-    |> Repo.insert
+    |> Repo.insert()
   end
 
   def update_location(location_id, attrs, user_id) do
     location = get_location(location_id, user_id)
     changeset = Model.Location.changeset(location, attrs)
+
     if changeset.valid? do
       Repo.update(changeset)
     else
@@ -76,7 +77,6 @@ defmodule Hiverec.Model.Location do
 
   def delete_location(location_id, user_id) do
     get_location(location_id, user_id)
-    |> Repo.delete
+    |> Repo.delete()
   end
-
 end

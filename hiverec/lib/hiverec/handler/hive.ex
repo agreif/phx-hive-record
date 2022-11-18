@@ -24,8 +24,11 @@ defmodule Hiverec.Handler.Hive do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     result = Model.Hive.create_hive(params, location_id, user_id)
+
     case result do
-      {:ok, _} -> Handler.Location.gen_detail_data(conn, location_id)
+      {:ok, _} ->
+        Handler.Location.gen_detail_data(conn, location_id)
+
       {:error, changeset} ->
         gen_add_data(conn, location_id, params, Common.human_errors(changeset, locale))
     end
@@ -36,26 +39,30 @@ defmodule Hiverec.Handler.Hive do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     location = Model.Location.get_location(location_id, user_id)
-    %Data{data_url: Routes.page_url(conn, :get_hive_add_data, location_id),
-          locale: locale,
-          navbar: Common.gen_navbar(conn, :location_list),
-          history_state: nil,
-          preferences_url: Routes.page_url(conn, :get_preferences_page),
-          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
-          logout: Common.gen_logout_data(conn),
-          breadcrumb: Breadcrumb.hive_add(conn, location),
-          pages: %Data.Pages{
-            hive_add_update: %Data.HiveAddUpdatePage{
-              title_msgid: "Add Hive",
-              form: %Data.Form{post_data_url: form_post_data_url,
-                               cancel_data_url: Routes.page_url(conn, :get_location_detail_data, location_id),
-                               params: params,
-                               errors: errors,
-                               form_fields: nil},
-              csrf_token: Tag.csrf_token_value(form_post_data_url),
-            }
+
+    %Data{
+      data_url: Routes.page_url(conn, :get_hive_add_data, location_id),
+      locale: locale,
+      navbar: Common.gen_navbar(conn, :location_list),
+      history_state: nil,
+      preferences_url: Routes.page_url(conn, :get_preferences_page),
+      preferences_data_url: Routes.page_url(conn, :get_preferences_data),
+      logout: Common.gen_logout_data(conn),
+      breadcrumb: Breadcrumb.hive_add(conn, location),
+      pages: %Data.Pages{
+        hive_add_update: %Data.HiveAddUpdatePage{
+          title_msgid: "Add Hive",
+          form: %Data.Form{
+            post_data_url: form_post_data_url,
+            cancel_data_url: Routes.page_url(conn, :get_location_detail_data, location_id),
+            params: params,
+            errors: errors,
+            form_fields: nil
           },
-          translations: translate_domains(["menu", "preferences", "hive", "form"], locale)
+          csrf_token: Tag.csrf_token_value(form_post_data_url)
+        }
+      },
+      translations: translate_domains(["menu", "preferences", "hive", "form"], locale)
     }
   end
 
@@ -68,58 +75,68 @@ defmodule Hiverec.Handler.Hive do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     insparam_types = Model.InsparamType.get_insparam_types(user_id)
-    {hive, location, inspection_tuples} = Model.Hive.get_hive_with_location_and_inspections(hive_id, user_id)
+
+    {hive, location, inspection_tuples} =
+      Model.Hive.get_hive_with_location_and_inspections(hive_id, user_id)
+
     inspection_list_items =
       inspection_tuples
       |> Enum.map(fn {inspection, insparams} ->
+        insparam_items =
+          Enum.reduce(insparams, %{}, fn insparam, acc ->
+            insparam_type =
+              Enum.find(insparam_types, fn ipt -> insparam.insparam_type_id == ipt.id end)
 
-      insparam_items = Enum.reduce(insparams, %{},
-      fn insparam, acc ->
-        insparam_type = Enum.find(insparam_types, fn ipt -> insparam.insparam_type_id == ipt.id end)
-        insparam_item = %Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem{
-          type: insparam_type.type,
-          value: Map.get(insparam.value, "value"),
+            insparam_item = %Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem{
+              type: insparam_type.type,
+              value: Map.get(insparam.value, "value")
+            }
+
+            Map.put(acc, insparam_type.id, insparam_item)
+          end)
+
+        # insparam_items = Enum.map(insparams,
+        # fn insparam ->
+        #   insparam_type = Enum.find(insparam_types, fn ipt -> insparam.insparam_type_id == ipt.id end)
+        #   %Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem{
+        #     type: insparam_type.type,
+        #     value: Map.get(insparam.value, "value"),
+        #     #sort_index: insparam_type.sort_index
+        #   }
+        # end)
+
+        post_data_url = Routes.page_url(conn, :post_inspection_delete_data, inspection)
+
+        %Data.HiveDetailPage.InspectionListItem{
+          inspection: to_data(inspection),
+          post_inspection_delete_data_url: post_data_url,
+          csrf_token: Tag.csrf_token_value(post_data_url),
+          get_inspection_update_data_url:
+            Routes.page_url(conn, :get_inspection_update_data, inspection),
+          insparam_items: insparam_items
         }
-        Map.put(acc, insparam_type.id, insparam_item)
       end)
 
-      # insparam_items = Enum.map(insparams,
-      # fn insparam ->
-      #   insparam_type = Enum.find(insparam_types, fn ipt -> insparam.insparam_type_id == ipt.id end)
-      #   %Hiverec.Data.HiveDetailPage.InspectionListItem.InsparamItem{
-      #     type: insparam_type.type,
-      #     value: Map.get(insparam.value, "value"),
-      #     #sort_index: insparam_type.sort_index
-      #   }
-      # end)
-
-      post_data_url = Routes.page_url(conn, :post_inspection_delete_data, inspection)
-      %Data.HiveDetailPage.InspectionListItem{
-        inspection: to_data(inspection),
-        post_inspection_delete_data_url: post_data_url,
-        csrf_token: Tag.csrf_token_value(post_data_url),
-        get_inspection_update_data_url: Routes.page_url(conn, :get_inspection_update_data, inspection),
-        insparam_items: insparam_items
-      }
-    end)
-    %Data{data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
-          locale: locale,
-          navbar: Common.gen_navbar(conn, :location_list),
-          history_state: HistoryState.hive(conn, hive),
-          preferences_url: Routes.page_url(conn, :get_preferences_page),
-          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
-          logout: Common.gen_logout_data(conn),
-          breadcrumb: Breadcrumb.hive(conn, location, hive),
-          pages: %Data.Pages{
-            hive_detail: %Data.HiveDetailPage{
-              hive: to_data(hive),
-              get_hive_update_data_url: Routes.page_url(conn, :get_hive_update_data, hive),
-              inspection_list_items: inspection_list_items,
-              get_inspection_add_data_url: Routes.page_url(conn, :get_inspection_add_data, hive),
-              insparam_types: to_data(insparam_types)
-            }
-          },
-          translations: translate_domains(["menu", "preferences", "hive", "inspection", "form"], locale)
+    %Data{
+      data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
+      locale: locale,
+      navbar: Common.gen_navbar(conn, :location_list),
+      history_state: HistoryState.hive(conn, hive),
+      preferences_url: Routes.page_url(conn, :get_preferences_page),
+      preferences_data_url: Routes.page_url(conn, :get_preferences_data),
+      logout: Common.gen_logout_data(conn),
+      breadcrumb: Breadcrumb.hive(conn, location, hive),
+      pages: %Data.Pages{
+        hive_detail: %Data.HiveDetailPage{
+          hive: to_data(hive),
+          get_hive_update_data_url: Routes.page_url(conn, :get_hive_update_data, hive),
+          inspection_list_items: inspection_list_items,
+          get_inspection_add_data_url: Routes.page_url(conn, :get_inspection_add_data, hive),
+          insparam_types: to_data(insparam_types)
+        }
+      },
+      translations:
+        translate_domains(["menu", "preferences", "hive", "inspection", "form"], locale)
     }
   end
 
@@ -137,39 +154,48 @@ defmodule Hiverec.Handler.Hive do
     user_id = Common.user_id(conn)
     locale = Common.locale(conn)
     result = Model.Hive.update_hive(hive_id, params, user_id)
+
     case result do
-      {{:ok, _}, _} -> Handler.Hive.gen_detail_data(conn, hive_id)
+      {{:ok, _}, _} ->
+        Handler.Hive.gen_detail_data(conn, hive_id)
+
       {{:error, changeset}, location} ->
-        gen_update_data(conn,
+        gen_update_data(
+          conn,
           location,
           Changeset.apply_changes(changeset),
-          Common.human_errors(changeset, locale))
+          Common.human_errors(changeset, locale)
+        )
     end
   end
 
   defp gen_update_data(conn, location, hive, errors \\ %{}) do
     form_post_data_url = Routes.page_url(conn, :post_hive_update_data, hive)
     locale = Common.locale(conn)
-    %Data{data_url: Routes.page_url(conn, :get_hive_update_data, hive),
-          locale: locale,
-          navbar: Common.gen_navbar(conn, :location_list),
-          history_state: nil,
-          preferences_url: Routes.page_url(conn, :get_preferences_page),
-          preferences_data_url: Routes.page_url(conn, :get_preferences_data),
-          logout: Common.gen_logout_data(conn),
-          breadcrumb: Breadcrumb.hive_update(conn, location, hive),
-          pages: %Data.Pages{
-            hive_add_update: %Data.HiveAddUpdatePage{
-              title_msgid: "Edit Hive",
-              form: %Data.Form{post_data_url: form_post_data_url,
-                               cancel_data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
-                               params: to_data(hive),
-                               errors: errors,
-                               form_fields: nil},
-              csrf_token: Tag.csrf_token_value(form_post_data_url),
-            }
+
+    %Data{
+      data_url: Routes.page_url(conn, :get_hive_update_data, hive),
+      locale: locale,
+      navbar: Common.gen_navbar(conn, :location_list),
+      history_state: nil,
+      preferences_url: Routes.page_url(conn, :get_preferences_page),
+      preferences_data_url: Routes.page_url(conn, :get_preferences_data),
+      logout: Common.gen_logout_data(conn),
+      breadcrumb: Breadcrumb.hive_update(conn, location, hive),
+      pages: %Data.Pages{
+        hive_add_update: %Data.HiveAddUpdatePage{
+          title_msgid: "Edit Hive",
+          form: %Data.Form{
+            post_data_url: form_post_data_url,
+            cancel_data_url: Routes.page_url(conn, :get_hive_detail_data, hive),
+            params: to_data(hive),
+            errors: errors,
+            form_fields: nil
           },
-          translations: translate_domains(["menu", "preferences", "hive", "form"], locale)
+          csrf_token: Tag.csrf_token_value(form_post_data_url)
+        }
+      },
+      translations: translate_domains(["menu", "preferences", "hive", "form"], locale)
     }
   end
 
@@ -180,10 +206,10 @@ defmodule Hiverec.Handler.Hive do
   def process_post_delete(conn, hive_id) when is_integer(hive_id) do
     user_id = Common.user_id(conn)
     {result, location} = Model.Hive.delete_hive(hive_id, user_id)
+
     case result do
       {:ok, _} -> Handler.Location.gen_detail_data(conn, location.id)
       {:error, _changeset} -> Handler.Location.gen_detail_data(conn, location.id)
     end
   end
-
 end

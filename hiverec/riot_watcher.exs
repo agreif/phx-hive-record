@@ -22,17 +22,25 @@ defmodule RiotWatcher do
 
   def handle_info({:file_event, watcher_pid, {path, events}}, %{watcher_pid: watcher_pid} = state) do
     filename = Path.basename(path)
+
     if :closed in events and not (filename =~ ~r/^#/) do
       IO.puts(path)
-      {_, result} = System.cmd(System.cwd <> "/node_modules/.bin/riot",
-        [filename, "-o", System.cwd <> "/priv/static/riot/"],
-        cd: System.cwd <> "/priv/riot")
+
+      {_, result} =
+        System.cmd(
+          System.cwd() <> "/node_modules/.bin/riot",
+          [filename, "-o", System.cwd() <> "/priv/static/riot/"],
+          cd: System.cwd() <> "/priv/riot"
+        )
+
       case result do
         0 -> say("ok")
         _ -> say("riot error")
       end
+
       IO.puts("-----------------------------------------------------------")
     end
+
     {:noreply, state}
   end
 
@@ -43,9 +51,7 @@ defmodule RiotWatcher do
         loop()
     end
   end
-
 end
-
 
 RiotWatcher.start_link(dirs: ["priv/riot/"])
 IO.puts("riot watcher running...")
