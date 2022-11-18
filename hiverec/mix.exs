@@ -54,6 +54,7 @@ defmodule Hiverec.MixProject do
       {:bcrypt_elixir, "~> 3.0"},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:doctor, "~> 0.19.0", only: :dev},
       {:say, ">= 0.0.0"}
     ]
   end
