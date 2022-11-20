@@ -23,7 +23,6 @@
                   <th class="">{context.data.translations['Name']}</th>
                   <th class="">{context.data.translations['Type']}</th>
                   <th class="">{context.data.translations['Options']}</th>
-                  <th class="">{context.data.translations['Sort Index']}</th>
                   <th class="uk-align-right">
                     <button onclick="{addInsparamtype}" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" title="{context.data.translations['Add Inspection Param']}" uk-tooltip>
                       <span uk-icon="icon: plus"/>
@@ -43,9 +42,6 @@
 	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">
                       <span class="textarea-wrap">{item.insparamtype.options ? item.insparamtype.options.values.join('\n') : ""}</span>
                     </a>
-	          </td>
-                  <td class="uk-table-link">
-	            <a onclick="{(e) => editInsparamtype(e, item)}" class="uk-link-reset">{item.insparamtype.sort_index}</a>
 	          </td>
 	          <td class="uk-width-small">
 	            <button uk-toggle="target: #modal-insparamtype-really-delete-{item.insparamtype.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Inspection Param']}" uk-tooltip >
