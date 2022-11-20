@@ -56,27 +56,27 @@ msgstr "Durchsicht Parameter hinzufügen"
 msgid "Do you really want to delete this Inspection Param?"
 msgstr "Möchten Sie diesen Durchsicht Parameter wirklich löschen?"
 
-#: lib/hiverec/handler/translation.ex:164
+#: lib/hiverec/handler/translation.ex:166
 #, elixir-autogen, elixir-format
 msgid "bool"
 msgstr "Ja/Nein"
 
-#: lib/hiverec/handler/translation.ex:163
+#: lib/hiverec/handler/translation.ex:165
 #, elixir-autogen, elixir-format
 msgid "dropdown"
 msgstr "Aufklapp-Menu"
 
-#: lib/hiverec/handler/translation.ex:165
+#: lib/hiverec/handler/translation.ex:167
 #, elixir-autogen, elixir-format
 msgid "int"
 msgstr "Ganze Zahl"
 
-#: lib/hiverec/handler/translation.ex:166
+#: lib/hiverec/handler/translation.ex:168
 #, elixir-autogen, elixir-format
 msgid "string"
 msgstr "Kurzer Text"
 
-#: lib/hiverec/handler/translation.ex:167
+#: lib/hiverec/handler/translation.ex:169
 #, elixir-autogen, elixir-format
 msgid "text"
 msgstr "Langer Text"
@@ -85,3 +85,13 @@ msgstr "Langer Text"
 #, elixir-autogen, elixir-format
 msgid "Options (comma separated)"
 msgstr "Optionen (Komma getrennt)"
+
+#: lib/hiverec/handler/translation.ex:157
+#, elixir-autogen, elixir-format
+msgid "Move Sort Position Down"
+msgstr "Reihenfolge nach unten"
+
+#: lib/hiverec/handler/translation.ex:156
+#, elixir-autogen, elixir-format
+msgid "Move Sort Position Up"
+msgstr "Reihenfolge nach oben"

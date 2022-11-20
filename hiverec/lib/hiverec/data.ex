@@ -319,12 +319,16 @@ defmodule Hiverec.Data.PreferencesPage.InsparamtypeListItem do
     :insparamtype,
     :get_insparamtype_update_data_url,
     :post_insparamtype_delete_data_url,
+    :post_insparamtype_sortposup_data_url,
+    :post_insparamtype_sortposdown_data_url,
     :csrf_token
   ]
   defstruct [
     :insparamtype,
     :get_insparamtype_update_data_url,
     :post_insparamtype_delete_data_url,
+    :post_insparamtype_sortposup_data_url,
+    :post_insparamtype_sortposdown_data_url,
     :csrf_token
   ]
 end

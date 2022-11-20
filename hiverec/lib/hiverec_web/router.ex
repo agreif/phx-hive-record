@@ -64,6 +64,14 @@ defmodule HiverecWeb.Router do
     post "/insparamtype_delete/:insparamtype_id/data",
          PageController,
          :post_insparamtype_delete_data
+
+    post "/insparamtype_sortposup/:insparamtype_id/data",
+         PageController,
+         :post_insparamtype_sortposup_data
+
+    post "/insparamtype_sortposdown/:insparamtype_id/data",
+         PageController,
+         :post_insparamtype_sortposdown_data
   end
 
   scope "/", HiverecWeb do

@@ -20,10 +20,10 @@
             <table class="uk-table uk-table-small uk-table-divider uk-table-hover uk-background-muted">
               <thead>
                 <tr>
-                  <th class="uk-width-1-5">{context.data.translations['Name']}</th>
-                  <th class="uk-width-1-5">{context.data.translations['Type']}</th>
-                  <th class="uk-width-1-5">{context.data.translations['Options']}</th>
-                  <th class="uk-width-1-5">{context.data.translations['Sort Index']}</th>
+                  <th class="">{context.data.translations['Name']}</th>
+                  <th class="">{context.data.translations['Type']}</th>
+                  <th class="">{context.data.translations['Options']}</th>
+                  <th class="">{context.data.translations['Sort Index']}</th>
                   <th class="uk-align-right">
                     <button onclick="{addInsparamtype}" class="uk-background-primary uk-light uk-padding-small modal-form-link uk-button uk-button-link" title="{context.data.translations['Add Inspection Param']}" uk-tooltip>
                       <span uk-icon="icon: plus"/>
@@ -51,8 +51,14 @@
 	            <button uk-toggle="target: #modal-insparamtype-really-delete-{item.insparamtype.id}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Delete Inspection Param']}" uk-tooltip >
                       <span uk-icon="icon: trash"/>
 	            </button>
-                    <button onclick="{editInsparamtype}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Edit Inspection Param']}" uk-tooltip >
+                    <button onclick="{(e) => editInsparamtype(e, item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Edit Inspection Param']}" uk-tooltip >
                       <span uk-icon="icon: pencil"/>
+	            </button>
+                    <button onclick="{(e) => moveSortPosDown(e, item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Move Sort Position Down']}" uk-tooltip >
+                      <span uk-icon="icon: arrow-down"/>
+	            </button>
+                    <button onclick="{(e) => moveSortPosUp(e, item)}" class="uk-float-right uk-button uk-button-link" title="{context.data.translations['Move Sort Position Up']}" uk-tooltip >
+                      <span uk-icon="icon: arrow-up"/>
 	            </button>
 	          </td>
                 </tr>
@@ -103,6 +109,13 @@
 	    this.context.refreshDataGet(item.get_insparamtype_update_data_url)
 	},
 
+        moveSortPosUp(event, item) {
+	    this.context.refreshDataPost(item.post_insparamtype_sortposup_data_url, item.csrf_token)
+        },
+
+        moveSortPosDown(event, item) {
+	    this.context.refreshDataPost(item.post_insparamtype_sortposdown_data_url, item.csrf_token)
+        }
     }
   </script>
 </preferences-page>

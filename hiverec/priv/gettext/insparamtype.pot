@@ -55,27 +55,27 @@ msgstr ""
 msgid "Do you really want to delete this Inspection Param?"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:164
+#: lib/hiverec/handler/translation.ex:166
 #, elixir-autogen, elixir-format
 msgid "bool"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:163
+#: lib/hiverec/handler/translation.ex:165
 #, elixir-autogen, elixir-format
 msgid "dropdown"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:165
+#: lib/hiverec/handler/translation.ex:167
 #, elixir-autogen, elixir-format
 msgid "int"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:166
+#: lib/hiverec/handler/translation.ex:168
 #, elixir-autogen, elixir-format
 msgid "string"
 msgstr ""
 
-#: lib/hiverec/handler/translation.ex:167
+#: lib/hiverec/handler/translation.ex:169
 #, elixir-autogen, elixir-format
 msgid "text"
 msgstr ""
@@ -83,4 +83,14 @@ msgstr ""
 #: lib/hiverec/handler/translation.ex:155
 #, elixir-autogen, elixir-format
 msgid "Options (comma separated)"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:157
+#, elixir-autogen, elixir-format
+msgid "Move Sort Position Down"
+msgstr ""
+
+#: lib/hiverec/handler/translation.ex:156
+#, elixir-autogen, elixir-format
+msgid "Move Sort Position Up"
 msgstr ""

@@ -149,6 +149,26 @@ defmodule HiverecWeb.PageController do
         )
       )
 
+  def post_insparamtype_sortposup_data(conn, %{"insparamtype_id" => insparamtype_id_str}),
+    do:
+      json(
+        conn,
+        Handler.Preferences.process_post_sort_pos_up(
+          conn,
+          String.to_integer(insparamtype_id_str)
+        )
+      )
+
+  def post_insparamtype_sortposdown_data(conn, %{"insparamtype_id" => insparamtype_id_str}),
+    do:
+      json(
+        conn,
+        Handler.Preferences.process_post_sort_pos_down(
+          conn,
+          String.to_integer(insparamtype_id_str)
+        )
+      )
+
   # register
 
   def get_register_page(conn, _params),

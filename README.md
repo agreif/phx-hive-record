@@ -20,8 +20,8 @@ or you create a new dummy account on the register page.
 
 ## TODOs
 
-- [ ] inspection param types with sort index
 - [ ] displaying boolean values instead of 'true' and 'false'
+- [x] inspection param types with sort index
 - [x] custom inspection properties
 - [x] add inspections to hive
 - [x] extend hive detail with 'queen_year', 'is_queen_marked', 'notes'

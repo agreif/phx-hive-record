@@ -3,7 +3,6 @@ defmodule Hiverec.Handler.Preferences do
   Preferences logic.
   """
 
-  # , Handler}
   alias Hiverec.{Data, Model}
   alias Hiverec.Handler.{Common, HistoryState, Breadcrumb}
   alias HiverecWeb.Router.Helpers, as: Routes
@@ -30,6 +29,10 @@ defmodule Hiverec.Handler.Preferences do
           get_insparamtype_update_data_url:
             Routes.page_url(conn, :get_insparamtype_update_data, insparamtype),
           post_insparamtype_delete_data_url: post_data_url,
+          post_insparamtype_sortposup_data_url:
+            Routes.page_url(conn, :post_insparamtype_sortposup_data, insparamtype),
+          post_insparamtype_sortposdown_data_url:
+            Routes.page_url(conn, :post_insparamtype_sortposdown_data, insparamtype),
           csrf_token: Tag.csrf_token_value(post_data_url)
         }
       end)
@@ -182,5 +185,21 @@ defmodule Hiverec.Handler.Preferences do
         translate_domains(["menu", "preferences", "insparamtype", "form"], locale)
         |> Map.merge(translate_domain_keys(["insparamtype"], locale))
     }
+  end
+
+  ###################
+  # sort position inspection param type
+  ###################
+
+  def process_post_sort_pos_up(conn, insparamtype_id) when is_integer(insparamtype_id) do
+    user_id = Common.user_id(conn)
+    Model.InsparamType.update_sort_pos(insparamtype_id, &-/2, user_id)
+    gen_data(conn)
+  end
+
+  def process_post_sort_pos_down(conn, insparamtype_id) when is_integer(insparamtype_id) do
+    user_id = Common.user_id(conn)
+    Model.InsparamType.update_sort_pos(insparamtype_id, &+/2, user_id)
+    gen_data(conn)
   end
 end
