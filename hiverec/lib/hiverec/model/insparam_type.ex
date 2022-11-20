@@ -76,23 +76,21 @@ defmodule Hiverec.Model.InsparamType do
 
   def update_sort_pos(insparamtype_id, func, user_id) do
     insparam_types = Model.InsparamType.get_insparam_types(user_id)
+
     Repo.transaction(fn ->
       insparam_types
       |> Enum.map(fn ipt ->
-        {(if ipt.id == insparamtype_id, do: func.(ipt.sort_index, 15), else: ipt.sort_index),
-         ipt
-        }
+        {if(ipt.id == insparamtype_id, do: func.(ipt.sort_index, 15), else: ipt.sort_index), ipt}
       end)
-      |> Enum.sort
+      |> Enum.sort()
       |> Enum.map(fn {_, ipt} -> ipt end)
       |> Enum.zip(Range.new(0, length(insparam_types) * 10, 10))
       |> Enum.each(fn {ipt, index} ->
         change(ipt, sort_index: index)
-        |> Repo.update
+        |> Repo.update()
       end)
     end)
   end
-
 
   def delete_insparam_type(insparamtype_id, user_id) do
     insparamtype = get_insparam_type(insparamtype_id, user_id)
