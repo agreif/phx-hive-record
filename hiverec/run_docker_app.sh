@@ -1,4 +1,4 @@
-export DATABASE_URL=ecto://phx_hiverec_prod:phx_hiverec_prod@postgres-server/phx_hiverec_prod
+export DATABASE_URL=ecto://phx_hiverec_prod:phx_hiverec_prod@postgres/phx_hiverec_prod
 export SECRET_KEY_BASE="$(mix phx.gen.secret)"
 export PHX_HOST=localhost
 export PHX_PORT=4000
@@ -14,7 +14,7 @@ docker rm -f hiverec \
 	      -e PHX_PORT \
 	      -e PHX_SCHEME \
 	      -e PORT \
-	      --network hiverec-network \
+	      --network hiverec_default \
 	      --name hiverec \
 	      elixir/hiverec
 
