@@ -26,9 +26,6 @@ RUN mix deps.get --only $MIX_ENV
 RUN mkdir config
 COPY config/config.exs config/$MIX_ENV.exs config/
 
-# compile dependencies
-RUN mix deps.compile
-
 # copy assets
 COPY priv priv
 COPY assets assets
@@ -49,7 +46,7 @@ RUN mix phx.gen.release
 RUN mix release
 
 # app stage
-FROM alpine:3.14.2 AS app
+FROM alpine:3.16.3 AS app
 
 ARG MIX_ENV
 

@@ -17,3 +17,7 @@ docker rm -f hiverec \
 	      --network hiverec-network \
 	      --name hiverec \
 	      elixir/hiverec
+
+docker exec -it hiverec bin/hiverec eval "Hiverec.Release.migrate"
+
+docker logs hiverec "$@"
