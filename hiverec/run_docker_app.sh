@@ -1,5 +1,5 @@
 export DATABASE_URL=ecto://phx_hiverec_prod:phx_hiverec_prod@postgres-server/phx_hiverec_prod
-export SECRET_KEY_BASE=oxTDjL8cnfjaGQ2jEKC1S+S6d9HEDpdfan9RW1+7iWAljH7L1er550blp9sCOtBh
+export SECRET_KEY_BASE="$(mix phx.gen.secret)"
 export PHX_HOST=localhost
 export PHX_PORT=4000
 export PHX_SCHEME=http
