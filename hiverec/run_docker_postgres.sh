@@ -1,7 +1,7 @@
 docker run -d \
        --network hiverec_default \
-       --network-alias postgres \
-       -v "$(pwd)/../docker_var_lib_postgresql_data:/var/lib/postgresql/data" \
+       --network-alias hiverec-postgres \
+       -v "/var/lib/postgresql_phx_hiverec_prod:/var/lib/postgresql/data" \
        -e POSTGRES_PASSWORD=postgres \
        --name postgres \
        postgres
