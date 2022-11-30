@@ -4,6 +4,7 @@ defmodule Riotjs.Repo.Migrations.CreateLocations do
   def change do
     create table(:locations) do
       add :name, :string, null: false
+      add :user_id, references(:users, on_delete: :nothing), null: false
 
       timestamps()
     end
