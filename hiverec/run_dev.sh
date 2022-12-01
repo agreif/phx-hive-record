@@ -1,8 +1,7 @@
 echo "###### set env vars ############"
-ENV=dev
-POSTGRES_USER=phx_$ENV
-POSTGRES_PASSWORD=phx_$ENV
-POSTGRES_DATABASE=phx_$ENV
+POSTGRES_USER=phx_dev
+POSTGRES_PASSWORD=phx_dev
+POSTGRES_DATABASE=phx_dev
 DB_CONTAINER=phx-dev-postgres
 
 echo "###### start composer ############"
@@ -23,7 +22,7 @@ docker exec -it phx-dev-app mix gettext.extract
 docker exec -it phx-dev-app mix gettext.merge priv/gettext
 
 echo "###### check db access ############"
-docker exec -ti $DB_CONTAINER psql -U $POSTGRES_USER -c "select id,login,email from users;"
+# docker exec -ti $DB_CONTAINER psql -U $POSTGRES_USER -c "select id,login,email from users;"
 
 echo "###### check running containers ############"
 docker ps | grep phx-dev
