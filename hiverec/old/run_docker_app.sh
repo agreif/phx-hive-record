@@ -6,7 +6,7 @@ export PHX_SCHEME=http
 export PORT=4000
 
 docker rm -f hiverec-app \
-    && docker image build -t agreif/phx-hiverec . \
+    && docker image build -f Dockerfile-prod -t agreif/phx-hiverec . \
     && docker run -dp $PORT:$PORT \
 	      -e DATABASE_URL \
 	      -e SECRET_KEY_BASE \
